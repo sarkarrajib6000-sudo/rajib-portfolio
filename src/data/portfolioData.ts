@@ -1,13 +1,17 @@
-import type { Project, SkillCategory, Certification, ExperienceItem, StatsItem } from './schemas';
+import type { Project, SkillCategory, Certification, StatsItem } from './schemas';
 import propflowImg from '../assets/images/propflow_crm.jpg';
 import salesImg from '../assets/images/sales_analytics.jpg';
 import attendanceImg from '../assets/images/attendance_salary_mis.jpg';
+import aresImg from '../assets/images/ares_sale_manager.jpg';
+import realEstateMisImg from '../assets/images/real_estate_mis.jpg';
+import godrejCrmImg from '../assets/images/godrej_crm.jpg';
+import portfolioImg from '../assets/images/portfolio_website.jpg';
 
 export const personalInfo = {
   name: 'Rajib Kumar Sarkar',
   title: 'MIS Executive & Data Analyst',
   tagline: 'Bridging the gap between business operations and technology with advanced data analytics, custom CRM platforms, and full-stack workflow automation.',
-  aboutText: 'I am a results-driven MIS Executive, Data Analyst, and Sales Operations professional with 3+ years of experience specializing in Advanced Excel, MIS/KPI reporting, CRM operations, and full-stack workflow automation. I have a proven track record of designing custom SaaS CRM platforms, engineering complex Excel-based MIS dashboards, and building Google Apps Script automation systems that eliminate manual overhead. Adept at bridging the gap between business operations and technology to drive efficiency and data-backed decisions.',
+  aboutText: 'I am Rajib Kumar Sarkar, a Data Analyst, MIS Executive, and Full-Stack Automation enthusiast from Assam, India. I enjoy building practical solutions that simplify business processes and improve decision-making through data. My experience includes developing dashboards, CRM systems, and MIS reports using React, TypeScript, Python, Excel, SQL, and Google Cloud. I am continuously learning new technologies and enjoy solving real-world problems through automation and modern web development.',
   resumeUrl: '/Rajib_Sarkar_Resume.pdf',
   socials: {
     github: 'https://github.com/sarkarrajib6000-sudo',
@@ -24,19 +28,7 @@ export const stats: StatsItem[] = [
   { label: 'Clients & Students Tracked', value: '15+' }
 ];
 
-export const experience: ExperienceItem[] = [
-  {
-    role: 'Administrative Coordinator & Data Analyst',
-    company: 'Self-Employed',
-    period: 'May 2022 - Dec 2025',
-    description: [
-      'Designed MIS tracking systems in Advanced Excel for 15+ students covering fee records, attendance logs, and performance reports, reducing manual tracking time by 40%.',
-      'Automated document preparation and reporting workflows using Claude AI and ChatGPT, cutting reporting time by ~40% and improving accuracy of MIS summaries.',
-      'Managed end-to-end back-office operations including data entry, scheduling, record management, and stakeholder reporting for non-technical clients.',
-      'Produced structured MIS reports and Excel-based dashboards used for monthly performance reviews and management decision-making.'
-    ]
-  }
-];
+
 
 export const skills: SkillCategory[] = [
   {
@@ -127,8 +119,78 @@ export const projects: Project[] = [
       'Built a one-click custom Payslip Generator tool.',
       'Eliminates manual payroll administration, saving hours of weekly operational overhead.'
     ],
-    demoUrl: '#',
+    demoUrl: 'https://drive.google.com/drive/folders/1l6Fk4hSGahFMUlqlHmojY1vOwnECLE_p',
     githubUrl: '#'
+  },
+  {
+    id: 'ares-sale-manager',
+    title: 'Ares Sale Manager',
+    subtitle: 'Sales Pipeline & Forecasting CRM',
+    description: 'A Kanban-style Opportunity Board managing deals across 5 pipeline stages with full CRUD lead lifecycle management and a stage-weighted Sales Forecast Engine.',
+    longDescription: 'Ares Sale Manager is a performance-driven CRM featuring a Kanban-style opportunity board to manage sales pipelines. It enables real-time deal stage transitions, tracks lead lifecycles, and employs a stage-weighted sales forecasting algorithm. The application synchronizes dynamically with Google Sheets and utilizes Firebase/Firestore for collaborative, real-time sales team updates.',
+    image: aresImg,
+    tags: ['React', 'Tailwind CSS', 'Firebase Firestore', 'Sales Forecasting'],
+    features: [
+      'Built a Kanban-style Opportunity Board managing deals across 5 pipeline stages.',
+      'Implemented full CRUD lead lifecycle management and a stage-weighted Sales Forecast Engine.',
+      'Developed a Performance Analytics leaderboard with Google Sheets sync.',
+      'Created real-time notifications using React hooks backed by Firestore.'
+    ],
+    demoUrl: 'https://ares-sale-manager-631037741637.asia-southeast1.run.app',
+    githubUrl: '#'
+  },
+  {
+    id: 'real-estate-mis',
+    title: 'Real Estate Sales MIS Dashboard',
+    subtitle: 'Excel & Google Apps Script Automation',
+    description: 'A 10-sheet Excel MIS Dashboard covering territory performance, lead funnel, team KPIs, and inventory across 12 projects.',
+    longDescription: 'Designed a 10-sheet Excel MIS Dashboard (212 live formulas) covering territory performance, lead funnel, team KPIs, and inventory across 12 projects and 10 sales executives. Built Google Apps Script automation for instant high-value lead alerts (>=80L), daily follow-up reminders, and weekly pipeline reports — eliminating 100% of manual reporting.',
+    image: realEstateMisImg,
+    tags: ['Microsoft Excel', 'Google Apps Script', 'CRM Automation', 'KPI Dashboards'],
+    features: [
+      'Designed a 10-sheet Excel MIS Dashboard with 212 live formulas covering territory performance and lead funnel.',
+      'Tracked team KPIs and inventory across 12 real estate projects and 10 sales executives.',
+      'Built Google Apps Script automation for instant high-value lead alerts (>=80L).',
+      'Implemented daily follow-up reminders and weekly pipeline reports, reducing manual overhead.'
+    ],
+    demoUrl: 'https://docs.google.com/spreadsheets/d/1FQri8cWPWV9ttG3ENDKu8IJVSUhTHScs/edit?usp=drivesdk&ouid=110417523830446604299&rtpof=true&sd=true',
+    githubUrl: '#'
+  },
+  {
+    id: 'godrej-crm',
+    title: 'Cloud-Based CRM Web Application',
+    subtitle: 'Google Sheets Connected CRM Dashboard',
+    description: 'A CRM dashboard tracking leads, bookings, and sales performance with live Google Sheets data sync and Chart.js KPI visualizations.',
+    longDescription: 'Built a CRM dashboard tracking leads, bookings, and sales performance with live Google Sheets data sync and Chart.js KPI visualizations, deployed on GitHub Pages. The Database Excel Sheet is directly linked to the webpage for real-time CRM reporting.',
+    image: godrejCrmImg,
+    tags: ['HTML5', 'Vanilla CSS', 'JavaScript', 'Google Apps Script', 'Chart.js'],
+    features: [
+      'Built a CRM dashboard tracking leads, bookings, and sales performance.',
+      'Synchronized real-time spreadsheet data with live Google Sheets sync.',
+      'Created interactive KPI charts using Chart.js visualizations.',
+      'Deployed the application on GitHub Pages with spreadsheet backend integration.'
+    ],
+    demoUrl: 'https://sarkarrajib6000-sudo.github.io/Godrej-crm',
+    githubUrl: 'https://github.com/sarkarrajib6000-sudo/Godrej-crm',
+    extraUrl: 'https://docs.google.com/spreadsheets/d/1KosliD-qsFRs4747XyPFPC4luruynL3e5lFYMNjeE44/edit?usp=drivesdk',
+    extraUrlLabel: 'Excel Database Sheet'
+  },
+  {
+    id: 'portfolio-website',
+    title: 'Developer Portfolio Website',
+    subtitle: 'Interactive Personal Portfolio & Showcase',
+    description: 'A premium, responsive developer portfolio featuring glassmorphic designs, dark mode, certifications index, contact form, and automated testing.',
+    longDescription: 'A high-performance personal portfolio built to display technical capabilities, software engineering projects, and certifications. Designed with glassmorphic elements, neon gradients, a theme manager, and dynamic Framer Motion animations. Features automated unit tests using Vitest for contact form verification and type integrity.',
+    image: portfolioImg,
+    tags: ['React', 'TypeScript', 'Vite', 'Framer Motion', 'Vitest', 'Tailwind CSS'],
+    features: [
+      'Designed a premium glassmorphic dark-first UI with custom light/dark theme toggling.',
+      'Integrated Framer Motion for smooth entrance slide-ups, card transitions, and interactive components.',
+      'Configured automated unit testing via Vitest to validate contact form requirements and theme toggles.',
+      'Implemented responsive layouts across desktop, tablet, and mobile devices.'
+    ],
+    demoUrl: '#',
+    githubUrl: 'https://github.com/sarkarrajib6000-sudo/rajib-portfolio'
   }
 ];
 
@@ -136,37 +198,111 @@ export const certifications: Certification[] = [
   {
     title: 'Introduction to SQL',
     issuer: 'Simplilearn',
-    date: 'N/A',
+    date: '19th May 2026',
     credentialId: '10244929',
-    verificationUrl: 'https://www.simplilearn.com/'
+    verificationUrl: 'https://www.simplilearn.com/',
+    pdfUrl: '/documents/Simplilearn Certificate. sql.pdf'
   },
   {
     title: 'Introduction to Artificial Intelligence',
     issuer: 'Simplilearn',
-    date: 'N/A',
+    date: '29th May 2026',
     credentialId: '10281725',
-    verificationUrl: 'https://www.simplilearn.com/'
+    verificationUrl: 'https://www.simplilearn.com/',
+    pdfUrl: '/documents/AI  Simplilearn Certificate-1.pdf'
   },
   {
     title: 'Introduction to MS Excel',
     issuer: 'Simplilearn',
-    date: 'N/A',
+    date: '7th July 2026',
     credentialId: '10439116',
-    verificationUrl: 'https://www.simplilearn.com/'
+    verificationUrl: 'https://www.simplilearn.com/',
+    pdfUrl: '/documents/MS_EXCEL_ Simplilearn.pdf'
   },
   {
     title: 'Claude Code',
     issuer: 'Anthropic',
     date: 'N/A',
     credentialId: 'N/A',
-    verificationUrl: 'https://www.anthropic.com/'
+    verificationUrl: 'https://www.anthropic.com/',
+    pdfUrl: '/documents/certificate-Claude code.pdf'
+  },
+  {
+    title: 'Claude 101',
+    issuer: 'Anthropic Education',
+    date: 'April 28, 2026',
+    credentialId: 'N/A',
+    verificationUrl: 'https://www.anthropic.com/',
+    pdfUrl: '/documents/certificate-claud101 (2).pdf'
+  },
+  {
+    title: 'AI Fluency for Educators',
+    issuer: 'Anthropic',
+    date: 'N/A',
+    credentialId: 'N/A',
+    verificationUrl: 'https://www.anthropic.com/',
+    pdfUrl: '/documents/Ai fluency for educators .pdf'
+  },
+  {
+    title: 'AI Fluency for Students',
+    issuer: 'Anthropic',
+    date: 'N/A',
+    credentialId: 'N/A',
+    verificationUrl: 'https://www.anthropic.com/',
+    pdfUrl: '/documents/Al fluency for students .pdf'
+  },
+  {
+    title: 'Accounting Fundamentals',
+    issuer: 'TCS iON',
+    date: '03 Jul 2026',
+    credentialId: '71234-32830086-1016',
+    verificationUrl: 'https://www.tcsion.com/',
+    pdfUrl: '/documents/Accounting tcsion By TCS.pdf'
   },
   {
     title: 'HubSpot Reporting Certified',
     issuer: 'HubSpot Academy',
     date: 'N/A',
     credentialId: 'N/A',
-    verificationUrl: 'https://academy.hubspot.com/'
+    verificationUrl: 'https://academy.hubspot.com/',
+    pdfUrl: '/documents/HubSpot_Reporting_Certified_v2 (1).pdf'
+  },
+  {
+    title: 'Inbound Sales Certified',
+    issuer: 'HubSpot Academy',
+    date: 'N/A',
+    credentialId: 'N/A',
+    verificationUrl: 'https://academy.hubspot.com/',
+    pdfUrl: '/documents/Inbound_Sales_Certified_v2 (1).pdf'
+  },
+  {
+    title: 'Sales Management Certification',
+    issuer: 'HubSpot Academy',
+    date: 'N/A',
+    credentialId: 'N/A',
+    verificationUrl: 'https://academy.hubspot.com/',
+    pdfUrl: '/documents/Sales_Management_Certification_v2 (1).pdf'
+  },
+  {
+    title: 'Digital Marketing Strategy',
+    issuer: 'Simplilearn',
+    date: 'N/A',
+    credentialId: 'N/A',
+    verificationUrl: 'https://www.simplilearn.com/'
+  },
+  {
+    title: 'Microsoft Excel with AI Masterclass',
+    issuer: 'Skill Course',
+    date: 'N/A',
+    credentialId: 'N/A',
+    verificationUrl: 'https://www.skillcourse.com/'
+  },
+  {
+    title: 'Customer Engagement Fundamentals',
+    issuer: 'IBM',
+    date: 'N/A',
+    credentialId: 'N/A',
+    verificationUrl: 'https://www.ibm.com/'
   },
   {
     title: 'Google Analytics',

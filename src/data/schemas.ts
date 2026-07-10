@@ -9,6 +9,8 @@ export interface Project {
   features: string[];
   demoUrl: string;
   githubUrl: string;
+  extraUrl?: string;
+  extraUrlLabel?: string;
 }
 
 export interface SkillItem {
@@ -27,6 +29,7 @@ export interface Certification {
   date: string;
   credentialId: string;
   verificationUrl: string;
+  pdfUrl?: string;
 }
 
 export interface ExperienceItem {

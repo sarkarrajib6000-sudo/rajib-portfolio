@@ -167,24 +167,39 @@ export const Projects: React.FC = () => {
 
                 {/* CTA Links */}
                 <div className="flex flex-col sm:flex-row items-center gap-4 border-t border-slate-100 dark:border-slate-800 pt-6">
-                  <a
-                    href={selectedProject.demoUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-indigo-600 text-white font-semibold shadow-md hover:bg-indigo-700 transition-colors"
-                  >
-                    <ExternalLink className="w-4 h-4" />
-                    Live Demo
-                  </a>
-                  <a
-                    href={selectedProject.githubUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl border border-slate-300 dark:border-slate-700 bg-white/50 dark:bg-slate-800/50 text-slate-800 dark:text-white font-semibold hover:bg-slate-50 dark:hover:bg-slate-800/80 transition-colors"
-                  >
-                    <GithubIcon className="w-4 h-4" />
-                    Source Code
-                  </a>
+                  {selectedProject.demoUrl && selectedProject.demoUrl !== '#' && (
+                    <a
+                      href={selectedProject.demoUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-indigo-600 text-white font-semibold shadow-md hover:bg-indigo-700 transition-colors"
+                    >
+                      <ExternalLink className="w-4 h-4" />
+                      Live Demo
+                    </a>
+                  )}
+                  {selectedProject.githubUrl && selectedProject.githubUrl !== '#' && (
+                    <a
+                      href={selectedProject.githubUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl border border-slate-300 dark:border-slate-700 bg-white/50 dark:bg-slate-800/50 text-slate-800 dark:text-white font-semibold hover:bg-slate-50 dark:hover:bg-slate-800/80 transition-colors"
+                    >
+                      <GithubIcon className="w-4 h-4" />
+                      Source Code
+                    </a>
+                  )}
+                  {selectedProject.extraUrl && selectedProject.extraUrl !== '#' && (
+                    <a
+                      href={selectedProject.extraUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl border border-indigo-200 dark:border-indigo-900 bg-indigo-50/50 dark:bg-indigo-950/20 text-indigo-600 dark:text-indigo-400 font-semibold hover:bg-indigo-100/50 dark:hover:bg-indigo-950/40 transition-colors"
+                    >
+                      <ExternalLink className="w-4 h-4" />
+                      {selectedProject.extraUrlLabel || 'Database Link'}
+                    </a>
+                  )}
                 </div>
               </motion.div>
             </div>
