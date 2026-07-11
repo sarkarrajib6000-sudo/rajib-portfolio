@@ -21,7 +21,8 @@ function AppContent() {
       <header className="sticky top-0 z-40 w-full border-b border-slate-100 dark:border-slate-800/80 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md">
         <div className="max-w-6xl mx-auto flex h-16 items-center justify-between px-4">
           <a href="#" className="font-extrabold text-xl lg:text-2xl bg-clip-text text-transparent bg-gradient-to-r from-indigo-500 via-purple-500 to-teal-400 hover:scale-[1.02] transition-transform duration-200">
-            Rajib.dev
+            Rajib Kumar
+               Sarkar
           </a>
 
           {/* Desktop Navigation Links */}

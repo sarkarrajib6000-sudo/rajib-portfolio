@@ -30,6 +30,7 @@ export const stats: StatsItem[] = [
 
 
 
+
 export const skills: SkillCategory[] = [
   {
     category: 'Data Analytics',
@@ -38,34 +39,78 @@ export const skills: SkillCategory[] = [
       { name: 'MIS & KPI Reporting', level: 90 },
       { name: 'SQL Database Querying', level: 80 },
       { name: 'Data Cleaning & Visualization', level: 85 },
-      { name: 'Python & Power BI (Basic)', level: 60 }
+      { name: 'Dashboard Design & KPI Visualization', level: 90 },
+      { name: 'Business Intelligence', level: 85 },
+      { name: 'Forecasting & Trend Analysis', level: 80 },
+      { name: 'Power Query', level: 80 },
+      { name: 'CSV Data Processing', level: 90 },
+      { name: 'Python', level: 70 },
+      { name: 'Power BI', level: 65 }
     ]
   },
   {
     category: 'Software & Automation',
     items: [
-      { name: 'React & TypeScript', level: 85 },
-      { name: 'Google Apps Script Automation', level: 90 },
-      { name: 'Firebase / Firestore', level: 85 },
-      { name: 'Tailwind CSS & Recharts', level: 80 },
-      { name: 'Multi-Tenant SaaS Architecture', level: 75 }
+      { name: 'React', level: 80 },
+      { name: 'TypeScript', level: 80 },
+      { name: 'JavaScript (ES6+)', level: 85 },
+      { name: 'HTML5', level: 90 },
+      { name: 'CSS3', level: 90 },
+      { name: 'Tailwind CSS', level: 85 },
+      { name: 'Recharts', level: 80 },
+      { name: 'Vite', level: 85 },
+      { name: 'Firebase', level: 85 },
+      { name: 'Firestore', level: 85 },
+      { name: 'Google Apps Script', level: 90 },
+      { name: 'REST API Integration', level: 85 },
+      { name: 'Git', level: 90 },
+      { name: 'GitHub', level: 90 },
+      { name: 'Node.js (Basic)', level: 70 },
+      { name: 'Express.js (Basic)', level: 70 },
+      { name: 'Multi-Tenant SaaS Architecture', level: 70 }
     ]
   },
   {
     category: 'Operations & CRM',
     items: [
+      { name: 'CRM Administration', level: 90 },
       { name: 'Sales & CRM Operations', level: 90 },
+      { name: 'Sales Pipeline Management', level: 90 },
       { name: 'Lead Management & Pipelines', level: 85 },
-      { name: 'Back Office & Administration', level: 90 },
-      { name: 'Payroll & Attendance Admin', level: 85 }
+      { name: 'Business Process Automation', level: 90 },
+      { name: 'Back Office Administration', level: 90 },
+      { name: 'Payroll Processing', level: 85 },
+      { name: 'Attendance Management', level: 85 },
+      { name: 'Inventory Management', level: 80 },
+      { name: 'Report Automation', level: 90 }
     ]
   },
   {
     category: 'AI & Productivity',
     items: [
       { name: 'AI Workflow Automation', level: 95 },
+      { name: 'Generative AI Applications', level: 95 },
+      { name: 'Gemini AI Integration', level: 90 },
+      { name: 'Claude AI', level: 90 },
       { name: 'Prompt Engineering', level: 90 },
-      { name: 'Google Workspace & MS Office', level: 90 }
+      { name: 'AI-Assisted Software Development', level: 95 },
+      { name: 'Workflow Automation', level: 95 },
+      { name: 'Technical Documentation', level: 85 },
+      { name: 'Google Workspace', level: 95 },
+      { name: 'Microsoft Office', level: 95 }
+    ]
+  },
+  {
+    category: 'Tools & Platforms',
+    items: [
+      { name: 'Google Cloud', level: 75 },
+      { name: 'Firebase Hosting', level: 85 },
+      { name: 'Google Sheets', level: 95 },
+      { name: 'Microsoft Excel', level: 95 },
+      { name: 'Google Apps Script', level: 90 },
+      { name: 'Termux', level: 90 },
+      { name: 'VS Code', level: 85 },
+      { name: 'Chrome DevTools', level: 80 }
     ]
   }
 ];
@@ -85,7 +130,7 @@ export const projects: Project[] = [
       'Integrated Gemini AI for automated lead scoring, routing, and personalized welcome drafts.',
       'Developed automated SLA escalation and ledger overdue alerts across 6 core modules.'
     ],
-    demoUrl: 'https://untitled-866355098480.asia-southeast1.run.app',
+    demoUrl: 'https://propflow-7890.vercel.app/',
     githubUrl: 'https://github.com/sarkarrajib6000-sudo/Propflow_7890'
   },
   {
@@ -286,9 +331,18 @@ export const certifications: Certification[] = [
   {
     title: 'Digital Marketing Strategy',
     issuer: 'Simplilearn',
-    date: 'N/A',
-    credentialId: 'N/A',
-    verificationUrl: 'https://www.simplilearn.com/'
+    date: '10th July 2026',
+    credentialId: '10448704',
+    verificationUrl: 'https://www.simplilearn.com/',
+    pdfUrl: '/documents/Digital Marketing Strategy.pdf'
+  },
+  {
+    title: 'Google Slides',
+    issuer: 'Simplilearn',
+    date: '11th July 2026',
+    credentialId: '10454284',
+    verificationUrl: 'https://www.simplilearn.com/',
+    pdfUrl: '/documents/Google Slide Certificate.pdf'
   },
   {
     title: 'Microsoft Excel with AI Masterclass',
