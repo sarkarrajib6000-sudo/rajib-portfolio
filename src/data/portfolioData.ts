@@ -364,5 +364,12 @@ export const certifications: Certification[] = [
     date: 'N/A',
     credentialId: 'N/A',
     verificationUrl: 'https://grow.google/'
+  },
+  {
+    title: 'Power Bi',
+    issuer: 'Simplilearn',
+    date: 'N/A',
+    credentialId: 'N/A',
+    verificationUrl: 'https://www.simplilearn.com/'
   }
 ];

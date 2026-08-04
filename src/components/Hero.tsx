@@ -2,7 +2,6 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Mail, Download, ArrowRight } from 'lucide-react';
 import { personalInfo } from '../data/portfolioData';
-import heroBg from '../assets/images/hero_background.jpg';
 
 // Custom inline SVG icons for brands (since lucide-react deprecated them in v1.x)
 const GithubIcon: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
@@ -28,123 +27,130 @@ const TwitterIcon: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
 
 export const Hero: React.FC = () => {
   return (
-    <section className="relative min-h-[90svh] flex items-center justify-center overflow-hidden py-20 px-4">
-      {/* Background Graphic */}
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden py-32 px-4">
+      {/* Premium Background Graphic */}
       <div className="absolute inset-0 z-0">
-        <img
-          src={heroBg}
-          alt="Technical Background"
-          className="w-full h-full object-cover opacity-25 dark:opacity-20 mix-blend-overlay"
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-white/50 to-white dark:via-slate-900/50 dark:to-slate-900" />
+        <div className="absolute inset-0 bg-slate-50 dark:bg-darkBg" />
+        <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] rounded-full bg-vibrantIndigo/20 blur-[120px] animate-pulse" />
+        <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] rounded-full bg-vibrantPurple/20 blur-[120px] animate-pulse delay-700" />
+        <div className="absolute inset-0 opacity-[0.03] dark:opacity-[0.05] pointer-events-none" style={{ backgroundImage: 'radial-gradient(#6366f1 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
       </div>
 
-      <div className="relative z-10 max-w-4xl mx-auto text-center">
+      <div className="relative z-10 max-w-5xl mx-auto text-center">
         {/* Floating Developer Badge */}
         <motion.div
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-indigo-500/30 bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 text-sm font-medium mb-6 backdrop-blur-sm"
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass border-vibrantIndigo/30 text-vibrantIndigo dark:text-indigo-400 text-xs font-bold uppercase tracking-widest mb-8"
         >
           <span className="flex h-2 w-2 relative">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-indigo-400 opacity-75"></span>
-            <span className="relative inline-flex rounded-full h-2 w-2 bg-indigo-50"></span>
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-vibrantIndigo opacity-75"></span>
+            <span className="relative inline-flex rounded-full h-2 w-2 bg-vibrantIndigo"></span>
           </span>
-          Available for New Projects
+          Open for Collaboration
         </motion.div>
 
         {/* Name & Title */}
-        <motion.h1
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.1 }}
-          className="text-5xl md:text-7xl font-bold tracking-tight text-slate-900 dark:text-white mb-6"
-        >
-          Hi, I'm <span className="bg-clip-text text-transparent bg-gradient-to-r from-indigo-500 via-purple-500 to-teal-400">{personalInfo.name}</span>
-        </motion.h1>
-
-        <motion.p
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="text-xl md:text-2xl font-medium text-slate-700 dark:text-slate-300 mb-4"
-        >
-          {personalInfo.title}
-        </motion.p>
-
-        <motion.p
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.3 }}
-          className="text-base md:text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto mb-10 leading-relaxed"
-        >
-          {personalInfo.tagline}
-        </motion.p>
-
-        {/* CTA Actions */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12"
+          transition={{ duration: 0.8, delay: 0.2 }}
+        >
+          <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter text-slate-950 dark:text-white mb-6">
+            Hi, I'm
+          </h1>
+          <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter mb-8">
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-vibrantIndigo via-vibrantPurple to-vibrantCyan animate-gradient-x bg-[length:200%_200%]">
+              {personalInfo.name.split(' ')[0]}
+            </span>
+          </h1>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.3 }}
+          className="max-w-2xl mx-auto"
+        >
+          <h2 className="text-2xl md:text-3xl lg:text-4xl font-semibold text-slate-700 dark:text-slate-200 mb-8 text-center">
+            {personalInfo.title}
+          </h2>
+
+          <p className="text-base md:text-lg lg:text-xl text-slate-600 dark:text-slate-400 mb-12 leading-relaxed font-normal text-center">
+            {personalInfo.tagline}
+          </p>
+        </motion.div>
+
+        {/* Enhanced CTA Actions */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.5 }}
+          className="flex flex-col sm:flex-row items-center justify-center gap-6 mb-20"
         >
           <a
             href="#contact"
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-semibold shadow-lg shadow-indigo-500/20 hover:shadow-indigo-500/35 transition-all hover:scale-[1.02] active:scale-[0.98]"
+            className="group relative w-full sm:w-auto inline-flex items-center justify-center gap-3 px-10 py-5 rounded-2xl bg-gradient-to-r from-vibrantIndigo to-vibrantPurple text-white font-black shadow-2xl shadow-indigo-500/40 hover:shadow-indigo-500/60 transition-all duration-300 overflow-hidden"
           >
-            Let's Connect
-            <ArrowRight className="w-4 h-4" />
+            <span className="relative z-10 flex items-center gap-2">
+              Start a Project
+              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+            </span>
+            <div className="absolute inset-0 bg-gradient-to-r from-vibrantPurple to-vibrantIndigo opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
           </a>
           <a
             href={personalInfo.resumeUrl}
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-white/50 dark:bg-slate-800/50 backdrop-blur-md text-slate-800 dark:text-white font-semibold hover:bg-slate-50 dark:hover:bg-slate-800/80 transition-all hover:scale-[1.02] active:scale-[0.98]"
+            className="group relative w-full sm:w-auto inline-flex items-center justify-center gap-3 px-10 py-5 rounded-2xl glass border border-white/30 dark:border-white/10 font-black text-slate-900 dark:text-white hover:border-vibrantIndigo/50 transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] overflow-hidden"
           >
-            <Download className="w-4 h-4" />
-            Download Resume
+            <span className="relative z-10 flex items-center gap-2">
+              <Download className="w-5 h-5" />
+              My Resume
+            </span>
+            <div className="absolute inset-0 bg-gradient-to-r from-vibrantIndigo/10 to-vibrantPurple/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
           </a>
         </motion.div>
 
-        {/* Social Links */}
+        {/* Enhanced Social Links */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.6, delay: 0.5 }}
-          className="flex items-center justify-center gap-5 text-slate-600 dark:text-slate-400"
+          className="flex items-center justify-center gap-6"
         >
           <a
             href={personalInfo.socials.github}
             target="_blank"
             rel="noopener noreferrer"
             aria-label="GitHub Profile"
-            className="p-3 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-indigo-500 transition-colors"
+            className="group p-4 rounded-full hover:bg-gradient-to-br hover:from-slate-100 hover:to-slate-200 dark:hover:from-slate-800 dark:hover:to-slate-700 hover:text-indigo-500 transition-all duration-300 shadow-sm hover:shadow-md"
           >
-            <GithubIcon className="w-6 h-6" />
+            <GithubIcon className="w-6 h-6 group-hover:scale-110 transition-transform" />
           </a>
           <a
             href={personalInfo.socials.linkedin}
             target="_blank"
             rel="noopener noreferrer"
             aria-label="LinkedIn Profile"
-            className="p-3 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-indigo-500 transition-colors"
+            className="group p-4 rounded-full hover:bg-gradient-to-br hover:from-slate-100 hover:to-slate-200 dark:hover:from-slate-800 dark:hover:to-slate-700 hover:text-indigo-500 transition-all duration-300 shadow-sm hover:shadow-md"
           >
-            <LinkedinIcon className="w-6 h-6" />
+            <LinkedinIcon className="w-6 h-6 group-hover:scale-110 transition-transform" />
           </a>
           <a
             href={personalInfo.socials.twitter}
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Twitter Profile"
-            className="p-3 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-indigo-500 transition-colors"
+            className="group p-4 rounded-full hover:bg-gradient-to-br hover:from-slate-100 hover:to-slate-200 dark:hover:from-slate-800 dark:hover:to-slate-700 hover:text-indigo-500 transition-all duration-300 shadow-sm hover:shadow-md"
           >
-            <TwitterIcon className="w-6 h-6" />
+            <TwitterIcon className="w-6 h-6 group-hover:scale-110 transition-transform" />
           </a>
           <a
             href={personalInfo.socials.email}
             aria-label="Email Rajib"
-            className="p-3 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-indigo-500 transition-colors"
+            className="group p-4 rounded-full hover:bg-gradient-to-br hover:from-slate-100 hover:to-slate-200 dark:hover:from-slate-800 dark:hover:to-slate-700 hover:text-indigo-500 transition-all duration-300 shadow-sm hover:shadow-md"
           >
-            <Mail className="w-6 h-6" />
+            <Mail className="w-6 h-6 group-hover:scale-110 transition-transform" />
           </a>
         </motion.div>
       </div>

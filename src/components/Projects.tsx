@@ -33,48 +33,56 @@ export const Projects: React.FC = () => {
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-50px' }}
-              transition={{ duration: 0.5, delay: idx * 0.1 }}
-              whileHover={{ y: -6 }}
-              className="group flex flex-col h-full rounded-2xl overflow-hidden border border-slate-100 dark:border-slate-800/80 bg-white dark:bg-slate-900/60 backdrop-blur-md shadow-md cursor-pointer hover:shadow-xl dark:hover:shadow-slate-950/30 transition-all"
+              transition={{ duration: 0.6, delay: idx * 0.1 }}
+              whileHover={{ y: -12, scale: 1.02 }}
+              className="group relative flex flex-col h-full rounded-3xl overflow-hidden glass hover:border-vibrantIndigo/50 transition-all duration-500 cursor-pointer shadow-xl hover:shadow-2xl hover:shadow-vibrantIndigo/30 border border-slate-200/50 dark:border-slate-800/50"
               onClick={() => setSelectedProject(project)}
             >
               {/* Image Container */}
-              <div className="relative h-48 overflow-hidden bg-slate-200 dark:bg-slate-800">
+              <div className="relative h-60 overflow-hidden">
                 <img
                   src={project.image}
                   alt={project.title}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-115"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
-                  <span className="text-white text-sm font-semibold">View Case Study</span>
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/30 to-transparent opacity-70 group-hover:opacity-85 transition-opacity duration-300" />
+                
+                <div className="absolute top-4 left-4 right-4 flex justify-between items-start">
+                  <span className="px-3 py-1 text-[10px] font-black uppercase tracking-widest bg-gradient-to-r from-vibrantIndigo to-vibrantPurple text-white rounded-lg shadow-lg">
+                    {project.subtitle}
+                  </span>
+                  <div className="p-2 rounded-full glass bg-white/10 dark:bg-slate-950/40 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                    </svg>
+                  </div>
                 </div>
               </div>
 
               {/* Card Body */}
-              <div className="p-6 flex flex-col flex-grow">
-                <span className="text-indigo-500 dark:text-indigo-400 text-xs font-bold uppercase tracking-wider mb-2">
-                  {project.subtitle}
-                </span>
-                <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-3 group-hover:text-indigo-500 transition-colors">
+              <div className="p-8 flex flex-col flex-grow relative">
+                <div className="absolute inset-0 bg-gradient-to-br from-vibrantIndigo/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-3xl" />
+                
+                <h3 className="text-2xl font-black text-slate-950 dark:text-white mb-3 group-hover:text-vibrantIndigo transition-colors leading-tight relative z-10">
                   {project.title}
                 </h3>
-                <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-6 flex-grow">
+                <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-8 flex-grow font-medium relative z-10">
                   {project.description}
                 </p>
 
                 {/* Tech Tags */}
-                <div className="flex flex-wrap gap-1.5 mt-auto">
+                <div className="flex flex-wrap gap-2 mt-auto relative z-10">
                   {project.tags.slice(0, 3).map((tag) => (
                     <span
                       key={tag}
-                      className="px-2.5 py-1 text-xs font-medium rounded-md bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300"
+                      className="px-3 py-1 text-[10px] font-bold rounded-full bg-gradient-to-r from-white/5 to-slate-100/5 dark:from-white/5 dark:to-slate-800/5 text-slate-700 dark:text-slate-300 border border-slate-200/50 dark:border-white/10 backdrop-blur-sm hover:from-vibrantIndigo/20 hover:to-vibrantPurple/20 hover:text-vibrantIndigo transition-all duration-300"
                     >
                       {tag}
                     </span>
                   ))}
                   {project.tags.length > 3 && (
-                    <span className="px-2 py-0.5 text-xs font-medium rounded-md bg-slate-100 dark:bg-slate-800 text-slate-500">
-                      +{project.tags.length - 3}
+                    <span className="px-2 py-1 text-[10px] font-bold text-vibrantIndigo bg-vibrantIndigo/10 rounded-full border border-vibrantIndigo/20">
+                      +{project.tags.length - 3} More
                     </span>
                   )}
                 </div>

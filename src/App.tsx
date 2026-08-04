@@ -16,46 +16,41 @@ function AppContent() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   return (
-    <div className="min-h-screen bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 transition-colors duration-300">
+    <div className="min-h-screen bg-slate-50 dark:bg-darkBg text-slate-900 dark:text-slate-100 transition-colors duration-300">
       {/* Navigation Header */}
-      <header className="sticky top-0 z-40 w-full border-b border-slate-100 dark:border-slate-800/80 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md">
-        <div className="max-w-6xl mx-auto flex h-16 items-center justify-between px-4">
-          <a href="#" className="font-extrabold text-xl lg:text-2xl bg-clip-text text-transparent bg-gradient-to-r from-indigo-500 via-purple-500 to-teal-400 hover:scale-[1.02] transition-transform duration-200">
-            Rajib Kumar
-               Sarkar
+      <header className="fixed top-4 left-1/2 -translate-x-1/2 z-50 w-[95%] max-w-5xl glass rounded-2xl">
+        <div className="flex h-14 lg:h-16 items-center justify-between px-6">
+          <a href="#" className="font-black text-lg lg:text-xl bg-clip-text text-transparent bg-gradient-to-r from-vibrantIndigo via-vibrantPurple to-vibrantCyan hover:scale-[1.02] transition-transform">
+            RKS
           </a>
 
           {/* Desktop Navigation Links */}
-          <nav className="hidden md:flex items-center gap-1.5 lg:gap-3 text-sm lg:text-base font-bold">
-            <a href="#about" className="px-3.5 py-2 rounded-xl text-slate-600 hover:text-indigo-600 hover:bg-indigo-500/10 dark:text-slate-300 dark:hover:text-indigo-400 dark:hover:bg-indigo-400/10 transition-all duration-200">About</a>
-            <a href="#skills" className="px-3.5 py-2 rounded-xl text-slate-600 hover:text-indigo-600 hover:bg-indigo-500/10 dark:text-slate-300 dark:hover:text-indigo-400 dark:hover:bg-indigo-400/10 transition-all duration-200">Skills</a>
-            <a href="#projects" className="px-3.5 py-2 rounded-xl text-slate-600 hover:text-indigo-600 hover:bg-indigo-500/10 dark:text-slate-300 dark:hover:text-indigo-400 dark:hover:bg-indigo-400/10 transition-all duration-200">Projects</a>
-            <a href="#certifications" className="px-3.5 py-2 rounded-xl text-slate-600 hover:text-indigo-600 hover:bg-indigo-500/10 dark:text-slate-300 dark:hover:text-indigo-400 dark:hover:bg-indigo-400/10 transition-all duration-200">Certifications</a>
-            <a href="#contact" className="px-3.5 py-2 rounded-xl text-slate-600 hover:text-indigo-600 hover:bg-indigo-500/10 dark:text-slate-300 dark:hover:text-indigo-400 dark:hover:bg-indigo-400/10 transition-all duration-200">Contact</a>
+          <nav className="hidden md:flex items-center gap-1 text-sm font-bold">
+            <a href="#about" className="px-4 py-2 rounded-xl hover:text-vibrantIndigo transition-colors">About</a>
+            <a href="#skills" className="px-4 py-2 rounded-xl hover:text-vibrantIndigo transition-colors">Skills</a>
+            <a href="#projects" className="px-4 py-2 rounded-xl hover:text-vibrantIndigo transition-colors">Projects</a>
+            <a href="#certifications" className="px-4 py-2 rounded-xl hover:text-vibrantIndigo transition-colors">Certifications</a>
           </nav>
 
-          <div className="flex items-center gap-3">
-            {/* Theme Toggle Button */}
+          <div className="flex items-center gap-2">
             <button
               onClick={toggleTheme}
-              className="p-2.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950/40 text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+              className="p-2 rounded-xl hover:bg-white/10 transition-colors"
               aria-label="Toggle Theme"
             >
-              {theme === 'dark' ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
+              {theme === 'dark' ? <Sun className="w-5 h-5 text-yellow-400" /> : <Moon className="w-5 h-5 text-slate-700" />}
             </button>
             <a
               href="#contact"
-              className="hidden sm:inline-flex items-center justify-center px-5 py-2.5 text-sm lg:text-base font-bold rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white shadow-md hover:scale-[1.02] active:scale-[0.98] transition-all"
+              className="hidden sm:inline-flex px-5 py-2 text-sm font-bold rounded-xl bg-vibrantIndigo text-white shadow-lg shadow-indigo-500/20 hover:scale-[1.02] active:scale-[0.98] transition-all"
             >
-              Hire Me
+              Connect
             </a>
-            {/* Hamburger Menu Button */}
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="p-2.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950/40 text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors md:hidden"
-              aria-label="Toggle Navigation Menu"
+              className="p-2 md:hidden"
             >
-              {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+              {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
           </div>
         </div>
