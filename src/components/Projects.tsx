@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ExternalLink, X, CheckSquare } from 'lucide-react';
+import { ExternalLink, X, CheckSquare, Layers, Rocket } from 'lucide-react';
 import { projects } from '../data/portfolioData';
 import type { Project } from '../data/schemas';
+import { Card3D } from './Card3D';
 
 const GithubIcon: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
@@ -15,14 +16,34 @@ export const Projects: React.FC = () => {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
   return (
-    <section id="projects" className="py-24 px-4 bg-slate-50/50 dark:bg-slate-900/40">
-      <div className="max-w-6xl mx-auto">
+    <section id="projects" className="py-28 px-4 lg:px-8 relative overflow-hidden bg-slate-50/50 dark:bg-slate-950/60">
+      {/* Background Lighting */}
+      <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-purple-500/10 rounded-full blur-[150px] pointer-events-none" />
+      <div className="absolute bottom-10 right-10 w-[500px] h-[500px] bg-indigo-500/10 rounded-full blur-[150px] pointer-events-none" />
+
+      <div className="max-w-7xl mx-auto relative z-10">
         {/* Section Heading */}
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-4">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full glass-vibrant text-purple-500 dark:text-purple-300 text-xs font-black uppercase tracking-widest mb-3"
+          >
+            <Rocket className="w-3.5 h-3.5" />
+            Portfolios & Deployments
+          </motion.div>
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="text-4xl md:text-5xl font-black text-slate-950 dark:text-white mb-4 tracking-tight"
+          >
             Featured Projects
-          </h2>
-          <div className="h-1.5 w-20 bg-gradient-to-r from-indigo-500 to-purple-500 mx-auto rounded-full" />
+          </motion.h2>
+          <div className="h-1.5 w-24 bg-gradient-to-r from-purple-500 via-indigo-500 to-cyan-500 mx-auto rounded-full" />
         </div>
 
         {/* Project Cards Grid */}
@@ -32,66 +53,63 @@ export const Projects: React.FC = () => {
               key={project.id}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-50px' }}
+              viewport={{ once: true }}
               transition={{ duration: 0.6, delay: idx * 0.1 }}
-              whileHover={{ y: -12, scale: 1.02 }}
-              className="group relative flex flex-col h-full rounded-3xl overflow-hidden glass hover:border-vibrantIndigo/50 transition-all duration-500 cursor-pointer shadow-xl hover:shadow-2xl hover:shadow-vibrantIndigo/30 border border-slate-200/50 dark:border-slate-800/50"
-              onClick={() => setSelectedProject(project)}
             >
-              {/* Image Container */}
-              <div className="relative h-60 overflow-hidden">
-                <img
-                  src={project.image}
-                  alt={project.title}
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-115"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/30 to-transparent opacity-70 group-hover:opacity-85 transition-opacity duration-300" />
-                
-                <div className="absolute top-4 left-4 right-4 flex justify-between items-start">
-                  <span className="px-3 py-1 text-[10px] font-black uppercase tracking-widest bg-gradient-to-r from-vibrantIndigo to-vibrantPurple text-white rounded-lg shadow-lg">
-                    {project.subtitle}
-                  </span>
-                  <div className="p-2 rounded-full glass bg-white/10 dark:bg-slate-950/40 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                    </svg>
+              <Card3D maxDegree={12} scale={1.03} className="h-full" onClick={() => setSelectedProject(project)}>
+                <div className="group relative flex flex-col h-full rounded-3xl overflow-hidden glass-card border border-slate-200/80 dark:border-slate-800/80 shadow-xl hover:shadow-2xl transition-all duration-500 cursor-pointer holographic-card">
+                  {/* Image Header Container */}
+                  <div className="relative h-60 overflow-hidden bg-slate-900">
+                    <img
+                      src={project.image}
+                      alt={project.title}
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/30 to-transparent opacity-80 group-hover:opacity-90 transition-opacity duration-300" />
+
+                    <div className="absolute top-4 left-4 right-4 flex justify-between items-start z-10">
+                      <span className="px-3 py-1 text-[10px] font-black uppercase tracking-widest bg-gradient-to-r from-indigo-600 to-purple-600 text-white rounded-lg shadow-md">
+                        {project.subtitle}
+                      </span>
+                      <div className="p-2 rounded-full glass bg-white/20 dark:bg-slate-900/60 backdrop-blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <Layers className="w-4 h-4 text-white" />
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Card Body */}
+                  <div className="p-7 flex flex-col flex-grow relative">
+                    <h3 className="text-xl md:text-2xl font-black text-slate-950 dark:text-white mb-3 group-hover:text-indigo-500 dark:group-hover:text-indigo-400 transition-colors leading-tight">
+                      {project.title}
+                    </h3>
+                    <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-6 flex-grow font-medium">
+                      {project.description}
+                    </p>
+
+                    {/* Tech Tags */}
+                    <div className="flex flex-wrap gap-2 mt-auto">
+                      {project.tags.slice(0, 3).map((tag) => (
+                        <span
+                          key={tag}
+                          className="px-2.5 py-1 text-[10px] font-extrabold rounded-lg bg-indigo-500/10 text-indigo-600 dark:text-indigo-300 border border-indigo-500/20"
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                      {project.tags.length > 3 && (
+                        <span className="px-2.5 py-1 text-[10px] font-black text-purple-500 bg-purple-500/10 rounded-lg border border-purple-500/20">
+                          +{project.tags.length - 3} More
+                        </span>
+                      )}
+                    </div>
                   </div>
                 </div>
-              </div>
-
-              {/* Card Body */}
-              <div className="p-8 flex flex-col flex-grow relative">
-                <div className="absolute inset-0 bg-gradient-to-br from-vibrantIndigo/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-3xl" />
-                
-                <h3 className="text-2xl font-black text-slate-950 dark:text-white mb-3 group-hover:text-vibrantIndigo transition-colors leading-tight relative z-10">
-                  {project.title}
-                </h3>
-                <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-8 flex-grow font-medium relative z-10">
-                  {project.description}
-                </p>
-
-                {/* Tech Tags */}
-                <div className="flex flex-wrap gap-2 mt-auto relative z-10">
-                  {project.tags.slice(0, 3).map((tag) => (
-                    <span
-                      key={tag}
-                      className="px-3 py-1 text-[10px] font-bold rounded-full bg-gradient-to-r from-white/5 to-slate-100/5 dark:from-white/5 dark:to-slate-800/5 text-slate-700 dark:text-slate-300 border border-slate-200/50 dark:border-white/10 backdrop-blur-sm hover:from-vibrantIndigo/20 hover:to-vibrantPurple/20 hover:text-vibrantIndigo transition-all duration-300"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                  {project.tags.length > 3 && (
-                    <span className="px-2 py-1 text-[10px] font-bold text-vibrantIndigo bg-vibrantIndigo/10 rounded-full border border-vibrantIndigo/20">
-                      +{project.tags.length - 3} More
-                    </span>
-                  )}
-                </div>
-              </div>
+              </Card3D>
             </motion.div>
           ))}
         </div>
 
-        {/* Project Details Modal */}
+        {/* Project Details Glass Modal */}
         <AnimatePresence>
           {selectedProject && (
             <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
@@ -100,22 +118,22 @@ export const Projects: React.FC = () => {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
-                className="absolute inset-0 bg-slate-950/70 backdrop-blur-sm"
+                className="absolute inset-0 bg-slate-950/80 backdrop-blur-md"
                 onClick={() => setSelectedProject(null)}
               />
 
-              {/* Modal Content */}
+              {/* Modal Content Window */}
               <motion.div
-                initial={{ opacity: 0, scale: 0.95, y: 20 }}
+                initial={{ opacity: 0, scale: 0.9, y: 30 }}
                 animate={{ opacity: 1, scale: 1, y: 0 }}
-                exit={{ opacity: 0, scale: 0.95, y: 20 }}
+                exit={{ opacity: 0, scale: 0.9, y: 30 }}
                 transition={{ type: 'spring', duration: 0.5 }}
-                className="relative w-full max-w-3xl max-h-[85vh] overflow-y-auto rounded-3xl border border-slate-100 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 md:p-8 shadow-2xl z-10 custom-scrollbar"
+                className="relative w-full max-w-3xl max-h-[85vh] overflow-y-auto rounded-3xl border border-slate-200 dark:border-slate-800 bg-white/95 dark:bg-slate-900/95 p-6 md:p-8 shadow-2xl z-10 backdrop-blur-2xl"
               >
                 {/* Close Button */}
                 <button
                   onClick={() => setSelectedProject(null)}
-                  className="absolute top-4 right-4 p-2 rounded-full bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-500 dark:text-slate-400 transition-colors"
+                  className="absolute top-4 right-4 p-2.5 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400 hover:text-slate-950 dark:hover:text-white transition-colors"
                   aria-label="Close modal"
                 >
                   <X className="w-5 h-5" />
@@ -123,16 +141,16 @@ export const Projects: React.FC = () => {
 
                 {/* Hero Info */}
                 <div className="mb-6">
-                  <span className="text-indigo-500 dark:text-indigo-400 text-sm font-bold uppercase tracking-wider">
+                  <span className="text-indigo-500 dark:text-indigo-400 text-xs font-black uppercase tracking-widest">
                     {selectedProject.subtitle}
                   </span>
-                  <h3 className="text-2xl md:text-3xl font-extrabold text-slate-900 dark:text-white mt-1">
+                  <h3 className="text-2xl md:text-4xl font-black text-slate-900 dark:text-white mt-1">
                     {selectedProject.title}
                   </h3>
                 </div>
 
-                {/* Project Image */}
-                <div className="relative rounded-2xl overflow-hidden aspect-video bg-slate-100 dark:bg-slate-800 mb-6">
+                {/* Project Banner Image */}
+                <div className="relative rounded-2xl overflow-hidden aspect-video bg-slate-900 mb-6 shadow-inner">
                   <img
                     src={selectedProject.image}
                     alt={selectedProject.title}
@@ -140,12 +158,12 @@ export const Projects: React.FC = () => {
                   />
                 </div>
 
-                {/* Tags */}
+                {/* Tech Tags */}
                 <div className="flex flex-wrap gap-2 mb-6">
                   {selectedProject.tags.map((tag) => (
                     <span
                       key={tag}
-                      className="px-3 py-1 text-xs font-semibold rounded-full bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 border border-indigo-500/20"
+                      className="px-3 py-1 text-xs font-bold rounded-full bg-indigo-500/10 text-indigo-600 dark:text-indigo-300 border border-indigo-500/20"
                     >
                       {tag}
                     </span>
@@ -153,19 +171,19 @@ export const Projects: React.FC = () => {
                 </div>
 
                 {/* Description */}
-                <div className="prose dark:prose-invert max-w-none mb-6">
-                  <h4 className="text-lg font-bold text-slate-950 dark:text-slate-100 mb-2">Project Overview</h4>
-                  <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
+                <div className="mb-6">
+                  <h4 className="text-lg font-bold text-slate-950 dark:text-white mb-2">Project Overview</h4>
+                  <p className="text-slate-600 dark:text-slate-300 leading-relaxed font-normal text-base">
                     {selectedProject.longDescription}
                   </p>
                 </div>
 
                 {/* Key Features */}
                 <div className="mb-8">
-                  <h4 className="text-lg font-bold text-slate-950 dark:text-slate-100 mb-3">Key Features</h4>
+                  <h4 className="text-lg font-bold text-slate-950 dark:text-white mb-3">Key Highlights & Features</h4>
                   <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     {selectedProject.features.map((feature, idx) => (
-                      <li key={idx} className="flex items-start gap-2 text-slate-600 dark:text-slate-400 text-sm leading-relaxed">
+                      <li key={idx} className="flex items-start gap-2 text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
                         <CheckSquare className="w-4.5 h-4.5 text-indigo-500 mt-0.5 flex-shrink-0" />
                         <span>{feature}</span>
                       </li>
@@ -173,14 +191,14 @@ export const Projects: React.FC = () => {
                   </ul>
                 </div>
 
-                {/* CTA Links */}
-                <div className="flex flex-col sm:flex-row items-center gap-4 border-t border-slate-100 dark:border-slate-800 pt-6">
+                {/* Action CTA Buttons */}
+                <div className="flex flex-col sm:flex-row items-center gap-4 border-t border-slate-200 dark:border-slate-800 pt-6">
                   {selectedProject.demoUrl && selectedProject.demoUrl !== '#' && (
                     <a
                       href={selectedProject.demoUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-indigo-600 text-white font-semibold shadow-md hover:bg-indigo-700 transition-colors"
+                      className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-extrabold shadow-lg hover:shadow-indigo-500/30 transition-all"
                     >
                       <ExternalLink className="w-4 h-4" />
                       Live Demo
@@ -191,7 +209,7 @@ export const Projects: React.FC = () => {
                       href={selectedProject.githubUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl border border-slate-300 dark:border-slate-700 bg-white/50 dark:bg-slate-800/50 text-slate-800 dark:text-white font-semibold hover:bg-slate-50 dark:hover:bg-slate-800/80 transition-colors"
+                      className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl border border-slate-300 dark:border-slate-700 bg-white/50 dark:bg-slate-800/50 text-slate-900 dark:text-white font-extrabold hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
                     >
                       <GithubIcon className="w-4 h-4" />
                       Source Code
@@ -202,7 +220,7 @@ export const Projects: React.FC = () => {
                       href={selectedProject.extraUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl border border-indigo-200 dark:border-indigo-900 bg-indigo-50/50 dark:bg-indigo-950/20 text-indigo-600 dark:text-indigo-400 font-semibold hover:bg-indigo-100/50 dark:hover:bg-indigo-950/40 transition-colors"
+                      className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl border border-indigo-300 dark:border-indigo-800 bg-indigo-50 dark:bg-indigo-950/30 text-indigo-600 dark:text-indigo-300 font-extrabold hover:bg-indigo-100 dark:hover:bg-indigo-950/50 transition-colors"
                     >
                       <ExternalLink className="w-4 h-4" />
                       {selectedProject.extraUrlLabel || 'Database Link'}
