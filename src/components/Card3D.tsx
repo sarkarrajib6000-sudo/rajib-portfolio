@@ -1,4 +1,4 @@
-import React, { useState, useRef, MouseEvent, ReactNode } from 'react';
+import React, { useState, useRef, type MouseEvent, type ReactNode } from 'react';
 
 interface Card3DProps {
   children: ReactNode;
