@@ -12,7 +12,7 @@ export const personalInfo = {
   title: 'MIS Executive & Data Analyst',
   tagline: 'Bridging the gap between business operations and technology with advanced data analytics, custom CRM platforms, and full-stack workflow automation.',
   aboutText: 'I am Rajib Kumar Sarkar, a Data Analyst, MIS Executive, and Full-Stack Automation enthusiast from Assam, India. I enjoy building practical solutions that simplify business processes and improve decision-making through data. My experience includes developing dashboards, CRM systems, and MIS reports using React, TypeScript, Python, Excel, SQL, and Google Cloud. I am continuously learning new technologies and enjoy solving real-world problems through automation and modern web development.',
-  resumeUrl: '/Rajib_Sarkar_Resume.pdf',
+  resumeUrl: '/documents/Rajib_Sarkar_Resume.pdf',
   socials: {
     github: 'https://github.com/sarkarrajib6000-sudo',
     linkedin: 'https://linkedin.com',
@@ -241,6 +241,14 @@ export const projects: Project[] = [
 
 export const certifications: Certification[] = [
   {
+    title: 'AI Agents for Beginners',
+    issuer: 'Simplilearn',
+    date: '19th July 2026',
+    credentialId: '10487403',
+    verificationUrl: 'https://www.simplilearn.com/',
+    pdfUrl: '/documents/AI_Agents_for_Beginners (1).pdf'
+  },
+  {
     title: 'Introduction to SQL',
     issuer: 'Simplilearn',
     date: '19th May 2026',
@@ -297,6 +305,13 @@ export const certifications: Certification[] = [
     pdfUrl: '/documents/Al fluency for students .pdf'
   },
   {
+    title: 'Cloud Co-work',
+    issuer: 'Anthropic',
+    date: 'N/A',
+    credentialId: 'N/A',
+    verificationUrl: 'https://www.anthropic.com/'
+  },
+  {
     title: 'Accounting Fundamentals',
     issuer: 'TCS iON',
     date: '03 Jul 2026',
@@ -343,6 +358,14 @@ export const certifications: Certification[] = [
     credentialId: '10454284',
     verificationUrl: 'https://www.simplilearn.com/',
     pdfUrl: '/documents/Google Slide Certificate.pdf'
+  },
+  {
+    title: 'LLM Course',
+    issuer: 'Hugging Face',
+    date: 'N/A',
+    credentialId: 'N/A',
+    verificationUrl: 'https://huggingface.co/',
+    pdfUrl: '/documents/LLM course -Hugging Face (1).webp'
   },
   {
     title: 'Microsoft Excel with AI Masterclass',

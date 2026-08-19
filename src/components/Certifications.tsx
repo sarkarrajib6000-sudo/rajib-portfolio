@@ -97,7 +97,7 @@ export const Certifications: React.FC = () => {
                           rel="noopener noreferrer"
                           className="flex-1 inline-flex items-center justify-center gap-1.5 px-4 py-2.5 text-xs font-extrabold rounded-xl bg-gradient-to-r from-indigo-600 to-purple-600 text-white hover:shadow-lg transition-all shadow-md"
                         >
-                          PDF
+                          {cert.pdfUrl.endsWith('.webp') || cert.pdfUrl.endsWith('.png') || cert.pdfUrl.endsWith('.jpg') ? 'View' : 'PDF'}
                           <FileText className="w-3.5 h-3.5" />
                         </a>
                       )}
