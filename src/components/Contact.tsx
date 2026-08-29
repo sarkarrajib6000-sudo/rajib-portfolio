@@ -67,7 +67,7 @@ export const Contact: React.FC = () => {
   };
 
   return (
-    <section id="contact" className="py-28 px-4 lg:px-8 relative overflow-hidden bg-slate-50/50 dark:bg-slate-950/60">
+    <section id="contact" className="py-28 px-4 lg:px-8 relative overflow-hidden bg-white dark:bg-slate-950/60">
       {/* Ambient Glows */}
       <div className="absolute top-1/3 right-1/4 w-[450px] h-[450px] bg-indigo-500/10 rounded-full blur-[150px] pointer-events-none" />
       <div className="absolute bottom-10 left-10 w-[450px] h-[450px] bg-cyan-500/10 rounded-full blur-[150px] pointer-events-none" />

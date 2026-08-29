@@ -8,7 +8,7 @@ export const About: React.FC = () => {
   const statIcons = [TrendingUp, Award, Cpu, User];
 
   return (
-    <section id="about" className="py-28 px-4 lg:px-8 relative overflow-hidden bg-slate-50/50 dark:bg-slate-950/60">
+    <section id="about" className="py-28 px-4 lg:px-8 relative overflow-hidden bg-white dark:bg-slate-950/60">
       {/* Background Glows */}
       <div className="absolute top-1/2 left-0 w-96 h-96 bg-indigo-500/10 rounded-full blur-[140px] pointer-events-none" />
       <div className="absolute bottom-0 right-0 w-96 h-96 bg-purple-500/10 rounded-full blur-[140px] pointer-events-none" />

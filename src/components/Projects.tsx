@@ -16,7 +16,7 @@ export const Projects: React.FC = () => {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
   return (
-    <section id="projects" className="py-28 px-4 lg:px-8 relative overflow-hidden bg-slate-50/50 dark:bg-slate-950/60">
+    <section id="projects" className="py-28 px-4 lg:px-8 relative overflow-hidden bg-white dark:bg-slate-950/60">
       {/* Background Lighting */}
       <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-purple-500/10 rounded-full blur-[150px] pointer-events-none" />
       <div className="absolute bottom-10 right-10 w-[500px] h-[500px] bg-indigo-500/10 rounded-full blur-[150px] pointer-events-none" />
