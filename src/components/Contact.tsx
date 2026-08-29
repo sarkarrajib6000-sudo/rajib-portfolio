@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Send, CheckCircle, AlertCircle, Mail, MapPin, Clock, MessageSquare } from 'lucide-react';
+import { Send, CheckCircle, AlertCircle, Mail, MapPin, Clock, MessageSquare, Phone } from 'lucide-react';
 import { Card3D } from './Card3D';
+import { personalInfo } from '../data/portfolioData';
 
 interface ContactFormState {
   name: string;
@@ -103,6 +104,20 @@ export const Contact: React.FC = () => {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           {/* Quick Contact Cards */}
           <div className="lg:col-span-4 flex flex-col gap-4">
+            <Card3D maxDegree={10} scale={1.03}>
+              <div className="p-6 rounded-3xl glass-card border border-slate-200/80 dark:border-slate-800/80 shadow-lg flex items-center gap-4">
+                <div className="p-3.5 rounded-2xl bg-emerald-500/10 text-emerald-500">
+                  <Phone className="w-6 h-6" />
+                </div>
+                <div>
+                  <div className="text-xs font-black text-slate-400 uppercase tracking-wider">Phone / Mobile</div>
+                  <a href={personalInfo.phoneUrl} className="text-sm font-extrabold text-slate-900 dark:text-white hover:text-emerald-500 transition-colors">
+                    {personalInfo.phone}
+                  </a>
+                </div>
+              </div>
+            </Card3D>
+
             <Card3D maxDegree={10} scale={1.03}>
               <div className="p-6 rounded-3xl glass-card border border-slate-200/80 dark:border-slate-800/80 shadow-lg flex items-center gap-4">
                 <div className="p-3.5 rounded-2xl bg-indigo-500/10 text-indigo-500">

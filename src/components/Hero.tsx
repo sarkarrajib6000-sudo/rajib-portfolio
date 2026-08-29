@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Mail, Download, ArrowRight, Sparkles, Database, Code2, Zap } from 'lucide-react';
+import { Mail, Download, ArrowRight, Sparkles, Database, Code2, Zap, Phone } from 'lucide-react';
 import { personalInfo } from '../data/portfolioData';
 import { Hero3DCanvas } from './Hero3DCanvas';
 import { Card3D } from './Card3D';
@@ -170,6 +170,13 @@ export const Hero: React.FC = () => {
               className="p-3.5 rounded-2xl glass-card text-slate-700 dark:text-slate-300 hover:text-indigo-500 dark:hover:text-indigo-400 hover:scale-110 transition-all duration-300 glow-indigo"
             >
               <Mail className="w-5 h-5" />
+            </a>
+            <a
+              href={personalInfo.phoneUrl}
+              aria-label="Call Rajib"
+              className="p-3.5 rounded-2xl glass-card text-slate-700 dark:text-slate-300 hover:text-emerald-500 dark:hover:text-emerald-400 hover:scale-110 transition-all duration-300 glow-cyan"
+            >
+              <Phone className="w-5 h-5" />
             </a>
           </motion.div>
 

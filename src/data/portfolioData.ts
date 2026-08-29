@@ -13,11 +13,14 @@ export const personalInfo = {
   tagline: 'Bridging the gap between business operations and technology with advanced data analytics, custom CRM platforms, and full-stack workflow automation.',
   aboutText: 'I am Rajib Kumar Sarkar, a Data Analyst, MIS Executive, and Full-Stack Automation enthusiast from Assam, India. I enjoy building practical solutions that simplify business processes and improve decision-making through data. My experience includes developing dashboards, CRM systems, and MIS reports using React, TypeScript, Python, Excel, SQL, and Google Cloud. I am continuously learning new technologies and enjoy solving real-world problems through automation and modern web development.',
   resumeUrl: '/documents/Rajib_Sarkar_Resume.pdf',
+  phone: '+91 6002593605',
+  phoneUrl: 'tel:+916002593605',
   socials: {
     github: 'https://github.com/sarkarrajib6000-sudo',
     linkedin: 'https://linkedin.com',
     twitter: 'https://twitter.com',
-    email: 'mailto:rajibsarkar9577@gmail.com'
+    email: 'mailto:rajibsarkar9577@gmail.com',
+    phone: 'tel:+916002593605'
   }
 };
 
