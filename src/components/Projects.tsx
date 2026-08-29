@@ -79,6 +79,11 @@ export const Projects: React.FC = () => {
 
                   {/* Card Body */}
                   <div className="p-7 flex flex-col flex-grow relative">
+                    {project.impactBadge && (
+                      <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-black bg-indigo-500/10 text-indigo-600 dark:text-indigo-300 border border-indigo-500/20 mb-3 w-fit shadow-sm">
+                        <span>{project.impactBadge}</span>
+                      </div>
+                    )}
                     <h3 className="text-xl md:text-2xl font-black text-slate-950 dark:text-white mb-3 group-hover:text-indigo-500 dark:group-hover:text-indigo-400 transition-colors leading-tight">
                       {project.title}
                     </h3>

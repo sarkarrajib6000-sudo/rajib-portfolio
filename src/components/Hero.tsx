@@ -172,6 +172,27 @@ export const Hero: React.FC = () => {
               <Mail className="w-5 h-5" />
             </a>
           </motion.div>
+
+          {/* Metric Quick Highlight Pills */}
+          <motion.div
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.55 }}
+            className="grid grid-cols-3 gap-3 mt-8 w-full max-w-md"
+          >
+            <div className="p-3 rounded-2xl glass-card border border-indigo-500/20 text-center shadow-md">
+              <div className="text-lg font-black text-indigo-600 dark:text-indigo-400">3+ Yrs</div>
+              <div className="text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Experience</div>
+            </div>
+            <div className="p-3 rounded-2xl glass-card border border-purple-500/20 text-center shadow-md">
+              <div className="text-lg font-black text-purple-600 dark:text-purple-400">700+</div>
+              <div className="text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Formulas</div>
+            </div>
+            <div className="p-3 rounded-2xl glass-card border border-cyan-500/20 text-center shadow-md">
+              <div className="text-lg font-black text-cyan-600 dark:text-cyan-400">100%</div>
+              <div className="text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Automated</div>
+            </div>
+          </motion.div>
         </div>
 
         {/* Right Column - Three.js 3D Canvas Scene & Floating Badges */}

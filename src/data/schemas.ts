@@ -11,6 +11,7 @@ export interface Project {
   githubUrl: string;
   extraUrl?: string;
   extraUrlLabel?: string;
+  impactBadge?: string;
 }
 
 export interface SkillItem {
@@ -30,6 +31,7 @@ export interface Certification {
   credentialId: string;
   verificationUrl: string;
   pdfUrl?: string;
+  categoryTag?: string;
 }
 
 export interface ExperienceItem {
