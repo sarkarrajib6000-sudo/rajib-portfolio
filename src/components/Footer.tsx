@@ -11,7 +11,7 @@ export const Footer: React.FC = () => {
   };
 
   return (
-    <footer className="w-full bg-slate-950 text-slate-400 border-t border-slate-800/80 py-12 px-4 lg:px-8 relative overflow-hidden">
+    <footer className="w-full bg-white text-slate-600 border-t border-slate-200 py-12 px-4 lg:px-8 relative overflow-hidden">
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6 relative z-10">
         {/* Left: Branding */}
         <div className="text-center md:text-left">

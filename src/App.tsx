@@ -16,7 +16,7 @@ function AppContent() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   return (
-    <div className="min-h-screen bg-white dark:bg-slate-950 text-slate-900 dark:text-slate-100 transition-colors duration-500 selection:bg-indigo-500 selection:text-white">
+    <div className="min-h-screen bg-white text-slate-900 transition-colors duration-500 selection:bg-indigo-500 selection:text-white">
       {/* Floating 3D Navigation Bar */}
       <header className="fixed top-4 left-1/2 -translate-x-1/2 z-50 w-[92%] max-w-6xl glass-card rounded-2xl border border-slate-200/80 dark:border-slate-800/80 shadow-2xl backdrop-blur-xl">
         <div className="flex h-16 items-center justify-between px-6">

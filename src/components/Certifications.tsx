@@ -6,7 +6,7 @@ import { Card3D } from './Card3D';
 
 export const Certifications: React.FC = () => {
   return (
-    <section id="certifications" className="py-28 px-4 lg:px-8 relative overflow-hidden bg-white dark:bg-slate-900/60">
+    <section id="certifications" className="py-28 px-4 lg:px-8 relative overflow-hidden bg-white">
       {/* Background Lighting */}
       <div className="absolute top-1/2 left-0 w-96 h-96 bg-cyan-500/10 rounded-full blur-[140px] pointer-events-none" />
       <div className="absolute bottom-0 right-0 w-96 h-96 bg-indigo-500/10 rounded-full blur-[140px] pointer-events-none" />

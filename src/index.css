@@ -3,9 +3,11 @@
 @tailwind utilities;
 
 html,
-body {
+body,
+#root {
   scroll-behavior: smooth;
-  background-color: #ffffff;
+  background-color: #ffffff !important;
+  background: #ffffff !important;
 }
 
 /* 3D Perspective & Transform Utilities */

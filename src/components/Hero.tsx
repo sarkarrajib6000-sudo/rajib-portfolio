@@ -31,7 +31,7 @@ export const Hero: React.FC = () => {
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-28 pb-16 px-4 lg:px-8">
       {/* 3D Background Lighting & Ambient Orbs */}
       <div className="absolute inset-0 z-0 pointer-events-none">
-        <div className="absolute inset-0 bg-white dark:bg-slate-950 transition-colors duration-500" />
+        <div className="absolute inset-0 bg-white transition-colors duration-500" />
         <div className="absolute top-1/4 left-[-10%] w-[500px] h-[500px] rounded-full bg-indigo-500/20 dark:bg-indigo-600/20 blur-[140px] animate-pulse-glow" />
         <div className="absolute bottom-1/4 right-[-10%] w-[500px] h-[500px] rounded-full bg-purple-500/20 dark:bg-purple-600/20 blur-[140px] animate-pulse-glow" style={{ animationDelay: '1.5s' }} />
         <div className="absolute top-1/2 left-1/3 w-[350px] h-[350px] rounded-full bg-cyan-500/15 dark:bg-cyan-500/15 blur-[120px]" />
