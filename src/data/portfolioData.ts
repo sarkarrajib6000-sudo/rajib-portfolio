@@ -6,6 +6,7 @@ import aresImg from '../assets/images/ares_sale_manager.jpg';
 import realEstateMisImg from '../assets/images/real_estate_mis.jpg';
 import godrejCrmImg from '../assets/images/godrej_crm.jpg';
 import portfolioImg from '../assets/images/portfolio_website.jpg';
+import supplyChainImg from '../assets/images/supply_chain_analytics.jpg';
 
 export const personalInfo = {
   name: 'Rajib Kumar Sarkar',
@@ -246,7 +247,26 @@ export const projects: Project[] = [
     ],
     demoUrl: '#',
     githubUrl: 'https://github.com/sarkarrajib6000-sudo/rajib-portfolio'
+  },
+  {
+    id: 'supply-chain-analytics',
+    title: 'Supply Chain Analytics',
+    subtitle: 'End-to-End SQL & Python Logistics Analysis',
+    impactBadge: '📦 10,000 Real Orders Analyzed',
+    description: 'An end-to-end analysis of real supply chain order data using Python ETL, SQL, and an Excel dashboard — uncovering delivery risk, profitability, and discounting insights.',
+    longDescription: 'Built a full analytics pipeline on the DataCo Smart Supply Chain dataset (10,000 real order-level transactions). A Python ETL script cleans and de-identifies the raw data, 10 SQL queries answer real business questions on delivery risk, category profitability, customer segments, and discount impact, and the results are visualized in a KPI dashboard. Key finding: First Class shipping showed a 99.7% late-delivery risk versus 37.5% for Standard Class.',
+    image: supplyChainImg,
+    tags: ['Python', 'SQL', 'SQLite', 'Excel', 'Data Analysis'],
+    features: [
+      'Built a Python ETL pipeline to clean, de-identify, and feature-engineer 10,000 real order records.',
+      'Wrote 10 SQL business-question queries covering delivery risk, profitability, and discount impact.',
+      'Found premium shipping tiers had significantly worse on-time performance than standard shipping.',
+      'Built a KPI dashboard in Excel summarizing delivery risk, sales trends, and category profitability.'
+    ],
+    demoUrl: '#',
+    githubUrl: 'https://github.com/sarkarrajib6000-sudo/supply-chain-analytics'
   }
+];
 ];
 
 export const certifications: Certification[] = [
