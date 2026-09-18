@@ -267,7 +267,6 @@ export const projects: Project[] = [
     githubUrl: 'https://github.com/sarkarrajib6000-sudo/supply-chain-analytics'
   }
 ];
-];
 
 export const certifications: Certification[] = [
   {

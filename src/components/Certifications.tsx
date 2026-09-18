@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Award, ExternalLink, ShieldCheck, FileText, CheckCircle2, Search } from 'lucide-react';
+import { ExternalLink, FileText, Search } from 'lucide-react';
 import { certifications } from '../data/portfolioData';
-import { Card3D } from './Card3D';
 
 export const Certifications: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState('');
@@ -18,51 +16,39 @@ export const Certifications: React.FC = () => {
     return matchesIssuer && matchesSearch;
   });
 
-  return (
-    <section id="certifications" className="py-28 px-4 lg:px-8 relative overflow-hidden bg-white">
-      {/* Background Lighting */}
-      <div className="absolute top-1/2 left-0 w-96 h-96 bg-cyan-500/10 rounded-full blur-[140px] pointer-events-none" />
-      <div className="absolute bottom-0 right-0 w-96 h-96 bg-indigo-500/10 rounded-full blur-[140px] pointer-events-none" />
+  const isAnalysisCert = (issuer: string, title: string) => {
+    const t = title.toLowerCase();
+    const i = issuer.toLowerCase();
+    if (t.includes('sql') || t.includes('excel') || t.includes('ai') || t.includes('claude') || t.includes('analytics') || i.includes('hugging') || i.includes('simplilearn')) {
+      return true;
+    }
+    return false;
+  };
 
-      <div className="max-w-7xl mx-auto relative z-10">
-        {/* Section Heading */}
-        <div className="text-center mb-14">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full glass-vibrant text-cyan-500 dark:text-cyan-300 text-xs font-black uppercase tracking-widest mb-3"
-          >
-            <ShieldCheck className="w-3.5 h-3.5" />
-            Verified Credentials & Accreditations
-          </motion.div>
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-4xl md:text-5xl font-black text-slate-950 dark:text-white mb-4 tracking-tight"
-          >
-            Licenses & Certifications Hub
-          </motion.h2>
-          <div className="h-1.5 w-24 bg-gradient-to-r from-cyan-500 via-indigo-500 to-purple-500 mx-auto rounded-full mb-6" />
+  return (
+    <section id="certifications" className="py-20 px-4 lg:px-8 bg-[#0A0D12] text-[#EDEFF2] border-b border-[#232A35]">
+      <div className="max-w-7xl mx-auto">
+        {/* Left-Aligned Heading */}
+        <div className="mb-10">
+          <h2 className="font-sora font-medium text-3xl sm:text-4xl text-[#EDEFF2] tracking-tight mb-3">
+            Accreditations & Certifications Ledger
+          </h2>
+          <div className="w-16 h-0.5 bg-[#22D3AA]" />
         </div>
 
-        {/* Filter & Search Bar Controls */}
-        <div className="flex flex-col md:flex-row items-center justify-between gap-4 mb-12">
-          {/* Issuer Chips */}
-          <div className="flex flex-wrap items-center justify-center gap-2 p-1.5 rounded-2xl glass-card border border-slate-200/80 dark:border-slate-800/80 shadow-md w-full md:w-auto">
+        {/* Filters & Search */}
+        <div className="flex flex-col md:flex-row items-stretch md:items-center justify-between gap-4 mb-8">
+          <div className="flex flex-wrap items-center gap-2">
             {issuers.map((issuer) => {
               const isActive = issuer === selectedIssuer;
               return (
                 <button
                   key={issuer}
                   onClick={() => setSelectedIssuer(issuer)}
-                  className={`px-4 py-2 rounded-xl text-xs font-extrabold transition-all duration-300 ${
+                  className={`px-3.5 py-2 font-mono text-xs font-medium uppercase border transition-colors ${
                     isActive
-                      ? 'bg-gradient-to-r from-indigo-600 to-purple-600 text-white shadow-md'
-                      : 'text-slate-600 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-white'
+                      ? 'border-[#22D3AA] bg-[#151A22] text-[#22D3AA]'
+                      : 'border-[#232A35] bg-[#151A22] text-[#8A93A1] hover:text-[#EDEFF2] hover:border-[#8A93A1]'
                   }`}
                 >
                   {issuer}
@@ -71,106 +57,97 @@ export const Certifications: React.FC = () => {
             })}
           </div>
 
-          {/* Search Bar */}
           <div className="relative w-full md:w-72">
-            <Search className="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400" />
+            <Search className="w-3.5 h-3.5 absolute left-3 top-1/2 -translate-y-1/2 text-[#8A93A1]" />
             <input
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder="Search certification title..."
-              className="w-full pl-10 pr-4 py-2.5 rounded-xl glass-card border border-slate-200 dark:border-slate-800 text-xs font-medium text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 shadow-sm"
+              placeholder="Search certification..."
+              className="w-full pl-9 pr-3 py-2 bg-[#151A22] border border-[#232A35] font-mono text-xs text-[#EDEFF2] placeholder-[#8A93A1] focus:outline-none focus:border-[#22D3AA]"
             />
           </div>
         </div>
 
-        {/* Certifications Grid */}
-        <div className="min-h-[300px]">
-          <AnimatePresence mode="popLayout">
-            <motion.div
-              layout
-              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
-            >
-              {filteredCertifications.map((cert, idx) => (
-                <motion.div
-                  layout
-                  key={cert.title + idx}
-                  initial={{ opacity: 0, scale: 0.95 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.95 }}
-                  transition={{ duration: 0.3, delay: idx * 0.03 }}
-                >
-                  <Card3D maxDegree={12} scale={1.03} className="h-full">
-                    <div className="group relative p-7 rounded-3xl glass-card border border-slate-200/80 dark:border-slate-800/80 shadow-xl flex flex-col justify-between h-full overflow-hidden holographic-card">
-                      {/* Background Holographic Glow */}
-                      <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-cyan-500/10 via-indigo-500/5 to-transparent rounded-bl-full pointer-events-none" />
-
-                      {/* Watermark Icon */}
-                      <div className="absolute top-6 right-6 text-indigo-500/10 dark:text-indigo-400/10 group-hover:scale-125 group-hover:text-indigo-500/25 transition-all duration-500">
-                        <Award className="w-16 h-16 stroke-[1.2]" />
-                      </div>
-
-                      <div className="relative z-10">
-                        <div className="flex items-center gap-2 mb-3 text-cyan-600 dark:text-cyan-400 font-extrabold text-xs uppercase tracking-wider">
-                          <CheckCircle2 className="w-4 h-4 text-cyan-500" />
-                          {cert.issuer}
-                        </div>
-
-                        <h3 className="text-lg font-black text-slate-950 dark:text-white mb-2 leading-snug group-hover:text-indigo-500 dark:group-hover:text-indigo-400 transition-colors">
-                          {cert.title}
-                        </h3>
-
-                        <p className="text-xs text-slate-500 dark:text-slate-400 mb-6 font-medium">
-                          Issued: <span className="font-bold text-slate-700 dark:text-slate-300">{cert.date}</span>
-                        </p>
-                      </div>
-
-                      <div className="flex flex-col gap-3 mt-auto relative z-10">
-                        <div className="text-[11px] font-mono text-slate-600 dark:text-slate-400 bg-slate-100 dark:bg-slate-800/80 px-3 py-2 rounded-xl border border-slate-200/60 dark:border-slate-700/60 flex items-center justify-between">
-                          <span className="font-bold text-slate-400">CREDENTIAL ID</span>
-                          <span className="font-bold text-indigo-500 dark:text-indigo-400">{cert.credentialId}</span>
-                        </div>
-
-                        <div className="flex gap-2">
-                          <a
-                            href={cert.verificationUrl}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className={`inline-flex items-center justify-center gap-1.5 px-4 py-2.5 text-xs font-extrabold rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-800 dark:text-white transition-colors ${
-                              cert.pdfUrl ? 'flex-1' : 'w-full'
-                            }`}
-                          >
-                            Verify
-                            <ExternalLink className="w-3.5 h-3.5" />
-                          </a>
-
-                          {cert.pdfUrl && (
-                            <a
-                              href={cert.pdfUrl}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="flex-1 inline-flex items-center justify-center gap-1.5 px-4 py-2.5 text-xs font-extrabold rounded-xl bg-gradient-to-r from-indigo-600 to-purple-600 text-white hover:shadow-lg transition-all shadow-md"
-                            >
-                              {cert.pdfUrl.endsWith('.webp') || cert.pdfUrl.endsWith('.png') || cert.pdfUrl.endsWith('.jpg') ? 'View' : 'PDF'}
-                              <FileText className="w-3.5 h-3.5" />
-                            </a>
-                          )}
-                        </div>
-                      </div>
-                    </div>
-                  </Card3D>
-                </motion.div>
-              ))}
-            </motion.div>
-          </AnimatePresence>
-
-          {filteredCertifications.length === 0 && (
-            <div className="text-center py-16 glass-card rounded-2xl border border-slate-200 dark:border-slate-800">
-              <p className="text-sm font-semibold text-slate-500">No certifications match your query "{searchQuery}".</p>
-            </div>
-          )}
+        {/* Certifications Ledger Table Header */}
+        <div className="hidden md:grid grid-cols-12 gap-4 px-6 py-3 bg-[#151A22] border border-[#232A35] font-mono text-xs text-[#8A93A1] mb-2">
+          <div className="col-span-5">CERTIFICATION / ISSUER</div>
+          <div className="col-span-3">CREDENTIAL ID</div>
+          <div className="col-span-2">ISSUE DATE</div>
+          <div className="col-span-2 text-right">VERIFICATION</div>
         </div>
+
+        {/* Certifications Ledger Rows */}
+        <div className="divide-y divide-[#232A35] border border-[#232A35] bg-[#151A22]">
+          {filteredCertifications.map((cert, idx) => {
+            const isAnalysis = isAnalysisCert(cert.issuer, cert.title);
+            const accentText = isAnalysis ? 'text-[#22D3AA]' : 'text-[#FF7A45]';
+
+            return (
+              <div
+                key={cert.title + idx}
+                className="p-4 sm:p-6 grid grid-cols-1 md:grid-cols-12 gap-4 items-center hover:bg-[#1C232E] transition-colors"
+              >
+                {/* Column 1: Title & Issuer */}
+                <div className="md:col-span-5">
+                  <h3 className="font-sora font-medium text-base text-[#EDEFF2] mb-1">
+                    {cert.title}
+                  </h3>
+                  <div className="font-mono text-xs text-[#8A93A1] uppercase">
+                    ISSUER: <span className="text-[#EDEFF2]">{cert.issuer}</span>
+                  </div>
+                </div>
+
+                {/* Column 2: Credential ID */}
+                <div className="md:col-span-3 font-mono text-xs">
+                  <span className="text-[#8A93A1] block md:hidden mb-0.5">CREDENTIAL ID:</span>
+                  <span className="text-[#8A93A1]">{cert.credentialId}</span>
+                </div>
+
+                {/* Column 3: Date (Mono) */}
+                <div className="md:col-span-2 font-mono text-xs">
+                  <span className="text-[#8A93A1] block md:hidden mb-0.5">DATE:</span>
+                  <span className={accentText}>{cert.date}</span>
+                </div>
+
+                {/* Column 4: Links */}
+                <div className="md:col-span-2 flex items-center md:justify-end gap-2 font-mono text-xs pt-2 md:pt-0">
+                  {cert.verificationUrl && (
+                    <a
+                      href={cert.verificationUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1 px-2.5 py-1.5 border border-[#232A35] text-[#EDEFF2] hover:border-[#8A93A1] transition-colors"
+                    >
+                      <span>Verify</span>
+                      <ExternalLink className="w-3 h-3 text-[#8A93A1]" />
+                    </a>
+                  )}
+
+                  {cert.pdfUrl && (
+                    <a
+                      href={cert.pdfUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1 px-2.5 py-1.5 border border-[#22D3AA] text-[#22D3AA] hover:bg-[#22D3AA] hover:text-[#0A0D12] transition-colors"
+                    >
+                      <span>PDF</span>
+                      <FileText className="w-3 h-3" />
+                    </a>
+                  )}
+                </div>
+              </div>
+            );
+          })}
+        </div>
+
+        {filteredCertifications.length === 0 && (
+          <div className="text-center py-12 bg-[#151A22] border border-[#232A35] font-mono text-xs text-[#8A93A1]">
+            No certifications match query "{searchQuery}".
+          </div>
+        )}
       </div>
     </section>
   );
 };
+

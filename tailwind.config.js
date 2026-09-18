@@ -8,50 +8,21 @@ export default {
   theme: {
     extend: {
       colors: {
-        darkBg: '#020617', // Deeper dark
-        darkPanel: '#0f172a',
-        vibrantIndigo: '#6366f1',
-        vibrantCyan: '#06b6d4',
-        vibrantPurple: '#a855f7',
+        bgDark: '#0A0D12',
+        panelDark: '#151A22',
+        hairline: '#232A35',
+        textPrimary: '#EDEFF2',
+        textMuted: '#8A93A1',
+        accentTeal: '#22D3AA',
+        accentAmber: '#FF7A45',
       },
-      animation: {
-        'gradient-x': 'gradient-x 15s ease infinite',
-        'gradient-y': 'gradient-y 15s ease infinite',
-        'gradient-xy': 'gradient-xy 15s ease infinite',
+      fontFamily: {
+        sora: ['Sora', 'sans-serif'],
+        sans: ['Inter', 'sans-serif'],
+        mono: ['"IBM Plex Mono"', 'monospace'],
       },
-      keyframes: {
-        'gradient-y': {
-          '0%, 100%': {
-            'background-size': '400% 400%',
-            'background-position': 'center top'
-          },
-          '50%': {
-            'background-size': '200% 200%',
-            'background-position': 'center center'
-          }
-        },
-        'gradient-x': {
-          '0%, 100%': {
-            'background-size': '200% 200%',
-            'background-position': 'left center'
-          },
-          '50%': {
-            'background-size': '200% 200%',
-            'background-position': 'right center'
-          }
-        },
-        'gradient-xy': {
-          '0%, 100%': {
-            'background-size': '400% 400%',
-            'background-position': 'left center'
-          },
-          '50%': {
-            'background-size': '200% 200%',
-            'background-position': 'right center'
-          }
-        }
-      }
     },
   },
   plugins: [],
 }
+
