@@ -1,5 +1,4 @@
 import React from 'react';
-import { motion } from 'framer-motion';
 import { Mail, Download, ArrowUpRight, Phone, Terminal } from 'lucide-react';
 import { personalInfo, certifications, projects } from '../data/portfolioData';
 import { Hero3DCanvas } from './Hero3DCanvas';
