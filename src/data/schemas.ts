@@ -11,6 +11,8 @@ export interface Project {
   githubUrl: string;
   extraUrl?: string;
   extraUrlLabel?: string;
+  category?: 'data' | 'accounting' | 'sales' | 'meta';
+}
   impactBadge?: string;
 }
 

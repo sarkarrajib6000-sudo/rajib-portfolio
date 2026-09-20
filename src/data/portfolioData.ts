@@ -121,28 +121,30 @@ export const skills: SkillCategory[] = [
 
 export const projects: Project[] = [
   {
-    id: 'propflow-crm',
-    title: 'PropFlow CRM',
-    subtitle: 'Enterprise Real Estate CRM & Revenue Operations SaaS',
-    impactBadge: '⚡ Sub-100ms Sync & AI Routing',
-    description: 'A multi-tenant SaaS CRM with real-time Firestore sync and AI-powered lead routing built for enterprise real estate operations.',
-    longDescription: 'PropFlow is an enterprise-grade real-time SaaS CRM built with a multi-tenant architecture, featuring tenant data isolation and role-based persona simulation. The platform integrates Gemini AI for automated lead routing and welcome-message drafting. It also includes automated SLA escalation systems and payment-ledger overdue tracking operating seamlessly across six core business modules.',
-    image: propflowImg,
-    tags: ['React 19', 'TypeScript', 'Firebase Firestore', 'Express.js', 'Gemini AI'],
+    id: 'supply-chain-analytics',
+    title: 'Supply Chain Analytics',
+    subtitle: 'End-to-End SQL & Python Logistics Analysis',
+    impactBadge: '📦 10,000 Real Orders Analyzed',
+    category: 'data',
+    description: 'An end-to-end analysis of real supply chain order data using Python ETL, SQL, and an Excel dashboard — uncovering delivery risk, profitability, and discounting insights.',
+    longDescription: 'Built a full analytics pipeline on the DataCo Smart Supply Chain dataset (10,000 real order-level transactions). A Python ETL script cleans and de-identifies the raw data, 10 SQL queries answer real business questions on delivery risk, category profitability, customer segments, and discount impact, and the results are visualized in a KPI dashboard. Key finding: First Class shipping showed a 99.7% late-delivery risk versus 37.5% for Standard Class.',
+    image: supplyChainImg,
+    tags: ['Python', 'SQL', 'SQLite', 'Excel', 'Data Analysis'],
     features: [
-      'Built multi-tenant SaaS framework with strict tenant data isolation and role-based persona simulation.',
-      'Implemented real-time database sync (sub-100ms updates) via Firebase Firestore.',
-      'Integrated Gemini AI for automated lead scoring, routing, and personalized welcome drafts.',
-      'Developed automated SLA escalation and ledger overdue alerts across 6 core modules.'
+      'Built a Python ETL pipeline to clean, de-identify, and feature-engineer 10,000 real order records.',
+      'Wrote 10 SQL business-question queries covering delivery risk, profitability, and discount impact.',
+      'Found premium shipping tiers had significantly worse on-time performance than standard shipping.',
+      'Built a KPI dashboard in Excel summarizing delivery risk, sales trends, and category profitability.'
     ],
-    demoUrl: 'https://propflow-7890.vercel.app/',
-    githubUrl: 'https://github.com/sarkarrajib6000-sudo/Propflow_7890'
+    demoUrl: '#',
+    githubUrl: 'https://github.com/sarkarrajib6000-sudo/supply-chain-analytics'
   },
   {
     id: 'sales-analytics',
     title: 'Sales Analytics Dashboard',
     subtitle: 'AI-Powered Sales Analytics & Forecast Dashboard',
     impactBadge: '📈 6-Month Predictive Forecast Model',
+    category: 'data',
     description: 'A client-side analytics platform that converts transactional CSV files into KPI scorecards, interactive sales forecasts, and risk simulators.',
     longDescription: 'AeroSales is a client-side business intelligence dashboard that ingests raw sales transactional CSV data to produce immediate KPI metrics. Features include a 6-month sales forecasting model and a growth-initiative simulator with adjustable risk profiles. A live Gemini AI insights engine analyzes uploaded dataset anomalies to output interactive trend cards and tactical suggestions.',
     image: salesImg,
@@ -161,6 +163,7 @@ export const projects: Project[] = [
     title: 'Attendance & Salary MIS',
     subtitle: 'Automated Payroll & Employee Tracking System',
     impactBadge: '⚙️ 511 Active Formulas & 40% Saved',
+    category: 'accounting',
     description: 'An automated, formula-driven payroll administration system managing calculations and payslip generation in Excel.',
     longDescription: 'The Employee Attendance & Salary MIS is a robust payroll administration system built in Excel to streamline HR workflows. Driven by 511 live formulas across 7 interconnected sheets, it administers payroll tracking for 20 employees. The system computes statutory deductions (PF, ESI, TDS) and features a one-click Payslip Generator that eliminates manual accounting overhead.',
     image: attendanceImg,
@@ -175,10 +178,30 @@ export const projects: Project[] = [
     githubUrl: '#'
   },
   {
+    id: 'propflow-crm',
+    title: 'PropFlow CRM',
+    subtitle: 'Enterprise Real Estate CRM & Revenue Operations SaaS',
+    impactBadge: '⚡ Sub-100ms Sync & AI Routing',
+    category: 'sales',
+    description: 'A multi-tenant SaaS CRM with real-time Firestore sync and AI-powered lead routing built for enterprise real estate operations.',
+    longDescription: 'PropFlow is an enterprise-grade real-time SaaS CRM built with a multi-tenant architecture, featuring tenant data isolation and role-based persona simulation. The platform integrates Gemini AI for automated lead routing and welcome-message drafting. It also includes automated SLA escalation systems and payment-ledger overdue tracking operating seamlessly across six core business modules.',
+    image: propflowImg,
+    tags: ['React 19', 'TypeScript', 'Firebase Firestore', 'Express.js', 'Gemini AI'],
+    features: [
+      'Built multi-tenant SaaS framework with strict tenant data isolation and role-based persona simulation.',
+      'Implemented real-time database sync (sub-100ms updates) via Firebase Firestore.',
+      'Integrated Gemini AI for automated lead scoring, routing, and personalized welcome drafts.',
+      'Developed automated SLA escalation and ledger overdue alerts across 6 core modules.'
+    ],
+    demoUrl: 'https://propflow-7890.vercel.app/',
+    githubUrl: 'https://github.com/sarkarrajib6000-sudo/Propflow_7890'
+  },
+  {
     id: 'ares-sale-manager',
     title: 'Ares Sale Manager',
     subtitle: 'Sales Pipeline & Forecasting CRM',
     impactBadge: '📊 5-Stage Kanban & Revenue Engine',
+    category: 'sales',
     description: 'A Kanban-style Opportunity Board managing deals across 5 pipeline stages with full CRUD lead lifecycle management and a stage-weighted Sales Forecast Engine.',
     longDescription: 'Ares Sale Manager is a performance-driven CRM featuring a Kanban-style opportunity board to manage sales pipelines. It enables real-time deal stage transitions, tracks lead lifecycles, and employs a stage-weighted sales forecasting algorithm. The application synchronizes dynamically with Google Sheets and utilizes Firebase/Firestore for collaborative, real-time sales team updates.',
     image: aresImg,
@@ -197,6 +220,7 @@ export const projects: Project[] = [
     title: 'Real Estate Sales MIS Dashboard',
     subtitle: 'Excel & Google Apps Script Automation',
     impactBadge: '🚀 100% Manual Overhead Eliminated',
+    category: 'sales',
     description: 'A 10-sheet Excel MIS Dashboard covering territory performance, lead funnel, team KPIs, and inventory across 12 projects.',
     longDescription: 'Designed a 10-sheet Excel MIS Dashboard (212 live formulas) covering territory performance, lead funnel, team KPIs, and inventory across 12 projects and 10 sales executives. Built Google Apps Script automation for instant high-value lead alerts (>=80L), daily follow-up reminders, and weekly pipeline reports — eliminating 100% of manual reporting.',
     image: realEstateMisImg,
@@ -215,6 +239,7 @@ export const projects: Project[] = [
     title: 'Cloud-Based CRM Web Application',
     subtitle: 'Google Sheets Connected CRM Dashboard',
     impactBadge: '🔗 Live Google Sheets Sync & Chart.js',
+    category: 'sales',
     description: 'A CRM dashboard tracking leads, bookings, and sales performance with live Google Sheets data sync and Chart.js KPI visualizations.',
     longDescription: 'Built a CRM dashboard tracking leads, bookings, and sales performance with live Google Sheets data sync and Chart.js KPI visualizations, deployed on GitHub Pages. The Database Excel Sheet is directly linked to the webpage for real-time CRM reporting.',
     image: godrejCrmImg,
@@ -235,6 +260,7 @@ export const projects: Project[] = [
     title: 'Developer Portfolio Website',
     subtitle: 'Interactive Personal Portfolio & Showcase',
     impactBadge: '✨ Glassmorphic UI & Vitest Verified',
+    category: 'meta',
     description: 'A premium, responsive developer portfolio featuring glassmorphic designs, dark mode, certifications index, contact form, and automated testing.',
     longDescription: 'A high-performance personal portfolio built to display technical capabilities, software engineering projects, and certifications. Designed with glassmorphic elements, neon gradients, a theme manager, and dynamic Framer Motion animations. Features automated unit tests using Vitest for contact form verification and type integrity.',
     image: portfolioImg,
@@ -247,24 +273,6 @@ export const projects: Project[] = [
     ],
     demoUrl: '#',
     githubUrl: 'https://github.com/sarkarrajib6000-sudo/rajib-portfolio'
-  },
-  {
-    id: 'supply-chain-analytics',
-    title: 'Supply Chain Analytics',
-    subtitle: 'End-to-End SQL & Python Logistics Analysis',
-    impactBadge: '📦 10,000 Real Orders Analyzed',
-    description: 'An end-to-end analysis of real supply chain order data using Python ETL, SQL, and an Excel dashboard — uncovering delivery risk, profitability, and discounting insights.',
-    longDescription: 'Built a full analytics pipeline on the DataCo Smart Supply Chain dataset (10,000 real order-level transactions). A Python ETL script cleans and de-identifies the raw data, 10 SQL queries answer real business questions on delivery risk, category profitability, customer segments, and discount impact, and the results are visualized in a KPI dashboard. Key finding: First Class shipping showed a 99.7% late-delivery risk versus 37.5% for Standard Class.',
-    image: supplyChainImg,
-    tags: ['Python', 'SQL', 'SQLite', 'Excel', 'Data Analysis'],
-    features: [
-      'Built a Python ETL pipeline to clean, de-identify, and feature-engineer 10,000 real order records.',
-      'Wrote 10 SQL business-question queries covering delivery risk, profitability, and discount impact.',
-      'Found premium shipping tiers had significantly worse on-time performance than standard shipping.',
-      'Built a KPI dashboard in Excel summarizing delivery risk, sales trends, and category profitability.'
-    ],
-    demoUrl: '#',
-    githubUrl: 'https://github.com/sarkarrajib6000-sudo/supply-chain-analytics'
   }
 ];
 
@@ -393,7 +401,7 @@ export const certifications: Certification[] = [
     issuer: 'Hugging Face',
     date: 'N/A',
     credentialId: 'N/A',
-    verificationUrl: 'https://huggingface.co/',
+    verificationUrl:'https://huggingface.co/',
     pdfUrl: '/documents/LLM course -Hugging Face (1).webp'
   },
   {

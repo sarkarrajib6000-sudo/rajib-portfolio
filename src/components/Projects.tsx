@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ExternalLink, X, ArrowUpRight } from 'lucide-react';
+import { ExternalLink, X, ArrowUpRight, ChevronRight } from 'lucide-react';
 import { projects } from '../data/portfolioData';
 import type { Project } from '../data/schemas';
 
@@ -10,18 +10,24 @@ const GithubIcon: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
   </svg>
 );
 
+// Category → accent color + label mapping
+const CATEGORY_STYLES: Record<
+  NonNullable<Project['category']>,
+  { text: string; border: string; label: string; dashed?: boolean }
+> = {
+  data: { text: 'text-[#22D3AA]', border: 'border-[#22D3AA]', label: 'DATA ANALYSIS' },
+  accounting: { text: 'text-[#E8B339]', border: 'border-[#E8B339]', label: 'ACCOUNTING/FINANCE' },
+  sales: { text: 'text-[#FF7A45]', border: 'border-[#FF7A45]', label: 'SALES/CRM' },
+  meta: { text: 'text-[#8A93A1]', border: 'border-[#8A93A1]', label: 'META', dashed: true },
+};
+
+const getCategoryStyle = (p: Project) => CATEGORY_STYLES[p.category ?? 'data'];
+
 export const Projects: React.FC = () => {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
-  // Classify projects for single functional accent per row
-  const isAnalysisProject = (p: Project) => {
-    return (
-      p.id.includes('analytics') ||
-      p.id.includes('mis') ||
-      p.id.includes('supply-chain') ||
-      p.id.includes('godrej')
-    );
-  };
+  const [featured, ...rest] = projects;
+  const featuredStyle = getCategoryStyle(featured);
 
   return (
     <section id="projects" className="py-20 px-4 lg:px-8 bg-[#0A0D12] text-[#EDEFF2] border-b border-[#232A35]">
@@ -34,70 +40,88 @@ export const Projects: React.FC = () => {
           <div className="w-16 h-0.5 bg-[#22D3AA]" />
         </div>
 
-        {/* Ledger Header Bar (Desktop) */}
-        <div className="hidden lg:grid grid-cols-12 gap-4 px-6 py-3 bg-[#151A22] border border-[#232A35] font-mono text-xs text-[#8A93A1] mb-2">
-          <div className="col-span-2">REF / TYPE</div>
-          <div className="col-span-5">PROJECT & SPECIFICATIONS</div>
-          <div className="col-span-3">TECH STACK</div>
-          <div className="col-span-2 text-right">ACTION</div>
+        {/* Category Legend */}
+        <div className="flex flex-wrap gap-4 mb-6 font-mono text-[10px] text-[#8A93A1]">
+          {(Object.keys(CATEGORY_STYLES) as Array<keyof typeof CATEGORY_STYLES>).map((key) => (
+            <span key={key} className="flex items-center gap-1.5">
+              <span className={`w-2 h-2 ${CATEGORY_STYLES[key].border.replace('border-', 'bg-')}`} />
+              {CATEGORY_STYLES[key].label}
+            </span>
+          ))}
         </div>
 
-        {/* Projects Rows */}
-        <div className="divide-y divide-[#232A35] border border-[#232A35] bg-[#151A22]">
-          {projects.map((project, idx) => {
-            const isAnalysis = isAnalysisProject(project);
-            const accentText = isAnalysis ? 'text-[#22D3AA]' : 'text-[#FF7A45]';
-            const accentBorder = isAnalysis ? 'border-[#22D3AA]' : 'border-[#FF7A45]';
-            const projectRef = `PROJ-${(idx + 1).toString().padStart(2, '0')}`;
+        {/* Flagship Project Box */}
+        <div
+          onClick={() => setSelectedProject(featured)}
+          className={`mb-6 p-6 sm:p-8 border-2 ${featuredStyle.border} bg-[#151A22] cursor-pointer hover:bg-[#1C232E] transition-colors`}
+        >
+          <div className="flex items-center gap-3 mb-4">
+            <span className={`font-mono text-[10px] uppercase tracking-wider px-2 py-1 border ${featuredStyle.border} ${featuredStyle.text}`}>
+              Flagship
+            </span>
+            <span className="font-mono text-xs text-[#8A93A1] uppercase">
+              {featuredStyle.label}
+            </span>
+          </div>
+
+          {featured.impactBadge && (
+            <span className={`inline-block font-mono text-xs px-2 py-0.5 border ${featuredStyle.border} ${featuredStyle.text} mb-3`}>
+              {featured.impactBadge}
+            </span>
+          )}
+
+          <h3 className="font-sora font-medium text-2xl text-[#EDEFF2] mb-3">
+            {featured.title}
+          </h3>
+          <p className="font-sans text-sm text-[#8A93A1] leading-relaxed mb-4 max-w-2xl">
+            {featured.description}
+          </p>
+
+          <div className="flex flex-wrap gap-1.5 font-mono text-xs text-[#8A93A1] mb-5">
+            {featured.tags.map((tag) => (
+              <span key={tag} className="px-2 py-1 bg-[#0A0D12] border border-[#232A35]">
+                {tag}
+              </span>
+            ))}
+          </div>
+
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              setSelectedProject(featured);
+            }}
+            className={`inline-flex items-center gap-1.5 font-mono text-xs uppercase px-4 py-2 border ${featuredStyle.border} ${featuredStyle.text} hover:bg-[#0A0D12] transition-colors`}
+          >
+            <span>View Spec</span>
+            <ArrowUpRight className="w-3.5 h-3.5" />
+          </button>
+        </div>
+
+        {/* Remaining Projects: individual boxes, colored by category */}
+        <div className="flex flex-col gap-3">
+          {rest.map((project, idx) => {
+            const style = getCategoryStyle(project);
+            const projectRef = `PROJ-${(idx + 2).toString().padStart(2, '0')}`;
 
             return (
               <div
                 key={project.id}
                 onClick={() => setSelectedProject(project)}
-                className="p-6 grid grid-cols-1 lg:grid-cols-12 gap-6 items-start hover:bg-[#1C232E] cursor-pointer transition-colors"
+                className={`min-h-[44px] px-4 py-3 sm:px-5 sm:py-3.5 border ${style.dashed ? 'border-dashed' : ''} ${style.border} bg-[#151A22] flex items-center justify-between gap-3 cursor-pointer hover:bg-[#1C232E] transition-colors ${style.dashed ? 'opacity-70' : ''}`}
               >
-                {/* Column 1: Ref & Year */}
-                <div className="lg:col-span-2 font-mono text-xs flex flex-row lg:flex-col justify-between lg:justify-start gap-1 text-[#8A93A1]">
-                  <span className={`font-semibold ${accentText}`}>{projectRef}</span>
-                  <span className="uppercase">{isAnalysis ? 'ANALYSIS/METRICS' : 'OPS/SALES'}</span>
-                </div>
-
-                {/* Column 2: Name & Description */}
-                <div className="lg:col-span-5 flex flex-col items-start">
-                  {project.impactBadge && (
-                    <span className={`inline-block font-mono text-xs px-2 py-0.5 border ${accentBorder} ${accentText} mb-2`}>
-                      {project.impactBadge}
-                    </span>
-                  )}
-                  <h3 className="font-sora font-medium text-lg text-[#EDEFF2] mb-2">
+                <div className="flex items-center gap-3 min-w-0">
+                  <span className={`font-mono text-[10px] font-semibold ${style.text} shrink-0`}>
+                    {projectRef}
+                  </span>
+                  <span className="font-sora text-sm text-[#EDEFF2] truncate">
                     {project.title}
-                  </h3>
-                  <p className="font-sans text-sm text-[#8A93A1] leading-relaxed">
-                    {project.description}
-                  </p>
+                  </span>
                 </div>
-
-                {/* Column 3: Tech Stack */}
-                <div className="lg:col-span-3 flex flex-wrap gap-1.5 font-mono text-xs text-[#8A93A1]">
-                  {project.tags.map((tag) => (
-                    <span key={tag} className="px-2 py-1 bg-[#0A0D12] border border-[#232A35]">
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-
-                {/* Column 4: Link / Details */}
-                <div className="lg:col-span-2 flex lg:justify-end items-center">
-                  <button
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      setSelectedProject(project);
-                    }}
-                    className={`inline-flex items-center gap-1.5 font-mono text-xs uppercase px-3 py-1.5 border ${accentBorder} ${accentText} hover:bg-[#0A0D12] transition-colors`}
-                  >
-                    <span>View Spec</span>
-                    <ArrowUpRight className="w-3.5 h-3.5" />
-                  </button>
+                <div className="flex items-center gap-3 shrink-0">
+                  <span className={`hidden sm:inline font-mono text-[10px] uppercase px-2 py-0.5 border ${style.border} ${style.text}`}>
+                    {style.label}
+                  </span>
+                  <ChevronRight className="w-4 h-4 text-[#8A93A1]" />
                 </div>
               </div>
             );
@@ -207,4 +231,3 @@ export const Projects: React.FC = () => {
     </section>
   );
 };
-
