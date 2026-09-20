@@ -10,24 +10,21 @@ const GithubIcon: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
   </svg>
 );
 
-// Category → accent color + label mapping
-const CATEGORY_STYLES: Record<
-  NonNullable<Project['category']>,
-  { text: string; border: string; label: string; dashed?: boolean }
-> = {
-  data: { text: 'text-[#22D3AA]', border: 'border-[#22D3AA]', label: 'DATA ANALYSIS' },
-  accounting: { text: 'text-[#E8B339]', border: 'border-[#E8B339]', label: 'ACCOUNTING/FINANCE' },
-  sales: { text: 'text-[#FF7A45]', border: 'border-[#FF7A45]', label: 'SALES/CRM' },
-  meta: { text: 'text-[#8A93A1]', border: 'border-[#8A93A1]', label: 'META', dashed: true },
+// Category → single accent color (used only as a thin left-border marker, kept subtle)
+const CATEGORY_ACCENT: Record<NonNullable<Project['category']>, string> = {
+  data: '#22D3AA',
+  accounting: '#E8B339',
+  sales: '#FF7A45',
+  meta: '#8A93A1',
 };
 
-const getCategoryStyle = (p: Project) => CATEGORY_STYLES[p.category ?? 'data'];
+const getAccent = (p: Project) => CATEGORY_ACCENT[p.category ?? 'data'];
 
 export const Projects: React.FC = () => {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
   const [featured, ...rest] = projects;
-  const featuredStyle = getCategoryStyle(featured);
+  const featuredAccent = getAccent(featured);
 
   return (
     <section id="projects" className="py-20 px-4 lg:px-8 bg-[#0A0D12] text-[#EDEFF2] border-b border-[#232A35]">
@@ -40,32 +37,17 @@ export const Projects: React.FC = () => {
           <div className="w-16 h-0.5 bg-[#22D3AA]" />
         </div>
 
-        {/* Category Legend */}
-        <div className="flex flex-wrap gap-4 mb-6 font-mono text-[10px] text-[#8A93A1]">
-          {(Object.keys(CATEGORY_STYLES) as Array<keyof typeof CATEGORY_STYLES>).map((key) => (
-            <span key={key} className="flex items-center gap-1.5">
-              <span className={`w-2 h-2 ${CATEGORY_STYLES[key].border.replace('border-', 'bg-')}`} />
-              {CATEGORY_STYLES[key].label}
-            </span>
-          ))}
-        </div>
-
-        {/* Flagship Project Box */}
+        {/* Flagship Project — single subtle accent, no double badges */}
         <div
           onClick={() => setSelectedProject(featured)}
-          className={`mb-6 p-6 sm:p-8 border-2 ${featuredStyle.border} bg-[#151A22] cursor-pointer hover:bg-[#1C232E] transition-colors`}
+          className="mb-6 p-6 sm:p-8 border border-[#232A35] bg-[#151A22] cursor-pointer hover:bg-[#1C232E] transition-colors"
+          style={{ borderLeft: `3px solid ${featuredAccent}` }}
         >
-          <div className="flex items-center gap-3 mb-4">
-            <span className={`font-mono text-[10px] uppercase tracking-wider px-2 py-1 border ${featuredStyle.border} ${featuredStyle.text}`}>
-              Flagship
-            </span>
-            <span className="font-mono text-xs text-[#8A93A1] uppercase">
-              {featuredStyle.label}
-            </span>
-          </div>
-
           {featured.impactBadge && (
-            <span className={`inline-block font-mono text-xs px-2 py-0.5 border ${featuredStyle.border} ${featuredStyle.text} mb-3`}>
+            <span
+              className="inline-block font-mono text-xs px-2 py-0.5 border mb-3"
+              style={{ borderColor: featuredAccent, color: featuredAccent }}
+            >
               {featured.impactBadge}
             </span>
           )}
@@ -90,39 +72,29 @@ export const Projects: React.FC = () => {
               e.stopPropagation();
               setSelectedProject(featured);
             }}
-            className={`inline-flex items-center gap-1.5 font-mono text-xs uppercase px-4 py-2 border ${featuredStyle.border} ${featuredStyle.text} hover:bg-[#0A0D12] transition-colors`}
+            className="inline-flex items-center gap-1.5 font-mono text-xs uppercase px-4 py-2 border hover:bg-[#0A0D12] transition-colors"
+            style={{ borderColor: featuredAccent, color: featuredAccent }}
           >
             <span>View Spec</span>
             <ArrowUpRight className="w-3.5 h-3.5" />
           </button>
         </div>
 
-        {/* Remaining Projects: individual boxes, colored by category */}
-        <div className="flex flex-col gap-3">
-          {rest.map((project, idx) => {
-            const style = getCategoryStyle(project);
-            const projectRef = `PROJ-${(idx + 2).toString().padStart(2, '0')}`;
-
+        {/* Remaining Projects: one bordered list, thin left-accent per row, no trailing badges */}
+        <div className="border border-[#232A35] bg-[#151A22] divide-y divide-[#232A35]">
+          {rest.map((project) => {
+            const accent = getAccent(project);
             return (
               <div
                 key={project.id}
                 onClick={() => setSelectedProject(project)}
-                className={`min-h-[44px] px-4 py-3 sm:px-5 sm:py-3.5 border ${style.dashed ? 'border-dashed' : ''} ${style.border} bg-[#151A22] flex items-center justify-between gap-3 cursor-pointer hover:bg-[#1C232E] transition-colors ${style.dashed ? 'opacity-70' : ''}`}
+                className="min-h-[44px] px-4 py-3 sm:px-5 flex items-center justify-between gap-3 cursor-pointer hover:bg-[#1C232E] transition-colors"
+                style={{ borderLeft: `3px solid ${accent}` }}
               >
-                <div className="flex items-center gap-3 min-w-0">
-                  <span className={`font-mono text-[10px] font-semibold ${style.text} shrink-0`}>
-                    {projectRef}
-                  </span>
-                  <span className="font-sora text-sm text-[#EDEFF2] truncate">
-                    {project.title}
-                  </span>
-                </div>
-                <div className="flex items-center gap-3 shrink-0">
-                  <span className={`hidden sm:inline font-mono text-[10px] uppercase px-2 py-0.5 border ${style.border} ${style.text}`}>
-                    {style.label}
-                  </span>
-                  <ChevronRight className="w-4 h-4 text-[#8A93A1]" />
-                </div>
+                <span className="font-sora text-sm text-[#EDEFF2] truncate">
+                  {project.title}
+                </span>
+                <ChevronRight className="w-4 h-4 text-[#8A93A1] shrink-0" />
               </div>
             );
           })}
