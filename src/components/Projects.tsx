@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { ExternalLink, ArrowUpRight, Sparkles, Terminal, Activity } from 'lucide-react';
 import { projects } from '../data/portfolioData';
-import type { Project } from '../data/schemas';
 
 const GithubIcon: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" {...props}>
