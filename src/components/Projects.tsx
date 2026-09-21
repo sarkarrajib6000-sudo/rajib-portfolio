@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
-import { ExternalLink, ArrowUpRight, Sparkles, Terminal, Activity } from 'lucide-react';
+import React, { useMemo, useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { ExternalLink, ArrowUpRight } from 'lucide-react';
 import { projects } from '../data/portfolioData';
 
 const GithubIcon: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
@@ -9,269 +10,242 @@ const GithubIcon: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
   </svg>
 );
 
-const CATEGORY_STYLES: Record<string, { badge: string; accent: string; glow: string }> = {
+type LedgerCategory = 'all' | 'data' | 'accounting' | 'sales';
+
+const TABS: { id: LedgerCategory; label: string }[] = [
+  { id: 'all', label: 'All' },
+  { id: 'data', label: 'Data' },
+  { id: 'accounting', label: 'Accounting' },
+  { id: 'sales', label: 'Sales' },
+];
+
+// Subtle left accent per category — emerald / amber / coral-orange
+const ACCENTS: Record<string, { bar: string; label: string; dot: string }> = {
   data: {
-    badge: 'text-emerald-400 bg-emerald-500/10 border-emerald-500/20',
-    accent: '#10B981',
-    glow: 'from-emerald-500/15',
+    bar: '#10B981',
+    label: 'text-[#10B981]',
+    dot: 'bg-[#10B981]',
   },
   accounting: {
-    badge: 'text-amber-400 bg-amber-500/10 border-amber-500/20',
-    accent: '#F59E0B',
-    glow: 'from-amber-500/15',
+    bar: '#F59E0B',
+    label: 'text-[#F59E0B]',
+    dot: 'bg-[#F59E0B]',
   },
   sales: {
-    badge: 'text-orange-400 bg-orange-500/10 border-orange-500/20',
-    accent: '#FB923C',
-    glow: 'from-orange-500/15',
+    bar: '#FF6B4A',
+    label: 'text-[#FF6B4A]',
+    dot: 'bg-[#FF6B4A]',
   },
   meta: {
-    badge: 'text-blue-400 bg-blue-500/10 border-blue-500/20',
-    accent: '#38BDF8',
-    glow: 'from-blue-500/15',
+    bar: '#64748B',
+    label: 'text-[#94A3B8]',
+    dot: 'bg-[#64748B]',
   },
 };
 
+function hasLink(url?: string) {
+  return !!url && url !== '#';
+}
+
 export const Projects: React.FC = () => {
-  const [featured, second, third, fourth] = projects;
-  const [activeTab, setActiveTab] = useState<'preview' | 'logs'>('preview');
+  const [activeCategory, setActiveCategory] = useState<LedgerCategory>('all');
 
-  if (!featured) return null;
+  const counts = useMemo(() => {
+    const countFor = (cat: LedgerCategory) =>
+      cat === 'all' ? projects.length : projects.filter((p) => p.category === cat).length;
+    return {
+      all: countFor('all'),
+      data: countFor('data'),
+      accounting: countFor('accounting'),
+      sales: countFor('sales'),
+    };
+  }, []);
 
-  const heroCategory = CATEGORY_STYLES[featured.category ?? 'data'] ?? CATEGORY_STYLES.data;
+  const visible = useMemo(() => {
+    if (activeCategory === 'all') return projects;
+    return projects.filter((p) => p.category === activeCategory);
+  }, [activeCategory]);
 
   return (
-    <section id="projects" className="relative py-28 px-4 sm:px-6 lg:px-8 bg-[#030712] text-slate-100 overflow-hidden">
-      {/* Background Radial Glow & Sub-grid */}
-      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[500px] bg-emerald-500/10 blur-[130px] pointer-events-none -z-10" />
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,#1f29370f_1px,transparent_1px),linear-gradient(to_bottom,#1f29370f_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_40%,#000_70%,transparent_100%)] pointer-events-none -z-10" />
-
-      <div className="max-w-7xl mx-auto">
-        {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
+    <section id="projects" className="relative py-24 px-4 sm:px-6 lg:px-8 bg-[#090D14] text-slate-200">
+      <div className="max-w-5xl mx-auto">
+        {/* Ledger header */}
+        <div className="flex flex-col gap-6 mb-8">
           <div>
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-mono font-medium tracking-wide border border-emerald-500/20 bg-emerald-500/5 text-emerald-400 mb-4">
-              <Sparkles className="w-3.5 h-3.5" />
-              <span>Production Systems & Architecture</span>
+            <p className="font-mono text-[11px] tracking-[0.2em] uppercase text-[#8A93A1] mb-3">
+              <span className="text-[#22D3AA]">02</span>
+              <span className="mx-2 text-[#232A35]">//</span>
+              Projects_Ledger
+            </p>
+            <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4">
+              <h2 className="font-sora text-3xl sm:text-4xl font-semibold tracking-tight text-[#EDEFF2]">
+                Projects Ledger
+              </h2>
+              <p className="max-w-md font-mono text-xs leading-relaxed text-[#8A93A1]">
+                <span className="text-[#22D3AA]">$</span> ls ./projects --filter={activeCategory} --count={visible.length}
+              </p>
             </div>
-            <h2 className="text-3xl sm:text-5xl font-bold tracking-tight text-white font-sora">
-              Featured Work
-            </h2>
+            <p className="mt-3 max-w-2xl text-sm leading-relaxed text-[#8A93A1] font-sans">
+              Production data systems, accounting automation, and sales operations — each entry
+              versioned, measured, and shipped.
+            </p>
           </div>
-          <p className="max-w-md text-sm text-slate-400 font-sans leading-relaxed">
-            Scalable backend architectures, distributed services, and developer platforms built with high reliability guarantees.
-          </p>
+
+          {/* Category tabs */}
+          <div
+            role="tablist"
+            aria-label="Filter projects by category"
+            className="flex flex-wrap items-center gap-2 border-y border-[#1B2330] py-3"
+          >
+            {TABS.map((tab) => {
+              const isActive = activeCategory === tab.id;
+              return (
+                <button
+                  key={tab.id}
+                  role="tab"
+                  aria-selected={isActive}
+                  onClick={() => setActiveCategory(tab.id)}
+                  className={`inline-flex items-center gap-2 px-3.5 py-1.5 font-mono text-[11px] font-medium uppercase tracking-[0.12em] border transition-colors ${
+                    isActive
+                      ? 'border-[#22D3AA] bg-[#22D3AA] text-[#090D14]'
+                      : 'border-[#232A35] bg-transparent text-[#8A93A1] hover:text-[#EDEFF2] hover:border-[#3A4659]'
+                  }`}
+                >
+                  <span>{tab.label}</span>
+                  <span
+                    className={`text-[10px] leading-none ${
+                      isActive ? 'text-[#090D14]/80' : 'text-[#5A6577]'
+                    }`}
+                  >
+                    {String(counts[tab.id]).padStart(2, '0')}
+                  </span>
+                </button>
+              );
+            })}
+            <span className="ml-auto hidden sm:inline font-mono text-[11px] text-[#5A6577]">
+              [{visible.length} record{visible.length === 1 ? '' : 's'}]
+            </span>
+          </div>
         </div>
 
-        {/* Bento Grid Layout */}
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
-          
-          {/* Card 1: HERO PROJECT (Span 8 Cols) */}
-          <div className="md:col-span-12 lg:col-span-8 group relative rounded-2xl border border-slate-800/80 bg-slate-900/40 backdrop-blur-xl p-6 sm:p-8 hover:border-slate-700/80 transition-all duration-300 flex flex-col justify-between overflow-hidden">
-            {/* Top Accent Gradient overlay on hover */}
-            <div className={`absolute -top-32 -right-32 w-80 h-80 bg-gradient-to-br ${heroCategory.glow} to-transparent blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none`} />
+        {/* Vertical ledger stack */}
+        <motion.div layout className="flex flex-col gap-4">
+          <AnimatePresence mode="popLayout" initial={false}>
+            {visible.map((project, index) => {
+              const accent = ACCENTS[project.category ?? 'data'] ?? ACCENTS.data;
+              return (
+                <motion.article
+                  key={project.id}
+                  layout
+                  initial={{ opacity: 0, y: 12 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -8 }}
+                  transition={{ duration: 0.22, ease: 'easeOut' }}
+                  className="relative flex bg-[#0E141E] border border-[#1B2330] hover:border-[#2C3A4E] transition-colors"
+                >
+                  {/* Colored left accent border */}
+                  <span
+                    aria-hidden="true"
+                    className="w-[3px] shrink-0 self-stretch"
+                    style={{ backgroundColor: accent.bar }}
+                  />
 
-            <div>
-              {/* Header Badges & Actions */}
-              <div className="flex items-center justify-between mb-6">
-                <div className="flex items-center gap-2">
-                  <span className={`px-2.5 py-1 text-xs font-mono rounded-md border uppercase tracking-wider ${heroCategory.badge}`}>
-                    {featured.impactBadge || 'Flagship'}
-                  </span>
-                  <span className="text-xs font-mono text-slate-500">
-                    {featured.subtitle}
-                  </span>
-                </div>
-
-                <div className="flex items-center gap-2">
-                  {featured.githubUrl && featured.githubUrl !== '#' && (
-                    <a
-                      href={featured.githubUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="p-2 rounded-lg border border-slate-800 bg-slate-900/80 text-slate-400 hover:text-white hover:border-slate-700 transition-colors"
-                      aria-label="GitHub Repository"
-                    >
-                      <GithubIcon className="w-4 h-4" />
-                    </a>
-                  )}
-                  {featured.demoUrl && featured.demoUrl !== '#' && (
-                    <a
-                      href={featured.demoUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-mono text-xs font-semibold transition-colors"
-                    >
-                      <span>Demo</span>
-                      <ArrowUpRight className="w-3.5 h-3.5" />
-                    </a>
-                  )}
-                </div>
-              </div>
-
-              <h3 className="text-2xl sm:text-3xl font-bold text-white mb-3 tracking-tight font-sora">
-                {featured.title}
-              </h3>
-              <p className="text-sm text-slate-400 max-w-2xl leading-relaxed mb-6 font-sans">
-                {featured.description}
-              </p>
-
-              {/* Interactive Telemetry / Preview Card */}
-              <div className="rounded-xl border border-slate-800 bg-slate-950/70 p-4 mb-6">
-                <div className="flex items-center justify-between border-b border-slate-800/80 pb-3 mb-3">
-                  <div className="flex items-center gap-2">
-                    <button
-                      onClick={() => setActiveTab('preview')}
-                      className={`text-xs font-mono flex items-center gap-1.5 px-2 py-1 rounded transition-colors ${activeTab === 'preview' ? 'text-white bg-slate-800' : 'text-slate-400 hover:text-slate-300'}`}
-                    >
-                      <Activity className="w-3.5 h-3.5 text-emerald-400" />
-                      Key Metrics
-                    </button>
-                    <button
-                      onClick={() => setActiveTab('logs')}
-                      className={`text-xs font-mono flex items-center gap-1.5 px-2 py-1 rounded transition-colors ${activeTab === 'logs' ? 'text-white bg-slate-800' : 'text-slate-400 hover:text-slate-300'}`}
-                    >
-                      <Terminal className="w-3.5 h-3.5 text-slate-400" />
-                      Output
-                    </button>
-                  </div>
-                  <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                </div>
-
-                {activeTab === 'preview' ? (
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
-                    {featured.features?.slice(0, 4).map((feature, i) => (
-                      <div key={i} className="text-xs font-mono text-slate-300 bg-slate-900/50 p-2.5 rounded border border-slate-800/60 flex items-start gap-2">
-                        <span className="text-emerald-400 font-bold">&gt;</span>
-                        <span className="truncate">{feature}</span>
+                  <div className="flex-1 min-w-0 p-5 sm:p-6">
+                    {/* Top row: index + category + actions */}
+                    <div className="flex items-start justify-between gap-4 mb-3">
+                      <div className="flex items-center gap-3 font-mono text-[11px] uppercase tracking-[0.14em]">
+                        <span className="text-[#5A6577]">
+                          {String(index + 1).padStart(2, '0')}
+                        </span>
+                        <span className="w-1 h-1 rounded-full bg-[#2C3A4E]" aria-hidden="true" />
+                        <span className={`inline-flex items-center gap-1.5 ${accent.label}`}>
+                          <span className={`w-1.5 h-1.5 ${accent.dot}`} aria-hidden="true" />
+                          {project.category ?? 'data'}
+                        </span>
+                        {project.impactBadge && (
+                          <span className="hidden lg:inline normal-case tracking-normal text-[#5A6577] truncate max-w-[320px]">
+                            — {project.impactBadge}
+                          </span>
+                        )}
                       </div>
-                    ))}
+
+                      {/* Outline action buttons */}
+                      <div className="flex items-center gap-2 shrink-0">
+                        {hasLink(project.demoUrl) && (
+                          <a
+                            href={project.demoUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-1.5 px-3 py-1.5 border border-[#2A3545] text-[#C6CDD6] hover:border-[#22D3AA] hover:text-[#22D3AA] font-mono text-[11px] font-medium uppercase tracking-wider transition-colors"
+                          >
+                            <ExternalLink className="w-3 h-3" />
+                            <span>Demo</span>
+                          </a>
+                        )}
+                        {hasLink(project.githubUrl) && (
+                          <a
+                            href={project.githubUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-1.5 px-3 py-1.5 border border-[#2A3545] text-[#C6CDD6] hover:border-[#EDEFF2] hover:text-[#EDEFF2] font-mono text-[11px] font-medium uppercase tracking-wider transition-colors"
+                          >
+                            <GithubIcon className="w-3 h-3" />
+                            <span>GitHub</span>
+                          </a>
+                        )}
+                        {!hasLink(project.demoUrl) && !hasLink(project.githubUrl) && (
+                          <span className="font-mono text-[11px] text-[#5A6577] uppercase tracking-wider">
+                            Private
+                          </span>
+                        )}
+                      </div>
+                    </div>
+
+                    {/* Title left */}
+                    <h3 className="font-sora text-xl sm:text-2xl font-semibold tracking-tight text-[#EDEFF2] leading-snug">
+                      {project.title}
+                    </h3>
+                    {project.subtitle && (
+                      <p className="mt-1 font-mono text-[11px] text-[#8A93A1] tracking-wide">
+                        {project.subtitle}
+                      </p>
+                    )}
+                    <p className="mt-3 max-w-3xl text-sm leading-relaxed text-[#9AA3B2] font-sans">
+                      {project.description}
+                    </p>
+
+                    {/* Monospace tech stack pills */}
+                    <div className="mt-5 flex flex-wrap gap-1.5 border-t border-[#1B2330] pt-4">
+                      {project.tags.map((tag) => (
+                        <span
+                          key={tag}
+                          className="font-mono text-[11px] leading-none text-[#8A93A1] bg-[#090D14] border border-[#232A35] px-2.5 py-1.5"
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
                   </div>
-                ) : (
-                  <div className="font-mono text-xs text-slate-400 space-y-1.5 py-1">
-                    <p className="text-emerald-400/90">$ telemetry-cluster status --verbose</p>
-                    <p>✓ All 12 node groups reporting healthy state</p>
-                    <p className="text-slate-500">→ Latency: p50 12ms | p99 44ms across distributed ingestion</p>
-                  </div>
-                )}
-              </div>
-            </div>
+                </motion.article>
+              );
+            })}
+          </AnimatePresence>
+        </motion.div>
 
-            {/* Tech Stack Chips */}
-            <div className="flex flex-wrap gap-2 pt-2">
-              {featured.tags.map((tag) => (
-                <span key={tag} className="text-xs font-mono text-slate-400 bg-slate-800/50 border border-slate-700/50 px-2.5 py-1 rounded-md">
-                  {tag}
-                </span>
-              ))}
-            </div>
-          </div>
-
-          {/* Card 2: SECOND PROJECT (Span 4 Cols) */}
-          {second && (
-            <div className="md:col-span-12 lg:col-span-4 group relative rounded-2xl border border-slate-800/80 bg-slate-900/40 backdrop-blur-xl p-6 sm:p-7 hover:border-slate-700/80 transition-all duration-300 flex flex-col justify-between overflow-hidden">
-              <div>
-                <div className="flex items-center justify-between mb-4">
-                  <span className="text-xs font-mono text-amber-400 bg-amber-500/10 border border-amber-500/20 px-2.5 py-1 rounded-md uppercase">
-                    {second.category || 'System'}
-                  </span>
-                  {second.githubUrl && second.githubUrl !== '#' && (
-                    <a href={second.githubUrl} target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-white transition-colors">
-                      <GithubIcon className="w-4 h-4" />
-                    </a>
-                  )}
-                </div>
-
-                <h3 className="text-xl font-bold text-white mb-2 tracking-tight font-sora group-hover:text-amber-400 transition-colors">
-                  {second.title}
-                </h3>
-                <p className="text-xs text-slate-400 leading-relaxed font-sans mb-6">
-                  {second.description}
-                </p>
-
-                {second.image && (
-                  <div className="rounded-lg overflow-hidden border border-slate-800/80 aspect-video mb-6 bg-slate-950">
-                    <img src={second.image} alt={second.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
-                  </div>
-                )}
-              </div>
-
-              <div className="flex flex-wrap gap-1.5 pt-2">
-                {second.tags.slice(0, 3).map((tag) => (
-                  <span key={tag} className="text-[11px] font-mono text-slate-400 bg-slate-800/40 border border-slate-700/40 px-2 py-0.5 rounded">
-                    {tag}
-                  </span>
-                ))}
-              </div>
-            </div>
-          )}
-
-          {/* Card 3: THIRD PROJECT (Span 6 Cols) */}
-          {third && (
-            <div className="md:col-span-6 group relative rounded-2xl border border-slate-800/80 bg-slate-900/40 backdrop-blur-xl p-6 hover:border-slate-700/80 transition-all duration-300 flex flex-col justify-between">
-              <div>
-                <div className="flex items-center justify-between mb-4">
-                  <span className="text-xs font-mono text-orange-400 bg-orange-500/10 border border-orange-500/20 px-2.5 py-1 rounded-md uppercase">
-                    {third.category || 'Core'}
-                  </span>
-                  {third.demoUrl && third.demoUrl !== '#' && (
-                    <a href={third.demoUrl} target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-white transition-colors">
-                      <ExternalLink className="w-4 h-4" />
-                    </a>
-                  )}
-                </div>
-
-                <h3 className="text-lg font-bold text-white mb-2 tracking-tight font-sora group-hover:text-orange-400 transition-colors">
-                  {third.title}
-                </h3>
-                <p className="text-xs text-slate-400 leading-relaxed font-sans mb-4">
-                  {third.description}
-                </p>
-              </div>
-
-              <div className="flex flex-wrap gap-1.5 pt-4 border-t border-slate-800/50">
-                {third.tags.map((tag) => (
-                  <span key={tag} className="text-[11px] font-mono text-slate-400 bg-slate-800/30 px-2 py-0.5 rounded">
-                    {tag}
-                  </span>
-                ))}
-              </div>
-            </div>
-          )}
-
-          {/* Card 4: FOURTH PROJECT / ARCHITECTURE SPEC (Span 6 Cols) */}
-          {fourth && (
-            <div className="md:col-span-6 group relative rounded-2xl border border-slate-800/80 bg-slate-900/40 backdrop-blur-xl p-6 hover:border-slate-700/80 transition-all duration-300 flex flex-col justify-between">
-              <div>
-                <div className="flex items-center justify-between mb-4">
-                  <span className="text-xs font-mono text-blue-400 bg-blue-500/10 border border-blue-500/20 px-2.5 py-1 rounded-md uppercase">
-                    {fourth.category || 'Infra'}
-                  </span>
-                  {fourth.githubUrl && fourth.githubUrl !== '#' && (
-                    <a href={fourth.githubUrl} target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-white transition-colors">
-                      <GithubIcon className="w-4 h-4" />
-                    </a>
-                  )}
-                </div>
-
-                <h3 className="text-lg font-bold text-white mb-2 tracking-tight font-sora group-hover:text-blue-400 transition-colors">
-                  {fourth.title}
-                </h3>
-                <p className="text-xs text-slate-400 leading-relaxed font-sans mb-4">
-                  {fourth.description}
-                </p>
-              </div>
-
-              <div className="flex flex-wrap gap-1.5 pt-4 border-t border-slate-800/50">
-                {fourth.tags.map((tag) => (
-                  <span key={tag} className="text-[11px] font-mono text-slate-400 bg-slate-800/30 px-2 py-0.5 rounded">
-                    {tag}
-                  </span>
-                ))}
-              </div>
-            </div>
-          )}
-
+        {/* Ledger footer */}
+        <div className="mt-6 flex items-center justify-between font-mono text-[11px] text-[#5A6577]">
+          <span>
+            <span className="text-[#22D3AA]">✓</span> end_of_ledger — {visible.length} shown
+          </span>
+          <a
+            href="https://github.com/sarkarrajib6000-sudo"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1.5 text-[#8A93A1] hover:text-[#22D3AA] uppercase tracking-[0.14em] transition-colors"
+          >
+            <span>View all on GitHub</span>
+            <ArrowUpRight className="w-3.5 h-3.5" />
+          </a>
         </div>
       </div>
     </section>

@@ -19,7 +19,7 @@ export default {
       fontFamily: {
         sora: ['Sora', 'sans-serif'],
         sans: ['Inter', 'sans-serif'],
-        mono: ['"IBM Plex Mono"', 'monospace'],
+        mono: ['"JetBrains Mono"', '"IBM Plex Mono"', 'monospace'],
       },
     },
   },

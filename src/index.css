@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@400;500;600;700&family=Sora:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@400;500;600;700&family=Sora:wght@400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -26,7 +26,7 @@ h1, h2, h3, h4, h5, h6 {
 
 /* IBM Plex Mono for every number, date, stat, and data label */
 .font-mono {
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: 'JetBrains Mono', 'IBM Plex Mono', monospace;
 }
 
 /* Clear box-shadows, gradients, and backdrop-blurs globally */
