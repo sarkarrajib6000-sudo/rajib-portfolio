@@ -171,7 +171,7 @@ export const projects: Project[] = [
       'Found premium shipping tiers had significantly worse on-time performance than standard shipping.',
       'Built a KPI dashboard in Excel summarizing delivery risk, sales trends, and category profitability.'
     ],
-    demoUrl: 'https://docs.google.com/spreadsheets/d/1RdFr2QFPSjxfaOcykWs9teAa_iPvTDNEwKocBxK81GE/edit?usp=drivesdk',
+    demoUrl: 'https://1drv.ms/x/c/6250ac970ba67910/IQBw9Ypq8cBUSa-OhFxA7VcEAdzwoL6nkfkf85Mmac6J4Rw?e=8YalU5',
     githubUrl: 'https://github.com/sarkarrajib6000-sudo/supply-chain-analytics'
   },
   {
@@ -189,7 +189,7 @@ export const projects: Project[] = [
       'Automated delivery challan PDF generation powered by Google Apps Script.',
       'Blocks non-compliant dispatches automatically and logs sequential challan numbers.'
     ],
-    demoUrl: 'https://1drv.ms/x/c/6250ac970ba67910/IQBw9Ypq8cBUSa-OhFxA7VcEAdzwoL6nkfkf85Mmac6J4Rw?e=8YalU5',
+    demoUrl: 'https://docs.google.com/spreadsheets/d/1RdFr2QFPSjxfaOcykWs9teAa_iPvTDNEwKocBxK81GE/edit?usp=drivesdk',
     githubUrl: '#'
   },
   {
