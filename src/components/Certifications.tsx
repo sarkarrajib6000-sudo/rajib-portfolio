@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ExternalLink, FileText, Search } from 'lucide-react';
+import { ExternalLink, FileText, Search, Award } from 'lucide-react';
 import { certifications } from '../data/portfolioData';
 
 export const Certifications: React.FC = () => {
@@ -26,11 +26,12 @@ export const Certifications: React.FC = () => {
   };
 
   return (
-    <section id="certifications" className="py-20 px-4 lg:px-8 bg-[#0A0D12] text-[#EDEFF2] border-b border-[#232A35]">
+    <section id="certifications" className="py-20 px-4 lg:px-8 bg-[var(--bg)] text-[var(--text)] border-b border-[var(--border)]">
       <div className="max-w-7xl mx-auto">
         {/* Left-Aligned Heading */}
         <div className="mb-10">
-          <h2 className="font-sora font-medium text-3xl sm:text-4xl text-[#EDEFF2] tracking-tight mb-3">
+          <h2 className="font-sora font-medium text-xl sm:text-2xl text-[var(--text)] tracking-tight mb-3 flex items-center gap-2">
+            <Award className="w-5 h-5 text-[#22D3AA]" aria-hidden="true" />
             Accreditations & Certifications Ledger
           </h2>
           <div className="w-16 h-0.5 bg-[#22D3AA]" />
@@ -45,10 +46,10 @@ export const Certifications: React.FC = () => {
                 <button
                   key={issuer}
                   onClick={() => setSelectedIssuer(issuer)}
-                  className={`px-3.5 py-2 font-mono text-xs font-medium uppercase border transition-colors ${
+                  className={`px-3.5 py-2 font-mono text-xs md:text-sm font-medium uppercase border transition-colors ${
                     isActive
-                      ? 'border-[#22D3AA] bg-[#151A22] text-[#22D3AA]'
-                      : 'border-[#232A35] bg-[#151A22] text-[#8A93A1] hover:text-[#EDEFF2] hover:border-[#8A93A1]'
+                      ? 'border-[#22D3AA] bg-[var(--card-bg)] text-[#22D3AA]'
+                      : 'border-[var(--border)] bg-[var(--card-bg)] text-[var(--muted)] hover:text-[var(--text)] hover:border-[var(--muted)]'
                   }`}
                 >
                   {issuer}
@@ -58,19 +59,19 @@ export const Certifications: React.FC = () => {
           </div>
 
           <div className="relative w-full md:w-72">
-            <Search className="w-3.5 h-3.5 absolute left-3 top-1/2 -translate-y-1/2 text-[#8A93A1]" />
+            <Search className="w-3.5 h-3.5 absolute left-3 top-1/2 -translate-y-1/2 text-[var(--muted)]" />
             <input
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Search certification..."
-              className="w-full pl-9 pr-3 py-2 bg-[#151A22] border border-[#232A35] font-mono text-xs text-[#EDEFF2] placeholder-[#8A93A1] focus:outline-none focus:border-[#22D3AA]"
+              className="w-full pl-9 pr-3 py-2 bg-[var(--card-bg)] border border-[var(--border)] font-mono text-xs md:text-sm text-[var(--text)] placeholder-[var(--muted)] focus:outline-none focus:border-[#22D3AA]"
             />
           </div>
         </div>
 
         {/* Certifications Ledger Table Header */}
-        <div className="hidden md:grid grid-cols-12 gap-4 px-6 py-3 bg-[#151A22] border border-[#232A35] font-mono text-xs text-[#8A93A1] mb-2">
+        <div className="hidden md:grid grid-cols-12 gap-4 px-6 py-3 bg-[var(--card-bg)] border border-[var(--border)] font-mono text-[11px] text-[var(--muted)] mb-2">
           <div className="col-span-5">CERTIFICATION / ISSUER</div>
           <div className="col-span-3">CREDENTIAL ID</div>
           <div className="col-span-2">ISSUE DATE</div>
@@ -78,7 +79,7 @@ export const Certifications: React.FC = () => {
         </div>
 
         {/* Certifications Ledger Rows */}
-        <div className="divide-y divide-[#232A35] border border-[#232A35] bg-[#151A22]">
+        <div className="divide-y divide-[var(--border)] border border-[var(--border)] bg-[var(--card-bg)]">
           {filteredCertifications.map((cert, idx) => {
             const isAnalysis = isAnalysisCert(cert.issuer, cert.title);
             const accentText = isAnalysis ? 'text-[#22D3AA]' : 'text-[#FF7A45]';
@@ -86,41 +87,41 @@ export const Certifications: React.FC = () => {
             return (
               <div
                 key={cert.title + idx}
-                className="p-4 sm:p-6 grid grid-cols-1 md:grid-cols-12 gap-4 items-center hover:bg-[#1C232E] transition-colors"
+                className="p-4 sm:p-6 grid grid-cols-1 md:grid-cols-12 gap-4 items-center hover:bg-[var(--border)]/30 transition-colors"
               >
                 {/* Column 1: Title & Issuer */}
                 <div className="md:col-span-5">
-                  <h3 className="font-sora font-medium text-base text-[#EDEFF2] mb-1">
+                  <h3 className="font-sora font-medium text-base text-[var(--text)] mb-1">
                     {cert.title}
                   </h3>
-                  <div className="font-mono text-xs text-[#8A93A1] uppercase">
-                    ISSUER: <span className="text-[#EDEFF2]">{cert.issuer}</span>
+                  <div className="font-mono text-[11px] text-[var(--muted)] uppercase">
+                    ISSUER: <span className="text-[var(--text)]">{cert.issuer}</span>
                   </div>
                 </div>
 
                 {/* Column 2: Credential ID */}
-                <div className="md:col-span-3 font-mono text-xs">
-                  <span className="text-[#8A93A1] block md:hidden mb-0.5">CREDENTIAL ID:</span>
-                  <span className="text-[#8A93A1]">{cert.credentialId}</span>
+                <div className="md:col-span-3 font-mono text-[11px]">
+                  <span className="text-[var(--muted)] block md:hidden mb-0.5">CREDENTIAL ID:</span>
+                  <span className="text-[var(--muted)]">{cert.credentialId}</span>
                 </div>
 
                 {/* Column 3: Date (Mono) */}
-                <div className="md:col-span-2 font-mono text-xs">
-                  <span className="text-[#8A93A1] block md:hidden mb-0.5">DATE:</span>
+                <div className="md:col-span-2 font-mono text-base md:text-lg font-bold">
+                  <span className="text-[var(--muted)] block md:hidden mb-0.5 text-[11px] font-normal">DATE:</span>
                   <span className={accentText}>{cert.date}</span>
                 </div>
 
                 {/* Column 4: Links */}
-                <div className="md:col-span-2 flex items-center md:justify-end gap-2 font-mono text-xs pt-2 md:pt-0">
+                <div className="md:col-span-2 flex items-center md:justify-end gap-2 font-mono text-xs md:text-sm pt-2 md:pt-0">
                   {cert.verificationUrl && (
                     <a
                       href={cert.verificationUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1 px-2.5 py-1.5 border border-[#232A35] text-[#EDEFF2] hover:border-[#8A93A1] transition-colors"
+                      className="inline-flex items-center gap-1 px-2.5 py-1.5 border border-[var(--border)] text-[var(--text)] hover:border-[var(--muted)] transition-colors"
                     >
                       <span>Verify</span>
-                      <ExternalLink className="w-3 h-3 text-[#8A93A1]" />
+                      <ExternalLink className="w-3 h-3 text-[var(--muted)]" />
                     </a>
                   )}
 
@@ -142,7 +143,7 @@ export const Certifications: React.FC = () => {
         </div>
 
         {filteredCertifications.length === 0 && (
-          <div className="text-center py-12 bg-[#151A22] border border-[#232A35] font-mono text-xs text-[#8A93A1]">
+          <div className="text-center py-12 bg-[var(--card-bg)] border border-[var(--border)] font-mono text-xs md:text-sm text-[var(--muted)]">
             No certifications match query "{searchQuery}".
           </div>
         )}

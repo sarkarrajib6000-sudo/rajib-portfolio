@@ -7,6 +7,8 @@ import realEstateMisImg from '../assets/images/real_estate_mis.jpg';
 import godrejCrmImg from '../assets/images/godrej_crm.jpg';
 import portfolioImg from '../assets/images/portfolio_website.jpg';
 import supplyChainImg from '../assets/images/supply_chain_analytics.jpg';
+import payshieldImg from '../assets/images/1790083818293.png';
+import coldChainImg from '../assets/images/grok_.jpg';
 
 export const personalInfo = {
   name: 'Rajib Kumar Sarkar',
@@ -90,6 +92,20 @@ export const skills: SkillCategory[] = [
     ]
   },
   {
+    category: 'Finance & Accounting',
+    items: [
+      { name: 'Financial Record Keeping', level: 85 },
+      { name: 'Ledger Management', level: 85 },
+      { name: 'Bank Reconciliation', level: 85 },
+      { name: 'Budgeting', level: 80 },
+      { name: 'Invoice Processing', level: 85 },
+      { name: 'Tally ERP9 / Tally Prime', level: 75 },
+      { name: 'Payroll Processing', level: 90 },
+      { name: 'Statutory Compliance (PF, ESI, TDS)', level: 85 },
+      { name: 'Financial Reporting', level: 85 }
+    ]
+  },
+  {
     category: 'AI & Productivity',
     items: [
       { name: 'AI Workflow Automation', level: 95 },
@@ -121,6 +137,25 @@ export const skills: SkillCategory[] = [
 
 export const projects: Project[] = [
   {
+    id: 'payshield',
+    title: 'PayShield',
+    subtitle: 'SME Payroll Compliance & Fraud Detection',
+    impactBadge: '🛡️ 5-Rule Fraud Engine & AI Compliance',
+    category: 'accounting',
+    description: 'An AI-powered payroll platform for Indian SMEs with a 5-rule fraud detection engine and 4-rule compliance checker.',
+    longDescription: 'Built an AI-powered payroll platform for Indian SMEs with a 5-rule fraud detection engine and 4-rule compliance checker (PF, ESI, TDS). Integrated Gemini AI for plain-English fraud explanations, plus PDF/Excel/CSV exports and an immutable audit trail across 6 screens.',
+    image: payshieldImg,
+    tags: ['React 19', 'TypeScript', 'Firebase Firestore', 'Gemini AI'],
+    features: [
+      'Built a 5-rule fraud detection engine and 4-rule statutory compliance checker (PF, ESI, TDS).',
+      'Integrated Gemini AI for plain-English fraud and anomaly explanations.',
+      'Supports PDF/Excel/CSV exports and maintains an immutable audit trail across 6 screens.',
+      'Real-time Firestore synchronization for SME payroll processing.'
+    ],
+    demoUrl: 'https://paysheild-bice.vercel.app',
+    githubUrl: 'https://github.com/sarkarrajib6000-sudo/Finance'
+  },
+  {
     id: 'supply-chain-analytics',
     title: 'Supply Chain Analytics',
     subtitle: 'End-to-End SQL & Python Logistics Analysis',
@@ -138,6 +173,43 @@ export const projects: Project[] = [
     ],
     demoUrl: '#',
     githubUrl: 'https://github.com/sarkarrajib6000-sudo/supply-chain-analytics'
+  },
+  {
+    id: 'cold-chain-dispatch',
+    title: 'Cold Chain Dispatch & Delivery Challan System',
+    subtitle: 'Automated FEFO & Cold-Chain Compliance System',
+    impactBadge: '❄️ Automated -18°C Compliance & Challans',
+    category: 'accounting',
+    description: 'A Google Sheets dispatch system with FEFO batch tracking and automated -18°C cold-chain compliance checks.',
+    longDescription: 'Built a Google Sheets dispatch system with FEFO batch tracking and automated -18°C cold-chain compliance checks. Automated delivery challan PDF generation via Apps Script, blocking non-compliant dispatches and logging challan numbers automatically.',
+    image: coldChainImg,
+    tags: ['Google Sheets', 'Google Apps Script'],
+    features: [
+      'FEFO batch tracking with automated -18°C cold-chain temperature compliance checks.',
+      'Automated delivery challan PDF generation powered by Google Apps Script.',
+      'Blocks non-compliant dispatches automatically and logs sequential challan numbers.'
+    ],
+    demoUrl: '#',
+    githubUrl: '#'
+  },
+  {
+    id: 'propflow-crm',
+    title: 'PropFlow CRM',
+    subtitle: 'Enterprise Real Estate CRM & Revenue Operations SaaS',
+    impactBadge: '⚡ Sub-100ms Sync & AI Routing',
+    category: 'sales',
+    description: 'A multi-tenant SaaS CRM with real-time Firestore sync and AI-powered lead routing built for enterprise real estate operations.',
+    longDescription: 'PropFlow is an enterprise-grade real-time SaaS CRM built with a multi-tenant architecture, featuring tenant data isolation and role-based persona simulation. The platform integrates Gemini AI for automated lead routing and welcome-message drafting. It also includes automated SLA escalation systems and payment-ledger overdue tracking operating seamlessly across six core business modules.',
+    image: propflowImg,
+    tags: ['React 19', 'TypeScript', 'Firebase Firestore', 'Express.js', 'Gemini AI'],
+    features: [
+      'Built multi-tenant SaaS framework with strict tenant data isolation and role-based persona simulation.',
+      'Implemented real-time database sync (sub-100ms updates) via Firebase Firestore.',
+      'Integrated Gemini AI for automated lead scoring, routing, and personalized welcome drafts.',
+      'Developed automated SLA escalation and ledger overdue alerts across 6 core modules.'
+    ],
+    demoUrl: 'https://propflow-7890.vercel.app/',
+    githubUrl: 'https://github.com/sarkarrajib6000-sudo/Propflow_7890'
   },
   {
     id: 'sales-analytics',
@@ -178,23 +250,23 @@ export const projects: Project[] = [
     githubUrl: '#'
   },
   {
-    id: 'propflow-crm',
-    title: 'PropFlow CRM',
-    subtitle: 'Enterprise Real Estate CRM & Revenue Operations SaaS',
-    impactBadge: '⚡ Sub-100ms Sync & AI Routing',
+    id: 'real-estate-mis',
+    title: 'Real Estate Sales MIS Dashboard',
+    subtitle: 'Excel & Google Apps Script Automation',
+    impactBadge: '🚀 100% Manual Overhead Eliminated',
     category: 'sales',
-    description: 'A multi-tenant SaaS CRM with real-time Firestore sync and AI-powered lead routing built for enterprise real estate operations.',
-    longDescription: 'PropFlow is an enterprise-grade real-time SaaS CRM built with a multi-tenant architecture, featuring tenant data isolation and role-based persona simulation. The platform integrates Gemini AI for automated lead routing and welcome-message drafting. It also includes automated SLA escalation systems and payment-ledger overdue tracking operating seamlessly across six core business modules.',
-    image: propflowImg,
-    tags: ['React 19', 'TypeScript', 'Firebase Firestore', 'Express.js', 'Gemini AI'],
+    description: 'A 10-sheet Excel MIS Dashboard covering territory performance, lead funnel, team KPIs, and inventory across 12 projects.',
+    longDescription: 'Designed a 10-sheet Excel MIS Dashboard (212 live formulas) covering territory performance, lead funnel, team KPIs, and inventory across 12 projects and 10 sales executives. Built Google Apps Script automation for instant high-value lead alerts (>=80L), daily follow-up reminders, and weekly pipeline reports — eliminating 100% of manual reporting.',
+    image: realEstateMisImg,
+    tags: ['Microsoft Excel', 'Google Apps Script', 'CRM Automation', 'KPI Dashboards'],
     features: [
-      'Built multi-tenant SaaS framework with strict tenant data isolation and role-based persona simulation.',
-      'Implemented real-time database sync (sub-100ms updates) via Firebase Firestore.',
-      'Integrated Gemini AI for automated lead scoring, routing, and personalized welcome drafts.',
-      'Developed automated SLA escalation and ledger overdue alerts across 6 core modules.'
+      'Designed a 10-sheet Excel MIS Dashboard with 212 live formulas covering territory performance and lead funnel.',
+      'Tracked team KPIs and inventory across 12 real estate projects and 10 sales executives.',
+      'Built Google Apps Script automation for instant high-value lead alerts (>=80L).',
+      'Implemented daily follow-up reminders and weekly pipeline reports, reducing manual overhead.'
     ],
-    demoUrl: 'https://propflow-7890.vercel.app/',
-    githubUrl: 'https://github.com/sarkarrajib6000-sudo/Propflow_7890'
+    demoUrl: 'https://docs.google.com/spreadsheets/d/1FQri8cWPWV9ttG3ENDKu8IJVSUhTHScs/edit?usp=drivesdk&ouid=110417523830446604299&rtpof=true&sd=true',
+    githubUrl: '#'
   },
   {
     id: 'ares-sale-manager',
@@ -213,25 +285,6 @@ export const projects: Project[] = [
       'Created real-time notifications using React hooks backed by Firestore.'
     ],
     demoUrl: 'https://ares-sale-manager-631037741637.asia-southeast1.run.app',
-    githubUrl: '#'
-  },
-  {
-    id: 'real-estate-mis',
-    title: 'Real Estate Sales MIS Dashboard',
-    subtitle: 'Excel & Google Apps Script Automation',
-    impactBadge: '🚀 100% Manual Overhead Eliminated',
-    category: 'sales',
-    description: 'A 10-sheet Excel MIS Dashboard covering territory performance, lead funnel, team KPIs, and inventory across 12 projects.',
-    longDescription: 'Designed a 10-sheet Excel MIS Dashboard (212 live formulas) covering territory performance, lead funnel, team KPIs, and inventory across 12 projects and 10 sales executives. Built Google Apps Script automation for instant high-value lead alerts (>=80L), daily follow-up reminders, and weekly pipeline reports — eliminating 100% of manual reporting.',
-    image: realEstateMisImg,
-    tags: ['Microsoft Excel', 'Google Apps Script', 'CRM Automation', 'KPI Dashboards'],
-    features: [
-      'Designed a 10-sheet Excel MIS Dashboard with 212 live formulas covering territory performance and lead funnel.',
-      'Tracked team KPIs and inventory across 12 real estate projects and 10 sales executives.',
-      'Built Google Apps Script automation for instant high-value lead alerts (>=80L).',
-      'Implemented daily follow-up reminders and weekly pipeline reports, reducing manual overhead.'
-    ],
-    demoUrl: 'https://docs.google.com/spreadsheets/d/1FQri8cWPWV9ttG3ENDKu8IJVSUhTHScs/edit?usp=drivesdk&ouid=110417523830446604299&rtpof=true&sd=true',
     githubUrl: '#'
   },
   {

@@ -4,17 +4,44 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
+:root,
+[data-theme="dark"] {
+  --bg: #0A0D12;
+  --text: #EDEFF2;
+  --card-bg: #151A22;
+  --border: #232A35;
+  --muted: #8A93A1;
+  --muted-strong: #9AA3B2;
+  --faint: #5A6577;
+  --panel-alt: #0E141E;
+  --page-alt: #090D14;
+  --data: #22D3AA;
+  --sales: #FF7A45;
   color-scheme: dark;
+}
+
+[data-theme="light"] {
+  --bg: #FFFFFF;
+  --text: #0A0D12;
+  --card-bg: #F5F6F7;
+  --border: #E2E4E8;
+  --muted: #4B5563;
+  --muted-strong: #374151;
+  --faint: #6B7280;
+  --panel-alt: #F5F6F7;
+  --page-alt: #FFFFFF;
+  --data: #22D3AA;
+  --sales: #FF7A45;
+  color-scheme: light;
 }
 
 html,
 body,
 #root {
   scroll-behavior: smooth;
-  background-color: #0A0D12 !important;
-  background: #0A0D12 !important;
-  color: #EDEFF2;
+  background-color: var(--bg) !important;
+  background: var(--bg) !important;
+  color: var(--text);
   font-family: 'Inter', sans-serif;
 }
 
@@ -38,7 +65,7 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Hairline border default helper */
 .hairline-border {
-  border-color: #232A35;
+  border-color: var(--border);
 }
 
 /* Focus States */
@@ -54,16 +81,16 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 ::-webkit-scrollbar-track {
-  background: #0A0D12;
+  background: var(--bg);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #232A35;
+  background: var(--border);
   border-radius: 0px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #8A93A1;
+  background: var(--muted);
 }
 
 /* Prefers Reduced Motion */

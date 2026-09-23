@@ -27,19 +27,19 @@ const TwitterIcon: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
 
 export const Hero: React.FC = () => {
   return (
-    <section className="relative pt-32 pb-16 px-4 lg:px-8 bg-[#0A0D12] text-[#EDEFF2] border-b border-[#232A35]">
+    <section className="relative pt-32 pb-16 px-4 lg:px-8 bg-[var(--bg)] text-[var(--text)] border-b border-[var(--border)]">
       <div className="max-w-7xl mx-auto w-full">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
           {/* Left Column: Headline & Details */}
           <div className="lg:col-span-7 flex flex-col items-start text-left">
             {/* Status indicator */}
-            <div className="inline-flex items-center gap-2 px-3 py-1 bg-[#151A22] border border-[#232A35] font-mono text-xs text-[#22D3AA] mb-6">
+            <div className="inline-flex items-center gap-2 px-3 py-1 bg-[var(--card-bg)] border border-[var(--border)] font-mono text-[11px] text-[#22D3AA] mb-6">
               <span className="w-2 h-2 bg-[#22D3AA]" />
               <span>STATUS: AVAILABLE FOR ANALYTICAL & AUTOMATION PROJECTS</span>
             </div>
 
             {/* Main Headline */}
-            <h1 className="font-sora font-medium text-4xl sm:text-5xl lg:text-6xl text-[#EDEFF2] tracking-tight leading-tight mb-4">
+            <h1 className="font-sora font-medium text-4xl sm:text-5xl lg:text-6xl text-[var(--text)] tracking-tight leading-tight mb-4">
               {personalInfo.name}
             </h1>
 
@@ -47,7 +47,7 @@ export const Hero: React.FC = () => {
               {personalInfo.title}
             </h2>
 
-            <p className="font-sans text-base sm:text-lg text-[#8A93A1] mb-8 leading-relaxed max-w-2xl">
+            <p className="font-sans text-base sm:text-lg text-[var(--muted)] mb-8 leading-relaxed max-w-2xl">
               {personalInfo.tagline}
             </p>
 
@@ -55,7 +55,7 @@ export const Hero: React.FC = () => {
             <div className="flex flex-wrap items-center gap-4 mb-10 w-full sm:w-auto">
               <a
                 href="#contact"
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 border border-[#22D3AA] text-[#22D3AA] hover:bg-[#22D3AA] hover:text-[#0A0D12] font-mono text-xs uppercase tracking-wider font-medium transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#22D3AA]"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 border border-[#22D3AA] text-[#22D3AA] hover:bg-[#22D3AA] hover:text-[#0A0D12] font-mono text-xs md:text-sm uppercase tracking-wider font-medium transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#22D3AA]"
               >
                 <span>Initiate Contact</span>
                 <ArrowUpRight className="w-4 h-4" />
@@ -65,9 +65,9 @@ export const Hero: React.FC = () => {
                 href={personalInfo.resumeUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 border border-[#232A35] bg-[#151A22] text-[#EDEFF2] hover:border-[#8A93A1] font-mono text-xs uppercase tracking-wider font-medium transition-colors"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 border border-[var(--border)] bg-[var(--card-bg)] text-[var(--text)] hover:border-[var(--muted)] font-mono text-xs md:text-sm uppercase tracking-wider font-medium transition-colors"
               >
-                <Download className="w-4 h-4 text-[#8A93A1]" />
+                <Download className="w-4 h-4 text-[var(--muted)]" />
                 <span>Resume PDF</span>
               </a>
             </div>
@@ -79,9 +79,9 @@ export const Hero: React.FC = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="GitHub Profile"
-                className="inline-flex items-center gap-2 px-3 py-2 border border-[#232A35] bg-[#151A22] text-[#8A93A1] hover:text-[#EDEFF2] hover:border-[#8A93A1] font-mono text-xs transition-colors"
+                className="inline-flex items-center gap-2 px-3 py-2 border border-[var(--border)] bg-[var(--card-bg)] text-[var(--muted)] hover:text-[var(--text)] hover:border-[var(--muted)] font-mono text-xs md:text-sm transition-colors"
               >
-                <GithubIcon className="w-4 h-4 text-[#EDEFF2]" />
+                <GithubIcon className="w-4 h-4 text-[var(--text)]" />
                 <span>GitHub</span>
               </a>
               <a
@@ -89,9 +89,9 @@ export const Hero: React.FC = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="LinkedIn Profile"
-                className="inline-flex items-center gap-2 px-3 py-2 border border-[#232A35] bg-[#151A22] text-[#8A93A1] hover:text-[#EDEFF2] hover:border-[#8A93A1] font-mono text-xs transition-colors"
+                className="inline-flex items-center gap-2 px-3 py-2 border border-[var(--border)] bg-[var(--card-bg)] text-[var(--muted)] hover:text-[var(--text)] hover:border-[var(--muted)] font-mono text-xs md:text-sm transition-colors"
               >
-                <LinkedinIcon className="w-4 h-4 text-[#EDEFF2]" />
+                <LinkedinIcon className="w-4 h-4 text-[var(--text)]" />
                 <span>LinkedIn</span>
               </a>
               <a
@@ -99,25 +99,25 @@ export const Hero: React.FC = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Twitter Profile"
-                className="inline-flex items-center gap-2 px-3 py-2 border border-[#232A35] bg-[#151A22] text-[#8A93A1] hover:text-[#EDEFF2] hover:border-[#8A93A1] font-mono text-xs transition-colors"
+                className="inline-flex items-center gap-2 px-3 py-2 border border-[var(--border)] bg-[var(--card-bg)] text-[var(--muted)] hover:text-[var(--text)] hover:border-[var(--muted)] font-mono text-xs md:text-sm transition-colors"
               >
-                <TwitterIcon className="w-4 h-4 text-[#EDEFF2]" />
+                <TwitterIcon className="w-4 h-4 text-[var(--text)]" />
                 <span>Twitter</span>
               </a>
               <a
                 href={personalInfo.socials.email}
                 aria-label="Email Rajib"
-                className="inline-flex items-center gap-2 px-3 py-2 border border-[#232A35] bg-[#151A22] text-[#8A93A1] hover:text-[#EDEFF2] hover:border-[#8A93A1] font-mono text-xs transition-colors"
+                className="inline-flex items-center gap-2 px-3 py-2 border border-[var(--border)] bg-[var(--card-bg)] text-[var(--muted)] hover:text-[var(--text)] hover:border-[var(--muted)] font-mono text-xs md:text-sm transition-colors"
               >
-                <Mail className="w-4 h-4 text-[#EDEFF2]" />
+                <Mail className="w-4 h-4 text-[var(--text)]" />
                 <span>Email</span>
               </a>
               <a
                 href={personalInfo.phoneUrl}
                 aria-label="Call Rajib"
-                className="inline-flex items-center gap-2 px-3 py-2 border border-[#232A35] bg-[#151A22] text-[#8A93A1] hover:text-[#EDEFF2] hover:border-[#8A93A1] font-mono text-xs transition-colors"
+                className="inline-flex items-center gap-2 px-3 py-2 border border-[var(--border)] bg-[var(--card-bg)] text-[var(--muted)] hover:text-[var(--text)] hover:border-[var(--muted)] font-mono text-xs md:text-sm transition-colors"
               >
-                <Phone className="w-4 h-4 text-[#EDEFF2]" />
+                <Phone className="w-4 h-4 text-[var(--text)]" />
                 <span>Call</span>
               </a>
             </div>
@@ -125,13 +125,13 @@ export const Hero: React.FC = () => {
 
           {/* Right Column: 3D Scene + Terminal Stat Ledger */}
           <div className="lg:col-span-5 flex flex-col gap-6">
-            <Card3D maxDegree={6} scale={1.01} className="w-full border border-[#232A35] bg-[#151A22] p-2">
+            <Card3D maxDegree={6} scale={1.01} className="w-full border border-[var(--border)] bg-[var(--card-bg)] p-2">
               <Hero3DCanvas />
             </Card3D>
 
             {/* Terminal Stat Ledger Output */}
-            <div className="border border-[#232A35] bg-[#151A22] p-5 font-mono text-xs w-full">
-              <div className="flex items-center justify-between pb-3 mb-3 border-b border-[#232A35] text-[#8A93A1]">
+            <div className="border border-[var(--border)] bg-[var(--card-bg)] p-5 font-mono text-xs w-full">
+              <div className="flex items-center justify-between pb-3 mb-3 border-b border-[var(--border)] text-[var(--muted)]">
                 <span className="flex items-center gap-2">
                   <Terminal className="w-4 h-4 text-[#22D3AA]" />
                   <span>SYSTEM_METRICS // SUMMARY_LEDGER</span>
@@ -139,26 +139,26 @@ export const Hero: React.FC = () => {
                 <span className="text-[#22D3AA]">LIVE</span>
               </div>
 
-              <div className="divide-y divide-[#232A35]">
+              <div className="divide-y divide-[var(--border)]">
                 <div className="py-2 flex items-center justify-between">
-                  <span className="text-[#8A93A1]">YEARS_EXPERIENCE</span>
-                  <span className="text-[#22D3AA] font-semibold">3+ YEARS</span>
+                  <span className="text-[var(--muted)] text-[11px]">YEARS_EXPERIENCE</span>
+                  <span className="text-[#22D3AA] font-bold text-base md:text-lg">3+ YEARS</span>
                 </div>
                 <div className="py-2 flex items-center justify-between">
-                  <span className="text-[#8A93A1]">ACTIVE_CERTIFICATIONS</span>
-                  <span className="text-[#22D3AA] font-semibold">{certifications.length} CERTS</span>
+                  <span className="text-[var(--muted)] text-[11px]">ACTIVE_CERTIFICATIONS</span>
+                  <span className="text-[#22D3AA] font-bold text-base md:text-lg">{certifications.length} CERTS</span>
                 </div>
                 <div className="py-2 flex items-center justify-between">
-                  <span className="text-[#8A93A1]">DEPLOYED_PROJECTS</span>
-                  <span className="text-[#FF7A45] font-semibold">{projects.length} PROJECTS</span>
+                  <span className="text-[var(--muted)] text-[11px]">DEPLOYED_PROJECTS</span>
+                  <span className="text-[#FF7A45] font-bold text-base md:text-lg">{projects.length} PROJECTS</span>
                 </div>
                 <div className="py-2 flex items-center justify-between">
-                  <span className="text-[#8A93A1]">EXCEL_FORMULAS_CONFIGURED</span>
-                  <span className="text-[#22D3AA] font-semibold">700+ FORMULAS</span>
+                  <span className="text-[var(--muted)] text-[11px]">EXCEL_FORMULAS_CONFIGURED</span>
+                  <span className="text-[#22D3AA] font-bold text-base md:text-lg">700+ FORMULAS</span>
                 </div>
                 <div className="py-2 flex items-center justify-between">
-                  <span className="text-[#8A93A1]">REPORTING_REDUCTION</span>
-                  <span className="text-[#FF7A45] font-semibold">100% AUTOMATED</span>
+                  <span className="text-[var(--muted)] text-[11px]">REPORTING_REDUCTION</span>
+                  <span className="text-[#FF7A45] font-bold text-base md:text-lg">100% AUTOMATED</span>
                 </div>
               </div>
             </div>
