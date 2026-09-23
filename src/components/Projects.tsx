@@ -61,9 +61,9 @@ const ACCENTS: Record<string, { bar: string; label: string; dot: string }> = {
     dot: 'bg-[#FF6B4A]',
   },
   meta: {
-    bar: '#64748B',
-    label: 'text-[#94A3B8]',
-    dot: 'bg-[#64748B]',
+    bar: 'var(--faint)',
+    label: 'text-[var(--faint)]',
+    dot: 'bg-[var(--faint)]',
   },
 };
 
@@ -102,26 +102,24 @@ export const Projects: React.FC = () => {
   }, [filtered, showAll]);
 
   return (
-    <section id="projects" className="relative py-24 px-4 sm:px-6 lg:px-8 bg-[var(--bg)] text-[var(--text)]">
-      <div className="max-w-5xl mx-auto">
-        {/* Ledger header */}
-        <div className="flex flex-col gap-6 mb-8">
+    <section id="projects" className="relative py-24 px-4 sm:px-6 lg:px-8 bg-[var(--bg)] text-[var(--text)] border-b border-[var(--border)]">
+      <div className="max-w-6xl mx-auto">
+        {/* Header */}
+        <div className="flex flex-col gap-6 mb-10">
           <div>
-            <p className="font-mono text-[11px] tracking-[0.2em] uppercase text-[var(--muted)] mb-3">
-              <span className="text-[#22D3AA]">02</span>
-              <span className="mx-2 text-[var(--border)]">//</span>
-              Projects_Ledger
-            </p>
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[var(--data-bg)] text-[var(--data)] font-mono text-xs font-bold mb-3 border border-[var(--border-strong)]">
+              <FolderKanban className="w-4 h-4 text-[var(--data)]" aria-hidden="true" />
+              <span>03 // PROJECTS_LEDGER</span>
+            </div>
             <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4">
-              <h2 className="font-sora text-xl sm:text-2xl font-semibold tracking-tight text-[var(--text)] flex items-center gap-2">
-                <FolderKanban className="w-5 h-5 text-[#22D3AA]" aria-hidden="true" />
-                Projects Ledger
+              <h2 className="font-outfit font-extrabold text-3xl sm:text-4xl tracking-tight text-[var(--text)]">
+                Featured Projects Ledger
               </h2>
-              <p className="max-w-md font-mono text-[11px] leading-relaxed text-[var(--muted)]">
-                <span className="text-[#22D3AA]">$</span> ls ./projects --filter={activeCategory} --count={visible.length}
+              <p className="max-w-md font-mono text-xs leading-relaxed text-[var(--text-muted)] font-medium">
+                <span className="text-[var(--data)] font-bold">$</span> ls ./projects --filter={activeCategory} --count={visible.length}
               </p>
             </div>
-            <p className="mt-3 max-w-2xl text-base leading-relaxed text-[var(--muted)] font-sans">
+            <p className="mt-3 max-w-2xl text-base leading-relaxed text-[var(--text-secondary)] font-sans">
               Production data systems, accounting automation, and sales operations — each entry
               versioned, measured, and shipped.
             </p>
@@ -131,7 +129,7 @@ export const Projects: React.FC = () => {
           <div
             role="tablist"
             aria-label="Filter projects by category"
-            className="flex flex-wrap items-center gap-2 border-y border-[var(--border)] py-3"
+            className="flex flex-wrap items-center gap-2.5 border-y border-[var(--border)] py-4"
           >
             {TABS.map((tab) => {
               const isActive = activeCategory === tab.id;
@@ -141,16 +139,16 @@ export const Projects: React.FC = () => {
                   role="tab"
                   aria-selected={isActive}
                   onClick={() => handleCategoryChange(tab.id)}
-                  className={`inline-flex items-center gap-2 px-3.5 py-1.5 font-mono text-xs md:text-sm font-medium uppercase tracking-[0.12em] border transition-colors ${
+                  className={`inline-flex items-center gap-2 px-4 py-2 rounded-xl font-mono text-xs font-bold uppercase tracking-wider transition-all duration-200 border ${
                     isActive
-                      ? 'border-[#22D3AA] bg-[#22D3AA] text-[#090D14]'
-                      : 'border-[var(--border)] bg-transparent text-[var(--muted)] hover:text-[var(--text)] hover:border-[var(--muted)]'
+                      ? 'btn-teal border-[var(--data)] shadow-sm'
+                      : 'border-[var(--border)] glass-panel text-[var(--text-secondary)] hover:text-[var(--text)] hover:border-[var(--border-strong)]'
                   }`}
                 >
                   <span>{tab.label}</span>
                   <span
-                    className={`text-base md:text-lg font-bold leading-none ${
-                      isActive ? 'text-[#090D14]/80' : 'text-[var(--faint)]'
+                    className={`px-1.5 py-0.5 rounded-md text-xs font-bold leading-none ${
+                      isActive ? 'bg-black/20 text-white' : 'bg-[var(--panel-alt)] text-[var(--text-muted)]'
                     }`}
                   >
                     {String(counts[tab.id]).padStart(2, '0')}
@@ -158,14 +156,14 @@ export const Projects: React.FC = () => {
                 </button>
               );
             })}
-            <span className="ml-auto hidden sm:inline font-mono text-[11px] text-[var(--faint)]">
+            <span className="ml-auto hidden sm:inline font-mono text-xs text-[var(--text-muted)] font-medium">
               [{filtered.length} record{filtered.length === 1 ? '' : 's'}]
             </span>
           </div>
         </div>
 
         {/* Vertical ledger stack */}
-        <motion.div layout className="flex flex-col gap-4">
+        <motion.div layout className="flex flex-col gap-5">
           <AnimatePresence mode="popLayout" initial={false}>
             {visible.map((project, index) => {
               const accent = ACCENTS[project.category ?? 'data'] ?? ACCENTS.data;
@@ -177,53 +175,53 @@ export const Projects: React.FC = () => {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -8 }}
                   transition={{ duration: 0.22, ease: 'easeOut' }}
-                  className="relative flex bg-[var(--card-bg)] border border-[var(--border)] hover:border-[var(--muted)] transition-colors overflow-hidden"
+                  className="relative flex flex-col sm:flex-row rounded-2xl glass-panel border border-[var(--border)] hover:border-[var(--border-strong)] shadow-md transition-all duration-300 overflow-hidden group"
                 >
                   {/* Colored left accent border */}
                   <span
                     aria-hidden="true"
-                    className="w-[3px] shrink-0 self-stretch"
+                    className="w-full sm:w-[4px] h-[3px] sm:h-auto shrink-0 self-stretch"
                     style={{ backgroundColor: accent.bar }}
                   />
 
-                  {/* Small square logo/thumbnail on the LEFT side */}
-                  <div className="p-3 sm:p-4 shrink-0 flex items-center justify-center border-r border-[var(--border)]/60 bg-[var(--bg)]/40">
+                  {/* Square logo/thumbnail on the LEFT side */}
+                  <div className="p-4 shrink-0 flex items-center justify-center border-b sm:border-b-0 sm:border-r border-[var(--border)] bg-[var(--panel-alt)]">
                     <img
                       src={getProjectLogo(project.id)}
                       alt={`${project.title} logo`}
-                      className="w-12 h-12 sm:w-14 sm:h-14 object-cover rounded border border-[var(--border)]"
+                      className="w-14 h-14 sm:w-16 sm:h-16 object-cover rounded-xl border border-[var(--border)] shadow-sm group-hover:scale-105 transition-transform"
                     />
                   </div>
 
-                  <div className="flex-1 min-w-0 p-5 sm:p-6">
+                  <div className="flex-1 min-w-0 p-5 sm:p-7">
                     {/* Top row: index + category + actions */}
                     <div className="flex flex-wrap sm:flex-nowrap items-start justify-between gap-3 mb-3">
-                      <div className="flex items-center gap-3 font-mono text-[11px] uppercase tracking-[0.14em]">
-                        <span className="text-[var(--faint)]">
+                      <div className="flex items-center gap-3 font-mono text-xs uppercase tracking-wider">
+                        <span className="text-[var(--text-muted)] font-bold">
                           {String(index + 1).padStart(2, '0')}
                         </span>
-                        <span className="w-1 h-1 rounded-full bg-[var(--border)]" aria-hidden="true" />
-                        <span className={`inline-flex items-center gap-1.5 ${accent.label}`}>
-                          <span className={`w-1.5 h-1.5 ${accent.dot}`} aria-hidden="true" />
+                        <span className="w-1.5 h-1.5 rounded-full bg-[var(--border)]" aria-hidden="true" />
+                        <span className={`inline-flex items-center gap-1.5 font-bold ${accent.label}`}>
+                          <span className={`w-2 h-2 rounded-full ${accent.dot}`} aria-hidden="true" />
                           {project.category ?? 'data'}
                         </span>
                         {project.impactBadge && (
-                          <span className="hidden lg:inline normal-case tracking-normal text-base font-bold text-[var(--faint)] truncate max-w-[320px]">
-                            — {project.impactBadge}
+                          <span className="hidden lg:inline normal-case tracking-normal text-xs font-bold text-[var(--data)] bg-[var(--data-bg)] px-2.5 py-0.5 rounded-md border border-[var(--border-strong)] truncate max-w-[340px]">
+                            {project.impactBadge}
                           </span>
                         )}
                       </div>
 
-                      {/* Outline action buttons with blue hover (#3B82F6) */}
+                      {/* Action buttons */}
                       <div className="flex items-center gap-2 shrink-0">
                         {hasLink(project.demoUrl) && (
                           <a
                             href={project.demoUrl}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="inline-flex items-center gap-1.5 px-3 py-1.5 border border-[var(--border)] text-[var(--muted)] hover:border-[#3B82F6] hover:text-[#3B82F6] font-mono text-xs md:text-sm font-medium uppercase tracking-wider transition-colors"
+                            className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg btn-teal font-mono text-xs font-bold uppercase tracking-wider transition-all shadow-sm"
                           >
-                            <ExternalLink className="w-3 h-3" />
+                            <ExternalLink className="w-3.5 h-3.5" />
                             <span>Demo</span>
                           </a>
                         )}
@@ -232,9 +230,9 @@ export const Projects: React.FC = () => {
                             href={project.githubUrl}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="inline-flex items-center gap-1.5 px-3 py-1.5 border border-[var(--border)] text-[var(--muted)] hover:border-[#3B82F6] hover:text-[#3B82F6] font-mono text-xs md:text-sm font-medium uppercase tracking-wider transition-colors"
+                            className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg border border-[var(--border)] glass-panel text-[var(--text-secondary)] hover:text-[var(--text)] hover:border-[var(--border-strong)] font-mono text-xs font-semibold uppercase tracking-wider transition-all"
                           >
-                            <GithubIcon className="w-3 h-3" />
+                            <GithubIcon className="w-3.5 h-3.5" />
                             <span>GitHub</span>
                           </a>
                         )}
@@ -243,39 +241,39 @@ export const Projects: React.FC = () => {
                             href={project.extraUrl}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="inline-flex items-center gap-1.5 px-3 py-1.5 border border-[var(--border)] text-[var(--muted)] hover:border-[#3B82F6] hover:text-[#3B82F6] font-mono text-xs md:text-sm font-medium uppercase tracking-wider transition-colors"
+                            className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg border border-[var(--border)] glass-panel text-[var(--text-secondary)] hover:text-[var(--data)] hover:border-[var(--border-strong)] font-mono text-xs font-semibold uppercase tracking-wider transition-all"
                           >
-                            <ExternalLink className="w-3 h-3" />
+                            <ExternalLink className="w-3.5 h-3.5" />
                             <span>{project.extraUrlLabel || 'Excel Sheet'}</span>
                           </a>
                         )}
                         {!hasLink(project.demoUrl) && !hasLink(project.githubUrl) && !hasLink(project.extraUrl) && (
-                          <span className="font-mono text-[11px] text-[var(--faint)] uppercase tracking-wider">
+                          <span className="font-mono text-xs text-[var(--text-muted)] font-semibold uppercase tracking-wider bg-[var(--panel-alt)] px-2.5 py-1 rounded border border-[var(--border)]">
                             Private
                           </span>
                         )}
                       </div>
                     </div>
 
-                    {/* Title left */}
-                    <h3 className="font-sora text-xl sm:text-2xl font-semibold tracking-tight text-[var(--text)] leading-snug">
+                    {/* Title */}
+                    <h3 className="font-outfit text-xl sm:text-2xl font-bold tracking-tight text-[var(--text)] leading-snug">
                       {project.title}
                     </h3>
                     {project.subtitle && (
-                      <p className="mt-1 font-mono text-[11px] text-[var(--muted)] tracking-wide">
+                      <p className="mt-1 font-mono text-xs text-[var(--data)] font-bold tracking-wide">
                         {project.subtitle}
                       </p>
                     )}
-                    <p className="mt-3 max-w-3xl text-base leading-relaxed text-[var(--muted)] font-sans">
+                    <p className="mt-3 max-w-3xl text-base leading-relaxed text-[var(--text-secondary)] font-sans">
                       {project.description}
                     </p>
 
                     {/* Monospace tech stack pills */}
-                    <div className="mt-5 flex flex-wrap gap-1.5 border-t border-[var(--border)] pt-4">
+                    <div className="mt-5 flex flex-wrap gap-2 border-t border-[var(--border)] pt-4">
                       {project.tags.map((tag) => (
                         <span
                           key={tag}
-                          className="font-mono text-[11px] leading-none text-[var(--muted)] bg-[var(--bg)] border border-[var(--border)] px-2.5 py-1.5"
+                          className="font-mono text-xs leading-none text-[var(--text-secondary)] bg-[var(--panel-alt)] border border-[var(--border)] rounded-lg px-3 py-1.5 font-medium"
                         >
                           {tag}
                         </span>
@@ -290,10 +288,10 @@ export const Projects: React.FC = () => {
 
         {/* More button */}
         {filtered.length > 5 && !showAll && (
-          <div className="mt-6 flex justify-center">
+          <div className="mt-8 flex justify-center">
             <button
               onClick={() => setShowAll(true)}
-              className="inline-flex items-center gap-2 px-6 py-2.5 bg-[var(--card-bg)] border border-[var(--border)] hover:border-[#3B82F6] text-[var(--text)] hover:text-[#3B82F6] font-mono text-xs md:text-sm font-medium uppercase tracking-wider transition-colors"
+              className="inline-flex items-center gap-2 px-7 py-3 rounded-xl glass-panel border border-[var(--border-strong)] text-[var(--data)] hover:bg-[var(--data)] hover:text-[var(--button-teal-text)] font-mono text-xs md:text-sm font-bold uppercase tracking-wider transition-all shadow-sm"
             >
               <span>More ({filtered.length - 5} remaining)</span>
               <ChevronDown className="w-4 h-4" />
@@ -302,18 +300,18 @@ export const Projects: React.FC = () => {
         )}
 
         {/* Ledger footer */}
-        <div className="mt-6 flex items-center justify-between font-mono text-[11px] text-[var(--faint)]">
-          <span>
-            <span className="text-[#22D3AA]">✓</span> end_of_ledger — {visible.length} of {filtered.length} shown
+        <div className="mt-8 flex items-center justify-between font-mono text-xs text-[var(--text-muted)] font-medium">
+          <span className="flex items-center gap-2">
+            <span className="text-[var(--data)] font-bold">✓</span> end_of_ledger — {visible.length} of {filtered.length} shown
           </span>
           <a
             href="https://github.com/sarkarrajib6000-sudo"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 text-[var(--muted)] hover:text-[#3B82F6] uppercase tracking-[0.14em] transition-colors"
+            className="inline-flex items-center gap-1.5 text-[var(--data)] hover:underline font-bold uppercase tracking-wider transition-colors"
           >
             <span>View all on GitHub</span>
-            <ArrowUpRight className="w-3.5 h-3.5" />
+            <ArrowUpRight className="w-4 h-4" />
           </a>
         </div>
       </div>

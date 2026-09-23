@@ -19,26 +19,25 @@ export const Certifications: React.FC = () => {
   const isAnalysisCert = (issuer: string, title: string) => {
     const t = title.toLowerCase();
     const i = issuer.toLowerCase();
-    if (t.includes('sql') || t.includes('excel') || t.includes('ai') || t.includes('claude') || t.includes('analytics') || i.includes('hugging') || i.includes('simplilearn')) {
-      return true;
-    }
-    return false;
+    return t.includes('sql') || t.includes('excel') || t.includes('ai') || t.includes('claude') || t.includes('analytics') || i.includes('hugging') || i.includes('simplilearn');
   };
 
   return (
-    <section id="certifications" className="py-20 px-4 lg:px-8 bg-[var(--bg)] text-[var(--text)] border-b border-[var(--border)]">
+    <section id="certifications" className="py-24 px-4 lg:px-8 bg-[var(--bg)] text-[var(--text)] border-b border-[var(--border)]">
       <div className="max-w-7xl mx-auto">
-        {/* Left-Aligned Heading */}
+        {/* Section Heading */}
         <div className="mb-10">
-          <h2 className="font-sora font-medium text-xl sm:text-2xl text-[var(--text)] tracking-tight mb-3 flex items-center gap-2">
-            <Award className="w-5 h-5 text-[#22D3AA]" aria-hidden="true" />
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[var(--data-bg)] text-[var(--data)] font-mono text-xs font-bold mb-3 border border-[var(--border-strong)]">
+            <Award className="w-4 h-4 text-[var(--data)]" aria-hidden="true" />
+            <span>04 // ACCREDITATIONS</span>
+          </div>
+          <h2 className="font-outfit font-extrabold text-3xl sm:text-4xl text-[var(--text)] tracking-tight">
             Accreditations & Certifications Ledger
           </h2>
-          <div className="w-16 h-0.5 bg-[#22D3AA]" />
         </div>
 
         {/* Filters & Search */}
-        <div className="flex flex-col md:flex-row items-stretch md:items-center justify-between gap-4 mb-8">
+        <div className="flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-4 mb-8">
           <div className="flex flex-wrap items-center gap-2">
             {issuers.map((issuer) => {
               const isActive = issuer === selectedIssuer;
@@ -46,10 +45,10 @@ export const Certifications: React.FC = () => {
                 <button
                   key={issuer}
                   onClick={() => setSelectedIssuer(issuer)}
-                  className={`px-3.5 py-2 font-mono text-xs md:text-sm font-medium uppercase border transition-colors ${
+                  className={`px-4 py-2 rounded-xl font-mono text-xs font-bold uppercase transition-all duration-200 border ${
                     isActive
-                      ? 'border-[#22D3AA] bg-[var(--card-bg)] text-[#22D3AA]'
-                      : 'border-[var(--border)] bg-[var(--card-bg)] text-[var(--muted)] hover:text-[var(--text)] hover:border-[var(--muted)]'
+                      ? 'border-[var(--border-strong)] bg-[var(--data-bg)] text-[var(--data)] shadow-sm'
+                      : 'border-[var(--border)] glass-panel text-[var(--text-secondary)] hover:text-[var(--text)] hover:border-[var(--border-strong)]'
                   }`}
                 >
                   {issuer}
@@ -58,20 +57,20 @@ export const Certifications: React.FC = () => {
             })}
           </div>
 
-          <div className="relative w-full md:w-72">
-            <Search className="w-3.5 h-3.5 absolute left-3 top-1/2 -translate-y-1/2 text-[var(--muted)]" />
+          <div className="relative w-full lg:w-72">
+            <Search className="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-[var(--data)]" />
             <input
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Search certification..."
-              className="w-full pl-9 pr-3 py-2 bg-[var(--card-bg)] border border-[var(--border)] font-mono text-xs md:text-sm text-[var(--text)] placeholder-[var(--muted)] focus:outline-none focus:border-[#22D3AA]"
+              className="w-full pl-10 pr-4 py-2.5 rounded-xl glass-panel border border-[var(--border)] font-mono text-xs md:text-sm text-[var(--text)] placeholder-[var(--text-muted)] focus:outline-none focus:border-[var(--data)] focus:ring-1 focus:ring-[var(--data)] transition-all"
             />
           </div>
         </div>
 
         {/* Certifications Ledger Table Header */}
-        <div className="hidden md:grid grid-cols-12 gap-4 px-6 py-3 bg-[var(--card-bg)] border border-[var(--border)] font-mono text-[11px] text-[var(--muted)] mb-2">
+        <div className="hidden md:grid grid-cols-12 gap-4 px-6 py-3.5 rounded-t-2xl glass-panel border border-[var(--border)] font-mono text-xs font-bold text-[var(--text-muted)] mb-1 bg-[var(--panel-alt)]">
           <div className="col-span-5">CERTIFICATION / ISSUER</div>
           <div className="col-span-3">CREDENTIAL ID</div>
           <div className="col-span-2">ISSUE DATE</div>
@@ -79,49 +78,49 @@ export const Certifications: React.FC = () => {
         </div>
 
         {/* Certifications Ledger Rows */}
-        <div className="divide-y divide-[var(--border)] border border-[var(--border)] bg-[var(--card-bg)]">
+        <div className="rounded-2xl md:rounded-t-none glass-panel border border-[var(--border)] overflow-hidden divide-y divide-[var(--border)] shadow-md">
           {filteredCertifications.map((cert, idx) => {
             const isAnalysis = isAnalysisCert(cert.issuer, cert.title);
-            const accentText = isAnalysis ? 'text-[#22D3AA]' : 'text-[#FF7A45]';
+            const accentText = isAnalysis ? 'text-[var(--data)]' : 'text-[var(--sales)]';
 
             return (
               <div
                 key={cert.title + idx}
-                className="p-4 sm:p-6 grid grid-cols-1 md:grid-cols-12 gap-4 items-center hover:bg-[var(--border)]/30 transition-colors"
+                className="p-5 grid grid-cols-1 md:grid-cols-12 gap-4 items-center hover:bg-[var(--panel-alt)] transition-colors"
               >
                 {/* Column 1: Title & Issuer */}
                 <div className="md:col-span-5">
-                  <h3 className="font-sora font-medium text-base text-[var(--text)] mb-1">
+                  <h3 className="font-outfit font-bold text-base text-[var(--text)] mb-1 leading-snug">
                     {cert.title}
                   </h3>
-                  <div className="font-mono text-[11px] text-[var(--muted)] uppercase">
-                    ISSUER: <span className="text-[var(--text)]">{cert.issuer}</span>
+                  <div className="font-mono text-xs text-[var(--text-muted)] uppercase font-medium">
+                    ISSUER: <span className="text-[var(--text-secondary)] font-bold">{cert.issuer}</span>
                   </div>
                 </div>
 
                 {/* Column 2: Credential ID */}
-                <div className="md:col-span-3 font-mono text-[11px]">
-                  <span className="text-[var(--muted)] block md:hidden mb-0.5">CREDENTIAL ID:</span>
-                  <span className="text-[var(--muted)]">{cert.credentialId}</span>
+                <div className="md:col-span-3 font-mono text-xs">
+                  <span className="text-[var(--text-muted)] block md:hidden mb-0.5">CREDENTIAL ID:</span>
+                  <span className="text-[var(--text-secondary)] bg-[var(--panel-alt)] px-2.5 py-1 rounded border border-[var(--border)] inline-block font-semibold">{cert.credentialId}</span>
                 </div>
 
                 {/* Column 3: Date (Mono) */}
-                <div className="md:col-span-2 font-mono text-base md:text-lg font-bold">
-                  <span className="text-[var(--muted)] block md:hidden mb-0.5 text-[11px] font-normal">DATE:</span>
+                <div className="md:col-span-2 font-mono text-sm md:text-base font-extrabold">
+                  <span className="text-[var(--text-muted)] block md:hidden mb-0.5 text-xs font-normal">DATE:</span>
                   <span className={accentText}>{cert.date}</span>
                 </div>
 
                 {/* Column 4: Links */}
-                <div className="md:col-span-2 flex items-center md:justify-end gap-2 font-mono text-xs md:text-sm pt-2 md:pt-0">
+                <div className="md:col-span-2 flex items-center md:justify-end gap-2 font-mono text-xs pt-2 md:pt-0">
                   {cert.verificationUrl && (
                     <a
                       href={cert.verificationUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1 px-2.5 py-1.5 border border-[var(--border)] text-[var(--text)] hover:border-[var(--muted)] transition-colors"
+                      className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-[var(--border)] glass-panel text-[var(--text-secondary)] hover:text-[var(--text)] hover:border-[var(--border-strong)] transition-all font-semibold"
                     >
                       <span>Verify</span>
-                      <ExternalLink className="w-3 h-3 text-[var(--muted)]" />
+                      <ExternalLink className="w-3.5 h-3.5" />
                     </a>
                   )}
 
@@ -130,10 +129,10 @@ export const Certifications: React.FC = () => {
                       href={cert.pdfUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1 px-2.5 py-1.5 border border-[#22D3AA] text-[#22D3AA] hover:bg-[#22D3AA] hover:text-[#0A0D12] transition-colors"
+                      className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg btn-teal font-mono text-xs font-bold transition-all shadow-sm"
                     >
                       <span>PDF</span>
-                      <FileText className="w-3 h-3" />
+                      <FileText className="w-3.5 h-3.5" />
                     </a>
                   )}
                 </div>
@@ -143,7 +142,7 @@ export const Certifications: React.FC = () => {
         </div>
 
         {filteredCertifications.length === 0 && (
-          <div className="text-center py-12 bg-[var(--card-bg)] border border-[var(--border)] font-mono text-xs md:text-sm text-[var(--muted)]">
+          <div className="text-center py-16 rounded-2xl glass-panel border border-[var(--border)] font-mono text-sm text-[var(--text-secondary)]">
             No certifications match query "{searchQuery}".
           </div>
         )}
@@ -151,4 +150,5 @@ export const Certifications: React.FC = () => {
     </section>
   );
 };
+
 

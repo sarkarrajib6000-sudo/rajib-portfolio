@@ -21,32 +21,32 @@ export const Skills: React.FC = () => {
   const getAccentColor = (category: string) => {
     if (category === 'Data Analytics' || category === 'Tools & Platforms' || category === 'AI & Productivity') {
       return {
-        text: 'text-[#22D3AA]',
-        bg: 'bg-[#22D3AA]',
-        border: 'border-[#22D3AA]',
+        text: 'text-[var(--data)]',
+        bg: 'bg-[var(--data)]',
       };
     }
     return {
-      text: 'text-[#FF7A45]',
-      bg: 'bg-[#FF7A45]',
-      border: 'border-[#FF7A45]',
+      text: 'text-[var(--sales)]',
+      bg: 'bg-[var(--sales)]',
     };
   };
 
   return (
-    <section id="skills" className="py-20 px-4 lg:px-8 bg-[var(--bg)] text-[var(--text)] border-b border-[var(--border)]">
+    <section id="skills" className="py-24 px-4 lg:px-8 bg-[var(--bg)] text-[var(--text)] border-b border-[var(--border)]">
       <div className="max-w-7xl mx-auto">
-        {/* Left-Aligned Heading */}
+        {/* Heading */}
         <div className="mb-10">
-          <h2 className="font-sora font-medium text-xl sm:text-2xl text-[var(--text)] tracking-tight mb-3 flex items-center gap-2">
-            <Zap className="w-5 h-5 text-[#22D3AA]" aria-hidden="true" />
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[var(--data-bg)] text-[var(--data)] font-mono text-xs font-bold mb-3 border border-[var(--border-strong)]">
+            <Zap className="w-4 h-4 text-[var(--data)]" aria-hidden="true" />
+            <span>02 // SKILL_MATRIX</span>
+          </div>
+          <h2 className="font-outfit font-extrabold text-3xl sm:text-4xl text-[var(--text)] tracking-tight">
             Skill & Capability Matrix
           </h2>
-          <div className="w-16 h-0.5 bg-[#22D3AA]" />
         </div>
 
         {/* Filter Controls Bar */}
-        <div className="flex flex-col md:flex-row items-stretch md:items-center justify-between gap-4 mb-8">
+        <div className="flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-4 mb-8">
           {/* Category Filter Ledger Buttons */}
           <div className="flex flex-wrap items-center gap-2">
             {categories.map((cat) => {
@@ -55,10 +55,10 @@ export const Skills: React.FC = () => {
                 <button
                   key={cat}
                   onClick={() => setActiveTab(cat)}
-                  className={`px-3.5 py-2 font-mono text-xs md:text-sm font-medium uppercase border transition-colors ${
+                  className={`px-4 py-2 rounded-xl font-mono text-xs font-bold uppercase transition-all duration-200 border ${
                     isActive
-                      ? 'border-[#22D3AA] bg-[var(--card-bg)] text-[#22D3AA]'
-                      : 'border-[var(--border)] bg-[var(--card-bg)] text-[var(--muted)] hover:text-[var(--text)] hover:border-[var(--muted)]'
+                      ? 'border-[var(--border-strong)] bg-[var(--data-bg)] text-[var(--data)] shadow-sm'
+                      : 'border-[var(--border)] glass-panel text-[var(--text-secondary)] hover:text-[var(--text)] hover:border-[var(--border-strong)]'
                   }`}
                 >
                   {cat}
@@ -68,45 +68,44 @@ export const Skills: React.FC = () => {
           </div>
 
           {/* Search Box */}
-          <div className="relative w-full md:w-64">
-            <Search className="w-3.5 h-3.5 absolute left-3 top-1/2 -translate-y-1/2 text-[var(--muted)]" />
+          <div className="relative w-full lg:w-72">
+            <Search className="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-[var(--data)]" />
             <input
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder="Search skill..."
-              className="w-full pl-9 pr-3 py-2 bg-[var(--card-bg)] border border-[var(--border)] font-mono text-xs md:text-sm text-[var(--text)] placeholder-[var(--muted)] focus:outline-none focus:border-[#22D3AA]"
+              placeholder="Search skill capability..."
+              className="w-full pl-10 pr-4 py-2.5 rounded-xl glass-panel border border-[var(--border)] font-mono text-xs md:text-sm text-[var(--text)] placeholder-[var(--text-muted)] focus:outline-none focus:border-[var(--data)] focus:ring-1 focus:ring-[var(--data)] transition-all"
             />
           </div>
         </div>
 
-        {/* Skill Ledger Grid */}
-        <div className="grid grid-cols-3 gap-2 sm:gap-3 md:gap-4">
+        {/* Skill Ledger Grid - Responsive */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {filteredSkills.map((skill) => {
             const accent = getAccentColor(skill.category);
 
             return (
               <div
                 key={`${skill.category}-${skill.name}`}
-                className="bg-[var(--card-bg)] border border-[var(--border)] p-2.5 sm:p-3 flex flex-col justify-between"
+                className="rounded-2xl glass-panel p-4 flex flex-col justify-between border border-[var(--border)] hover:border-[var(--border-strong)] transition-all duration-300 hover:-translate-y-0.5 shadow-md"
               >
-
                 <div>
-                  <div className="flex items-center justify-between font-mono text-[11px] mb-1">
-                    <span className="text-[var(--muted)] uppercase truncate max-w-[70%]">{skill.category}</span>
-                    <span className={`font-bold text-base md:text-lg shrink-0 ${accent.text}`}>{skill.level}%</span>
+                  <div className="flex items-center justify-between font-mono text-xs mb-2">
+                    <span className="text-[var(--text-muted)] uppercase tracking-wider text-[10px] font-bold truncate max-w-[70%]">{skill.category}</span>
+                    <span className={`font-extrabold text-sm ${accent.text}`}>{skill.level}%</span>
                   </div>
 
-                  <h3 className="font-sans font-medium text-base text-[var(--text)] mb-2 leading-tight line-clamp-2">
+                  <h3 className="font-sans font-semibold text-base text-[var(--text)] mb-3 leading-snug">
                     {skill.name}
                   </h3>
                 </div>
 
                 {/* Progress Bar Track */}
-                <div className="h-1 sm:h-1.5 w-full bg-[var(--border)] overflow-hidden">
+                <div className="h-2.5 w-full bg-[var(--panel-alt)] rounded-full overflow-hidden p-0.5 border border-[var(--border)]">
                   <div
                     style={{ width: `${skill.level}%` }}
-                    className={`h-full ${accent.bg}`}
+                    className={`h-full rounded-full transition-all duration-500 ${accent.bg}`}
                   />
                 </div>
               </div>
@@ -115,7 +114,7 @@ export const Skills: React.FC = () => {
         </div>
 
         {filteredSkills.length === 0 && (
-          <div className="text-center py-12 bg-[var(--card-bg)] border border-[var(--border)] font-mono text-xs md:text-sm text-[var(--muted)]">
+          <div className="text-center py-16 rounded-2xl glass-panel border border-[var(--border)] font-mono text-sm text-[var(--text-secondary)]">
             No skills match query "{searchQuery}".
           </div>
         )}
@@ -123,4 +122,5 @@ export const Skills: React.FC = () => {
     </section>
   );
 };
+
 

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Send, CheckCircle, AlertCircle, Mail, MapPin, Clock, Phone } from 'lucide-react';
+import { Send, CheckCircle, AlertCircle, Mail, MapPin, Clock, Phone, MessageSquare } from 'lucide-react';
 import { personalInfo } from '../data/portfolioData';
 
 interface ContactFormState {
@@ -66,15 +66,18 @@ export const Contact: React.FC = () => {
   };
 
   return (
-    <section id="contact" className="py-20 px-4 lg:px-8 bg-[var(--bg)] text-[var(--text)] border-b border-[var(--border)]">
+    <section id="contact" className="py-24 px-4 lg:px-8 bg-[var(--bg)] text-[var(--text)] border-b border-[var(--border)]">
       <div className="max-w-7xl mx-auto">
-        {/* Left-Aligned Heading */}
+        {/* Section Heading */}
         <div className="mb-10">
-          <h2 className="font-sora font-medium text-xl sm:text-2xl text-[var(--text)] tracking-tight mb-3">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[var(--data-bg)] text-[var(--data)] font-mono text-xs font-bold mb-3 border border-[var(--border-strong)]">
+            <MessageSquare className="w-4 h-4 text-[var(--data)]" aria-hidden="true" />
+            <span>05 // DISPATCH_CHANNEL</span>
+          </div>
+          <h2 className="font-outfit font-extrabold text-3xl sm:text-4xl text-[var(--text)] tracking-tight mb-2">
             Contact & Communication Ledger
           </h2>
-          <div className="w-16 h-0.5 bg-[#22D3AA]" />
-          <p className="font-sans text-base text-[var(--muted)] mt-3 max-w-xl">
+          <p className="font-sans text-base text-[var(--text-secondary)] max-w-xl">
             Direct dispatch channel for project inquiries, custom automation, or data analytics requirements.
           </p>
         </div>
@@ -82,57 +85,67 @@ export const Contact: React.FC = () => {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           {/* Quick Contact Info Cards */}
           <div className="lg:col-span-4 flex flex-col gap-4">
-            <div className="p-5 bg-[var(--card-bg)] border border-[var(--border)] flex items-center gap-4">
-              <Phone className="w-5 h-5 text-[#22D3AA] flex-shrink-0" />
+            <div className="p-5 rounded-2xl glass-panel border border-[var(--border)] flex items-center gap-4 hover:border-[var(--border-strong)] transition-all shadow-md">
+              <div className="p-3 rounded-xl bg-[var(--data-bg)] text-[var(--data)]">
+                <Phone className="w-5 h-5 text-[var(--data)]" />
+              </div>
               <div>
-                <div className="font-mono text-[11px] text-[var(--muted)] uppercase">PHONE / MOBILE</div>
-                <a href={personalInfo.phoneUrl} className="font-mono text-sm text-[var(--text)] hover:text-[#22D3AA] transition-colors">
+                <div className="font-mono text-xs text-[var(--text-muted)] uppercase tracking-wider font-bold">PHONE / MOBILE</div>
+                <a href={personalInfo.phoneUrl} className="font-mono text-sm text-[var(--text)] hover:text-[var(--data)] font-semibold transition-colors">
                   {personalInfo.phone}
                 </a>
               </div>
             </div>
 
-            <div className="p-5 bg-[var(--card-bg)] border border-[var(--border)] flex items-center gap-4">
-              <Mail className="w-5 h-5 text-[#22D3AA] flex-shrink-0" />
+            <div className="p-5 rounded-2xl glass-panel border border-[var(--border)] flex items-center gap-4 hover:border-[var(--border-strong)] transition-all shadow-md">
+              <div className="p-3 rounded-xl bg-[var(--data-bg)] text-[var(--data)]">
+                <Mail className="w-5 h-5 text-[var(--data)]" />
+              </div>
               <div>
-                <div className="font-mono text-[11px] text-[var(--muted)] uppercase">EMAIL ADDRESS</div>
-                <a href="mailto:rajibsarkar9577@gmail.com" className="font-mono text-sm text-[var(--text)] hover:text-[#22D3AA] transition-colors">
+                <div className="font-mono text-xs text-[var(--text-muted)] uppercase tracking-wider font-bold">EMAIL ADDRESS</div>
+                <a href="mailto:rajibsarkar9577@gmail.com" className="font-mono text-sm text-[var(--text)] hover:text-[var(--data)] font-semibold transition-colors">
                   rajibsarkar9577@gmail.com
                 </a>
               </div>
             </div>
 
-            <div className="p-5 bg-[var(--card-bg)] border border-[var(--border)] flex items-center gap-4">
-              <MapPin className="w-5 h-5 text-[#FF7A45] flex-shrink-0" />
+            <div className="p-5 rounded-2xl glass-panel border border-[var(--border)] flex items-center gap-4 hover:border-[var(--sales)] transition-all shadow-md">
+              <div className="p-3 rounded-xl bg-[var(--sales-bg)] text-[var(--sales)]">
+                <MapPin className="w-5 h-5 text-[var(--sales)]" />
+              </div>
               <div>
-                <div className="font-mono text-[11px] text-[var(--muted)] uppercase">LOCATION</div>
-                <div className="font-sans text-base text-[var(--text)]">Assam, India</div>
+                <div className="font-mono text-xs text-[var(--text-muted)] uppercase tracking-wider font-bold">LOCATION</div>
+                <div className="font-sans text-base text-[var(--text)] font-semibold">Assam, India</div>
               </div>
             </div>
 
-            <div className="p-5 bg-[var(--card-bg)] border border-[var(--border)] flex items-center gap-4">
-              <Clock className="w-5 h-5 text-[#22D3AA] flex-shrink-0" />
+            <div className="p-5 rounded-2xl glass-panel border border-[var(--border)] flex items-center gap-4 hover:border-[var(--border-strong)] transition-all shadow-md">
+              <div className="p-3 rounded-xl bg-[var(--data-bg)] text-[var(--data)]">
+                <Clock className="w-5 h-5 text-[var(--data)]" />
+              </div>
               <div>
-                <div className="font-mono text-[11px] text-[var(--muted)] uppercase">SLA TURNAROUND</div>
-                <div className="font-mono text-base md:text-lg font-bold text-[var(--text)]">WITHIN 24 HOURS</div>
+                <div className="font-mono text-xs text-[var(--text-muted)] uppercase tracking-wider font-bold">SLA TURNAROUND</div>
+                <div className="font-mono text-base font-extrabold text-[var(--data)]">WITHIN 24 HOURS</div>
               </div>
             </div>
           </div>
 
           {/* Form Panel */}
-          <div className="lg:col-span-8 bg-[var(--card-bg)] border border-[var(--border)] p-6 sm:p-8">
+          <div className="lg:col-span-8 rounded-2xl glass-panel border border-[var(--border)] p-6 sm:p-8 shadow-xl">
             {isSubmitted ? (
               <div className="text-center py-12 flex flex-col items-center justify-center">
-                <CheckCircle className="w-12 h-12 text-[#22D3AA] mb-4" />
-                <h3 className="font-sora font-medium text-xl sm:text-2xl text-[var(--text)] mb-2">
-                  Message Sent!
+                <div className="p-4 rounded-full bg-[var(--data-bg)] text-[var(--data)] mb-4">
+                  <CheckCircle className="w-12 h-12 text-[var(--data)]" />
+                </div>
+                <h3 className="font-outfit font-bold text-2xl text-[var(--text)] mb-2">
+                  Message Sent Successfully!
                 </h3>
-                <p className="font-sans text-base text-[var(--muted)] max-w-sm mb-6">
+                <p className="font-sans text-base text-[var(--text-secondary)] max-w-sm mb-6">
                   Thank you for connecting. I'll analyze your query and respond shortly.
                 </p>
                 <button
                   onClick={() => setIsSubmitted(false)}
-                  className="px-6 py-2.5 bg-[#22D3AA] text-[#0A0D12] font-mono text-xs md:text-sm uppercase font-medium hover:bg-[#1eb894] transition-colors"
+                  className="px-7 py-3 rounded-xl btn-teal font-mono text-xs md:text-sm uppercase font-bold shadow-md"
                 >
                   Send Another Message
                 </button>
@@ -140,8 +153,7 @@ export const Contact: React.FC = () => {
             ) : (
               <form noValidate onSubmit={handleSubmit} className="space-y-6">
                 <div>
-
-                  <label htmlFor="name-input" className="block font-mono text-[11px] uppercase text-[var(--muted)] mb-2">
+                  <label htmlFor="name-input" className="block font-mono text-xs uppercase font-bold text-[var(--text-secondary)] mb-2">
                     Full Name
                   </label>
                   <input
@@ -151,20 +163,20 @@ export const Contact: React.FC = () => {
                     value={form.name}
                     onChange={handleChange}
                     placeholder="John Doe"
-                    className={`w-full px-4 py-3 bg-[var(--bg)] border text-[var(--text)] font-mono text-sm placeholder-[var(--muted)] focus:outline-none focus:border-[#22D3AA] ${
+                    className={`w-full px-4 py-3 rounded-xl glass-panel border text-[var(--text)] font-mono text-sm placeholder-[var(--text-muted)] focus:outline-none focus:border-[var(--data)] focus:ring-1 focus:ring-[var(--data)] transition-all ${
                       errors.name ? 'border-red-500' : 'border-[var(--border)]'
                     }`}
                   />
                   {errors.name && (
-                    <div className="flex items-center gap-1 mt-1 font-mono text-xs text-red-400">
-                      <AlertCircle className="w-3 h-3" />
+                    <div className="flex items-center gap-1.5 mt-1.5 font-mono text-xs text-red-500 font-bold">
+                      <AlertCircle className="w-3.5 h-3.5 text-red-500" />
                       <span>{errors.name}</span>
                     </div>
                   )}
                 </div>
 
                 <div>
-                  <label htmlFor="email-input" className="block font-mono text-[11px] uppercase text-[var(--muted)] mb-2">
+                  <label htmlFor="email-input" className="block font-mono text-xs uppercase font-bold text-[var(--text-secondary)] mb-2">
                     Email Address
                   </label>
                   <input
@@ -174,20 +186,20 @@ export const Contact: React.FC = () => {
                     value={form.email}
                     onChange={handleChange}
                     placeholder="john@example.com"
-                    className={`w-full px-4 py-3 bg-[var(--bg)] border text-[var(--text)] font-mono text-sm placeholder-[var(--muted)] focus:outline-none focus:border-[#22D3AA] ${
+                    className={`w-full px-4 py-3 rounded-xl glass-panel border text-[var(--text)] font-mono text-sm placeholder-[var(--text-muted)] focus:outline-none focus:border-[var(--data)] focus:ring-1 focus:ring-[var(--data)] transition-all ${
                       errors.email ? 'border-red-500' : 'border-[var(--border)]'
                     }`}
                   />
                   {errors.email && (
-                    <div className="flex items-center gap-1 mt-1 font-mono text-xs text-red-400">
-                      <AlertCircle className="w-3 h-3" />
+                    <div className="flex items-center gap-1.5 mt-1.5 font-mono text-xs text-red-500 font-bold">
+                      <AlertCircle className="w-3.5 h-3.5 text-red-500" />
                       <span>{errors.email}</span>
                     </div>
                   )}
                 </div>
 
                 <div>
-                  <label htmlFor="message-input" className="block font-mono text-[11px] uppercase text-[var(--muted)] mb-2">
+                  <label htmlFor="message-input" className="block font-mono text-xs uppercase font-bold text-[var(--text-secondary)] mb-2">
                     Your Message
                   </label>
                   <textarea
@@ -196,14 +208,14 @@ export const Contact: React.FC = () => {
                     rows={5}
                     value={form.message}
                     onChange={handleChange}
-                    placeholder="Describe your requirements..."
-                    className={`w-full px-4 py-3 bg-[var(--bg)] border text-[var(--text)] font-mono text-sm placeholder-[var(--muted)] focus:outline-none focus:border-[#22D3AA] resize-none ${
+                    placeholder="Describe your project requirements or analytics needs..."
+                    className={`w-full px-4 py-3 rounded-xl glass-panel border text-[var(--text)] font-mono text-sm placeholder-[var(--text-muted)] focus:outline-none focus:border-[var(--data)] focus:ring-1 focus:ring-[var(--data)] resize-none transition-all ${
                       errors.message ? 'border-red-500' : 'border-[var(--border)]'
                     }`}
                   />
                   {errors.message && (
-                    <div className="flex items-center gap-1 mt-1 font-mono text-xs text-red-400">
-                      <AlertCircle className="w-3 h-3" />
+                    <div className="flex items-center gap-1.5 mt-1.5 font-mono text-xs text-red-500 font-bold">
+                      <AlertCircle className="w-3.5 h-3.5 text-red-500" />
                       <span>{errors.message}</span>
                     </div>
                   )}
@@ -212,9 +224,9 @@ export const Contact: React.FC = () => {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-[#22D3AA] text-[#0A0D12] font-mono text-xs md:text-sm uppercase font-medium hover:bg-[#1eb894] transition-colors"
+                  className="w-full inline-flex items-center justify-center gap-2.5 px-7 py-3.5 rounded-xl btn-teal font-mono text-xs md:text-sm uppercase font-extrabold shadow-md hover:shadow-lg"
                 >
-                  <span>{isSubmitting ? 'Sending...' : 'Send Message'}</span>
+                  <span>{isSubmitting ? 'Sending Message...' : 'Send Message'}</span>
                   <Send className="w-4 h-4" />
                 </button>
               </form>
@@ -225,4 +237,5 @@ export const Contact: React.FC = () => {
     </section>
   );
 };
+
 

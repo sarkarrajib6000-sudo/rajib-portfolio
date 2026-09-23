@@ -46,21 +46,21 @@ function AppContent() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-[var(--bg)] text-[var(--text)] antialiased selection:bg-[#22D3AA] selection:text-[#0A0D12]">
-      {/* Floating Data Ledger Header (No backdrop-blur / glass) */}
-      <header className="fixed top-4 left-1/2 -translate-x-1/2 z-50 flex items-center justify-between gap-4 p-2 pl-4 pr-2 border border-[var(--border)] bg-[var(--card-bg)] w-[95%] max-w-5xl">
+    <div className="min-h-screen bg-[var(--bg)] text-[var(--text)] antialiased selection:bg-[var(--data)] selection:text-[var(--button-teal-text)]">
+      {/* Floating Glassmorphic Header */}
+      <header className="fixed top-4 left-1/2 -translate-x-1/2 z-50 flex items-center justify-between gap-4 p-2.5 px-5 rounded-2xl glass-header shadow-xl w-[95%] max-w-5xl transition-all duration-300">
         {/* Monogram / Logo */}
         <a
           href="#"
-          className="flex items-center gap-2 font-mono text-xs md:text-sm font-semibold tracking-wider text-[var(--text)] group"
+          className="flex items-center gap-2.5 font-mono text-xs md:text-sm font-bold tracking-wider text-[var(--text)] group"
         >
-          <span className="w-2 h-2 bg-[#22D3AA]" />
-          <span>RKS</span>
-          <span className="text-[var(--muted)]">/</span>
+          <span className="w-2.5 h-2.5 rounded-full bg-[var(--data)] shadow-[0_0_10px_var(--data)]" />
+          <span className="group-hover:text-[var(--data)] transition-colors">RKS</span>
+          <span className="text-[var(--text-muted)]">/</span>
         </a>
 
         {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center gap-1 font-mono text-xs md:text-sm">
+        <nav className="hidden md:flex items-center gap-1.5 font-mono text-xs md:text-sm">
           {NAV_ITEMS.map((item) => {
             const isCurrent = activeSection === item.href.substring(1);
             const Icon = item.Icon;
@@ -68,13 +68,13 @@ function AppContent() {
               <a
                 key={item.href}
                 href={item.href}
-                className={`px-3 py-1.5 transition-colors uppercase inline-flex items-center gap-1.5 ${
+                className={`px-3.5 py-1.5 rounded-xl transition-all uppercase inline-flex items-center gap-2 ${
                   isCurrent
-                    ? 'text-[#22D3AA] border-b border-[#22D3AA]'
-                    : 'text-[var(--muted)] hover:text-[var(--text)]'
+                    ? 'text-[var(--data)] bg-[var(--data-bg)] border border-[var(--border-strong)] font-bold shadow-sm'
+                    : 'text-[var(--text-secondary)] hover:text-[var(--text)] hover:bg-[var(--panel-alt)]'
                 }`}
               >
-                <Icon className="w-3.5 h-3.5 text-[#22D3AA]" aria-hidden="true" />
+                <Icon className={`w-3.5 h-3.5 ${isCurrent ? 'text-[var(--data)]' : 'text-[var(--text-muted)]'}`} aria-hidden="true" />
                 {item.label}
               </a>
             );
@@ -82,24 +82,24 @@ function AppContent() {
         </nav>
 
         {/* Action Controls */}
-        <div className="flex items-center gap-2 pl-2 border-l border-[var(--border)]">
+        <div className="flex items-center gap-3 pl-3 border-l border-[var(--border)]">
           {/* Theme Toggle */}
           <button
             onClick={toggleTheme}
-            className="p-1.5 text-[var(--muted)] hover:text-[var(--text)] hover:bg-[var(--border)] transition-colors"
+            className="p-2 rounded-xl text-[var(--text-secondary)] hover:text-[var(--text)] hover:bg-[var(--panel-alt)] transition-colors border border-transparent hover:border-[var(--border)]"
             aria-label="Toggle Theme"
           >
             {theme === 'dark' ? (
-              <Sun className="w-4 h-4 text-[#FF7A45]" />
+              <Sun className="w-4 h-4 text-[#FF7A00]" />
             ) : (
-              <Moon className="w-4 h-4 text-[#22D3AA]" />
+              <Moon className="w-4 h-4 text-[var(--data)]" />
             )}
           </button>
 
-          {/* Connect CTA - Solid Teal Outline Button */}
+          {/* Connect CTA - High Contrast Button */}
           <a
             href="#contact"
-            className="hidden sm:inline-flex items-center gap-1 px-3.5 py-1.5 border border-[#22D3AA] text-[#22D3AA] hover:bg-[#22D3AA] hover:text-[#0A0D12] font-mono text-xs md:text-sm font-medium uppercase transition-colors"
+            className="hidden sm:inline-flex items-center gap-1.5 px-4 py-1.5 rounded-xl btn-teal font-mono text-xs md:text-sm uppercase tracking-wider transition-all duration-300 shadow-md hover:shadow-lg"
           >
             <span>Connect</span>
             <ArrowUpRight className="w-3.5 h-3.5" />
@@ -108,7 +108,7 @@ function AppContent() {
           {/* Mobile Menu Trigger */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="p-1.5 md:hidden text-[var(--muted)] hover:text-[var(--text)] hover:bg-[var(--border)] transition-colors"
+            className="p-2 rounded-xl md:hidden text-[var(--text-secondary)] hover:text-[var(--text)] hover:bg-[var(--panel-alt)] transition-colors"
             aria-label="Toggle Mobile Menu"
           >
             {isMobileMenuOpen ? <X className="w-4 h-4" /> : <Menu className="w-4 h-4" />}
@@ -124,19 +124,24 @@ function AppContent() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.15 }}
-            className="fixed top-16 left-1/2 -translate-x-1/2 z-40 w-[95%] max-w-5xl border border-[var(--border)] bg-[var(--card-bg)] p-4 md:hidden font-mono text-xs md:text-sm"
+            className="fixed top-20 left-1/2 -translate-x-1/2 z-40 w-[95%] max-w-5xl rounded-2xl glass-header p-5 md:hidden font-mono text-xs md:text-sm shadow-2xl"
           >
             <div className="flex flex-col gap-2">
               {NAV_ITEMS.map((item) => {
                 const Icon = item.Icon;
+                const isCurrent = activeSection === item.href.substring(1);
                 return (
                   <a
                     key={item.href}
                     href={item.href}
                     onClick={() => setIsMobileMenuOpen(false)}
-                    className="px-3 py-2 text-[var(--muted)] hover:text-[var(--text)] hover:bg-[var(--border)] uppercase inline-flex items-center gap-2"
+                    className={`px-4 py-2.5 rounded-xl uppercase inline-flex items-center gap-2.5 transition-colors ${
+                      isCurrent
+                        ? 'text-[var(--data)] bg-[var(--data-bg)] border border-[var(--border-strong)] font-bold'
+                        : 'text-[var(--text-secondary)] hover:text-[var(--text)] hover:bg-[var(--panel-alt)]'
+                    }`}
                   >
-                    <Icon className="w-3.5 h-3.5 text-[#22D3AA]" aria-hidden="true" />
+                    <Icon className="w-4 h-4 text-[var(--data)]" aria-hidden="true" />
                     {item.label}
                   </a>
                 );
@@ -144,10 +149,10 @@ function AppContent() {
               <a
                 href="#contact"
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="mt-2 flex items-center justify-center gap-1.5 px-4 py-2.5 border border-[#22D3AA] text-[#22D3AA] hover:bg-[#22D3AA] hover:text-[#0A0D12] uppercase font-medium transition-colors"
+                className="mt-3 flex items-center justify-center gap-2 px-4 py-3 rounded-xl btn-teal uppercase font-bold tracking-wider transition-all shadow-md"
               >
                 <span>Connect</span>
-                <ArrowUpRight className="w-3.5 h-3.5" />
+                <ArrowUpRight className="w-4 h-4" />
               </a>
             </div>
           </motion.div>
