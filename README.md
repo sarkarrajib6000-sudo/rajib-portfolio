@@ -113,3 +113,8 @@ Here is a detailed breakdown of the 7 projects showcased in the portfolio:
   - **Glassmorphic Layout**: Dark/Light mode theme provider preserving user preference across sessions via `localStorage`.
   - **Performance Optimization**: Fast asset loading, SVG icons compilation, and clean Framer Motion variants.
   - **Vitest Testing**: Form submission validation tests, theme updates checks, and schema validation.
+
+## License
+
+This project is licensed under the MIT License.
+See the [LICENSE](LICENSE) file for details.
